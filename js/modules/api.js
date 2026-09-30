@@ -1,8 +1,9 @@
-const BASE_URL = "http://localhost:3000"
+const BASE_URL = "http://localhost:3000";
 
-// ===================== Login ===========================
 
-export async function login(email, password) {
+// ================= AUTH API ===========================
+
+export async function loginApi(email, password) {
     try {
         const response = await fetch(
             `${BASE_URL}/instructors?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
@@ -18,14 +19,7 @@ export async function login(email, password) {
             throw new Error("Email or password is not valid");
         }
 
-        const instructor = instructors[0];
-
-        localStorage.setItem(
-            "currentInstructor",
-            JSON.stringify(instructor)
-        );
-
-        return instructor;
+        return instructors[0];
 
     } catch (error) {
         console.error(error.message);
@@ -33,8 +27,12 @@ export async function login(email, password) {
     }
 }
 
-// ===================== Get all student Api =============
 
+// ================= STUDENTS API =======================
+
+
+
+// Get all students for one instructor
 export async function getAllStudents(instructorId) {
     try {
         const response = await fetch(
@@ -53,8 +51,8 @@ export async function getAllStudents(instructorId) {
     }
 }
 
-// ====================== Get student by id =============
 
+// Get one student belonging to one instructor
 export async function getStudentById(id, instructorId) {
     try {
         const response = await fetch(
@@ -68,7 +66,7 @@ export async function getStudentById(id, instructorId) {
         const students = await response.json();
 
         if (students.length === 0) {
-            throw new Error("Student not found for this instructor");
+            throw new Error("Student not found");
         }
 
         return students[0];
@@ -79,78 +77,92 @@ export async function getStudentById(id, instructorId) {
     }
 }
 
-// ===================== Add student api ==============
 
+// Add student
 export async function addStudent(student) {
     try {
-          const response = await fetch(`${BASE_URL}/students`, {
-          method: "POST",
+        const response = await fetch(
+            `${BASE_URL}/students`,
+            {
+                method: "POST",
 
-          headers: {
-            "Content-Type": "application/json"
-          },
-      
-          body: JSON.stringify(student)
-        });
-    
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(student)
+            }
+        );
+
         if (!response.ok) {
-          throw new Error("Failed to add student");
+            throw new Error("Failed to add student");
         }
 
         return await response.json();
 
-    }catch (error) {
-    console.error(error.message);
-    throw error;
-}
-}
-
-// =================== Delete User =====================
-
-export async function deleteStudent(id) {
-    try {
-        const response = await fetch(`${BASE_URL}/students/${id}`, {
-          method: "DELETE",
-          
-        });
-        if (!response.ok) {
-            throw new Error("Failed to Delete student")
-          }
-
-        return await response.json();
-    }catch(error) {
+    } catch (error) {
         console.error(error.message);
         throw error;
     }
 }
 
-// ===================  Update ========================
 
+// Update student
 export async function updateStudent(id, data) {
     try {
-        const response = await fetch(`${BASE_URL}/students/${id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json"
-          },
-        body: JSON.stringify(data)
-        });
-        
+        const response = await fetch(
+            `${BASE_URL}/students/${id}`,
+            {
+                method: "PATCH",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(data)
+            }
+        );
+
         if (!response.ok) {
-            throw new Error("Failed to Update student")
-          }
+            throw new Error("Failed to update student");
+        }
 
         return await response.json();
-    }catch(error) {
+
+    } catch (error) {
         console.error(error.message);
         throw error;
     }
 }
 
 
-// =================  Activities =================
+// Delete student 
+export async function deleteStudent(id) {
+    try {
+        const response = await fetch(
+            `${BASE_URL}/students/${id}`,
+            {
+                method: "DELETE"
+            }
+        );
 
-// Get all activities for one instructor
+        if (!response.ok) {
+            throw new Error("Failed to delete student");
+        }
+
+        return true;
+
+    } catch (error) {
+        console.error(error.message);
+        throw error;
+    }
+}
+
+
+// ================= ACTIVITIES API =====================
+
+
+// Get all activities for instructor
 export async function getInstructorActivities(instructorId) {
     try {
         const response = await fetch(
@@ -170,11 +182,11 @@ export async function getInstructorActivities(instructorId) {
 }
 
 
-// Get activities for one specific student
-export async function getStudentActivities(studentId) {
+// Get activities for specific student + instructor
+export async function getStudentActivities(studentId, instructorId) {
     try {
         const response = await fetch(
-            `${BASE_URL}/activities?studentId=${studentId}`
+            `${BASE_URL}/activities?studentId=${studentId}&instructorId=${instructorId}`
         );
 
         if (!response.ok) {
@@ -190,7 +202,7 @@ export async function getStudentActivities(studentId) {
 }
 
 
-// Add new activity
+// Add activity
 export async function addActivity(activity) {
     try {
         const response = await fetch(
