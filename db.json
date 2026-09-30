@@ -1,0 +1,170 @@
+{
+  "instructors": [
+    {
+      "id": 1,
+      "name": "Mohammed Al-Faqeeh",
+      "email": "mohammed@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 2,
+      "name": "Ahmad Ali",
+      "email": "ahmad@gmail.com",
+      "password": "123456"
+    }
+  ],
+
+  "students": [
+    {
+      "id": 101,
+      "instructorId": 1,
+      "name": "Sara Ahmad",
+      "email": "sara@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address" :"Amman",
+      "phone" : "077354545",
+      "age" : "25",
+      "mager" : "CIS",
+
+      "scores": {
+        "assignments": [
+          {
+            "id": 1,
+            "title": "Assignment 1",
+            "grade": 85
+          },
+          {
+            "id": 2,
+            "title": "Assignment 2",
+            "grade": 90
+          }
+        ],
+
+        "quizzes": [
+          {
+            "id": 1,
+            "title": "Quiz 1",
+            "grade": 80
+          }
+        ],
+
+        "exam": 88
+      },
+
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "absent"
+        }
+      ],
+
+      "feedback": [
+        {
+          "id": 1,
+          "text": "Good progress",
+          "date": "2026-09-30"
+        }
+      ]
+    },
+
+    {
+      "id": 102,
+      "instructorId": 1,
+      "name": "Omar Khaled",
+      "email": "omar@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address" :"Amman",
+      "phone" : "077234347",
+      "age" : "22",
+      "mager" : "CS",
+
+      "scores": {
+        "assignments": [
+          {
+            "id": 1,
+            "title": "Assignment 1",
+            "grade": 60
+          }
+        ],
+
+        "quizzes": [
+          {
+            "id": 1,
+            "title": "Quiz 1",
+            "grade": 55
+          }
+        ],
+
+        "exam": 50
+      },
+
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "absent"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "absent"
+        }
+      ],
+
+      "feedback": []
+    },
+
+    {
+      "id": 103,
+      "instructorId": 2,
+      "name": "Lina Sami",
+      "email": "lina@gmail.com",
+      "course": "HTML & CSS",
+      "status": "active",
+      "address" :"Amman",
+      "phone" : "0777777777",
+      "age" : "23",
+      "mager" : "CS",
+
+      "scores": {
+        "assignments": [],
+        "quizzes": [],
+        "exam": null
+      },
+
+      "attendance": [],
+      "feedback": []
+    }
+  ],
+
+  "activities": [
+    {
+      "id": 1,
+      "instructorId": 1,
+      "studentId": 101,
+      "type": "grade_updated",
+      "message": "Sara Ahmad's grade was updated",
+      "date": "2026-09-30"
+    },
+    {
+      "id": 2,
+      "instructorId": 1,
+      "studentId": 102,
+      "type": "attendance_updated",
+      "message": "Omar Khaled's attendance was updated",
+      "date": "2026-09-30"
+    }
+  ]
+}
