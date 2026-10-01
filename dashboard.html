@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Page</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Icons (Font Awesome) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <!-- Brand -->
+      <div class="brand">
+        <span class="brand-logo"></span>
+        <span class="brand-name">Edu-Track</span>
+        <span class="brand-role">Instructor</span>
+      </div>
+
+      <!-- Cohort card (js part) -->
+      <div id="cohortCard"></div>
+
+      <!-- Navigation -->
+      <nav class="nav" aria-label="Main">
+        <ul class="nav-links">
+          <li>
+            <a href="dashboard.html" class="link is-active" aria-current="page"
+              >Dashboard</a
+            >
+          </li>
+          <li><a href="students.html" class="link">Students</a></li>
+          <li>
+            <a href="track.html" class="link">Tracking &amp; grades</a>
+          </li>
+          <li>
+            <a href="student-profile.html" class="link">At-risk students</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <footer class="sidebar-footer">
+        <div class="user">
+          <!-- js part -->
+          <span class="avatar" id="userAvatar"></span>
+          <div>
+            <!-- js part -->
+            <p class="user-name" id="userName"></p>
+            <p class="user-role">Lead Instructor</p>
+          </div>
+        </div>
+        <button class="btn btn-outline btn-block" type="button" id="signOutBtn">
+          Sign out
+        </button>
+      </footer>
+    </aside>
+
+    <!-- Overlay (mobile) -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Main -->
+    <div class="main">
+      <!-- Header -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button
+            class="burger"
+            id="burgerBtn"
+            type="button"
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
+          <div>
+            <!-- js part -->
+            <p class="topbar-sub"></p>
+            <h1 class="topbar-title"></h1>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <input
+            type="search"
+            class="search"
+            placeholder="Search students by Name or ID"
+          />
+
+          <div class="theme-toggle">
+            <button class="is-active" type="button" data-theme="light">
+              Light
+            </button>
+            <button type="button" data-theme="dark">Dark</button>
+          </div>
+
+          <button
+            class="btn btn-outline"
+            type="button"
+            aria-label="Notifications"
+          >
+            <i class="fa-regular fa-bell"></i>
+            <!-- js part -->
+            <span class="badge"></span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Page content (js part) -->
+      <main class="content" id="content"></main>
+    </div>
+
+    <!-- JS Link -->
+    <script src="js/pages/dashboardPage.js"></script>
+  </body>
+</html>
