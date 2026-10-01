@@ -284,3 +284,42 @@ export async function updateSubmission(submissionId, updatedData) {
     throw error;
   }
 }
+        throw error;
+    }
+}
+
+
+export async function getActivities() {
+
+    try {
+
+        const response =
+            await fetch(
+                `${BASE_URL}/activities?instructorId=${instructor.id}`
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Failed to get activities"
+            );
+
+        }
+
+
+        return await response.json();
+
+
+    } catch (error) {
+
+        console.error(
+            "Activities error:",
+            error
+        );
+
+        return [];
+
+    }
+
+}

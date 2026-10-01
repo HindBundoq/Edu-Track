@@ -15,16 +15,120 @@
   ],
   "students": [
     {
-      "id": "101",
+      "id": "105",
       "instructorId": 1,
-      "name": "Sara Ahmad",
-      "email": "sara@gmail.com",
+      "name": "Dana Khaled",
+      "email": "dana.khaled@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Irbid",
+      "phone": "0792222222",
+      "age": 21,
+      "major": "CS",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "absent"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "present"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "106",
+      "instructorId": 1,
+      "name": "Faris Mahmoud",
+      "email": "faris.mahmoud@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Zarqa",
+      "phone": "0793333333",
+      "age": 24,
+      "major": "Software Engineering",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "absent"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "absent"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "present"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "107",
+      "instructorId": 1,
+      "name": "Lina Ahmad",
+      "email": "lina.ahmad@gmail.com",
       "course": "JavaScript",
       "status": "active",
       "address": "Amman",
-      "phone": "077354545",
-      "age": 25,
+      "phone": "0794444444",
+      "age": 23,
       "major": "CIS",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "present"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "108",
+      "instructorId": 1,
+      "name": "Yazan Sami",
+      "email": "yazan.sami@gmail.com",
+      "course": "JavaScript",
+      "status": "archived",
+      "address": "Salt",
+      "phone": "0795555555",
+      "age": 25,
+      "major": "CS",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "present"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "109",
+      "instructorId": 1,
+      "name": "Rana Adel",
+      "email": "rana.adel@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Amman",
+      "phone": "0796666666",
+      "age": 22,
+      "major": "Computer Engineering",
       "attendance": [
         {
           "date": "2026-09-28",
@@ -39,24 +143,72 @@
           "status": "absent"
         }
       ],
-      "feedback": [
-        {
-          "id": 1,
-          "text": "Good progress",
-          "date": "2026-09-30"
-        }
-      ]
+      "feedback": []
     },
     {
-      "id": "102",
+      "id": "110",
       "instructorId": 1,
-      "name": "Omar Khaled",
-      "email": "omar@gmail.com",
+      "name": "Khaled Omar",
+      "email": "khaled.omar@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Madaba",
+      "phone": "0797777771",
+      "age": 26,
+      "major": "IT",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "absent"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "absent"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "111",
+      "instructorId": 1,
+      "name": "Sara Nabil",
+      "email": "sara.nabil@gmail.com",
       "course": "JavaScript",
       "status": "active",
       "address": "Amman",
-      "phone": "077234347",
-      "age": 22,
+      "phone": "0797777772",
+      "age": 21,
+      "major": "CIS",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "present"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "112",
+      "instructorId": 1,
+      "name": "Tareq Ali",
+      "email": "tareq.ali@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Irbid",
+      "phone": "0797777773",
+      "age": 23,
       "major": "CS",
       "attendance": [
         {
@@ -75,17 +227,518 @@
       "feedback": []
     },
     {
-      "id": "103",
-      "instructorId": 2,
-      "name": "Lina Sami",
-      "email": "lina@gmail.com",
-      "course": "HTML & CSS",
+      "id": "113",
+      "instructorId": 1,
+      "name": "Maya Yousef",
+      "email": "maya.yousef@gmail.com",
+      "course": "JavaScript",
+      "status": "archived",
+      "address": "Amman",
+      "phone": "0797777774",
+      "age": 22,
+      "major": "Software Engineering",
+      "attendance": [],
+      "feedback": []
+    },
+    {
+      "id": "114",
+      "instructorId": 1,
+      "name": "Omar Fadi",
+      "email": "omar.fadi@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Zarqa",
+      "phone": "0797777775",
+      "age": 24,
+      "major": "CIS",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "present"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "115",
+      "instructorId": 1,
+      "name": "Hala Mohammad",
+      "email": "hala.mohammad@gmail.com",
+      "course": "JavaScript",
       "status": "active",
       "address": "Amman",
-      "phone": "0777777777",
+      "phone": "0797777776",
       "age": 23,
       "major": "CS",
-      "attendance": [],
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "absent"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "116",
+      "instructorId": 1,
+      "name": "Ali Sameer",
+      "email": "ali.sameer@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Irbid",
+      "phone": "0797777777",
+      "age": 25,
+      "major": "IT",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "absent"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "absent"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "117",
+      "instructorId": 1,
+      "name": "Noor Hasan",
+      "email": "noor.hasan@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Amman",
+      "phone": "0797777778",
+      "age": 21,
+      "major": "CIS",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "present"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "118",
+      "instructorId": 1,
+      "name": "Basel Naser",
+      "email": "basel.naser@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Aqaba",
+      "phone": "0797777779",
+      "age": 27,
+      "major": "Computer Engineering",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "absent"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "present"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "119",
+      "instructorId": 1,
+      "name": "Reem Khalil",
+      "email": "reem.khalil@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Amman",
+      "phone": "0781111111",
+      "age": 22,
+      "major": "CS",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "present"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "120",
+      "instructorId": 1,
+      "name": "Sami Abdullah",
+      "email": "sami.abdullah@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Irbid",
+      "phone": "0782222222",
+      "age": 24,
+      "major": "CIS",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "absent"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "absent"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "present"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "121",
+      "instructorId": 1,
+      "name": "Rami Ghassan",
+      "email": "rami.ghassan@gmail.com",
+      "course": "JavaScript",
+      "status": "archived",
+      "address": "Amman",
+      "phone": "0783333333",
+      "age": 26,
+      "major": "Software Engineering",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "present"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "122",
+      "instructorId": 1,
+      "name": "Jana Saleh",
+      "email": "jana.saleh@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Amman",
+      "phone": "0784444444",
+      "age": 20,
+      "major": "CS",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "present"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "123",
+      "instructorId": 1,
+      "name": "Laith Hani",
+      "email": "laith.hani@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Zarqa",
+      "phone": "0785555555",
+      "age": 23,
+      "major": "IT",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "absent"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "present"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "124",
+      "instructorId": 1,
+      "name": "Malak Samer",
+      "email": "malak.samer@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Amman",
+      "phone": "0786666666",
+      "age": 21,
+      "major": "CIS",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "present"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "125",
+      "instructorId": 1,
+      "name": "Zaid Mustafa",
+      "email": "zaid.mustafa@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Irbid",
+      "phone": "0787777777",
+      "age": 25,
+      "major": "Software Engineering",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "absent"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "absent"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "126",
+      "instructorId": 1,
+      "name": "Aya Mahmoud",
+      "email": "aya.mahmoud@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Amman",
+      "phone": "0788888888",
+      "age": 22,
+      "major": "CS",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "absent"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "128",
+      "instructorId": 1,
+      "name": "Fadi Qasem",
+      "email": "fadi.qasem@gmail.com",
+      "course": "JavaScript",
+      "status": "archived",
+      "address": "Amman",
+      "phone": "0771112233",
+      "age": 28,
+      "major": "IT",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "129",
+      "instructorId": 1,
+      "name": "Rashed Amin",
+      "email": "rashed.amin@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Zarqa",
+      "phone": "0772223344",
+      "age": 24,
+      "major": "Computer Engineering",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "absent"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "absent"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "130",
+      "instructorId": 1,
+      "name": "Mariam Adel",
+      "email": "mariam.adel@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Amman",
+      "phone": "0773334455",
+      "age": 21,
+      "major": "CS",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "present"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "131",
+      "instructorId": 1,
+      "name": "Anas Saeed",
+      "email": "anas.saeed@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Irbid",
+      "phone": "0774445566",
+      "age": 23,
+      "major": "CIS",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "absent"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "present"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "132",
+      "instructorId": 1,
+      "name": "Ruba Yasin",
+      "email": "ruba.yasin@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Amman",
+      "phone": "0775556677",
+      "age": 22,
+      "major": "Software Engineering",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "present"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "present"
+        }
+      ],
+      "feedback": []
+    },
+    {
+      "id": "133",
+      "instructorId": 1,
+      "name": "Majd Hatem",
+      "email": "majd.hatem@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "address": "Madaba",
+      "phone": "0776667788",
+      "age": 26,
+      "major": "CS",
+      "attendance": [
+        {
+          "date": "2026-09-28",
+          "status": "absent"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "absent"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "present"
+        }
+      ],
       "feedback": []
     }
   ],
@@ -226,6 +879,825 @@
       "submittedAt": "2026-09-30T18:00:00",
       "grade": 90,
       "feedback": ""
+    },
+    {
+      "id": "8",
+      "taskId": 1,
+      "studentId": 104,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T22:00:00",
+      "grade": 91,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "9",
+      "taskId": 2,
+      "studentId": 104,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T21:15:00",
+      "grade": 14,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "10",
+      "taskId": 4,
+      "studentId": 104,
+      "instructorId": 1,
+      "submittedAt": "2026-09-30T17:30:00",
+      "grade": 93,
+      "feedback": "JWT assignment submitted"
+    },
+    {
+      "id": "11",
+      "taskId": 1,
+      "studentId": 105,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T18:00:00",
+      "grade": 98,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "12",
+      "taskId": 3,
+      "studentId": 105,
+      "instructorId": 1,
+      "submittedAt": "2026-07-25T01:10:00",
+      "grade": 30,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "13",
+      "taskId": 1,
+      "studentId": 106,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T19:00:00",
+      "grade": 64,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "14",
+      "taskId": 2,
+      "studentId": 106,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T18:15:00",
+      "grade": 20,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "15",
+      "taskId": 3,
+      "studentId": 106,
+      "instructorId": 1,
+      "submittedAt": "2026-07-24T19:10:00",
+      "grade": 35,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "16",
+      "taskId": 4,
+      "studentId": 106,
+      "instructorId": 1,
+      "submittedAt": "2026-09-30T19:30:00",
+      "grade": 79,
+      "feedback": "JWT assignment submitted"
+    },
+    {
+      "id": "17",
+      "taskId": 1,
+      "studentId": 107,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T20:00:00",
+      "grade": 71,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "18",
+      "taskId": 2,
+      "studentId": 107,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T19:15:00",
+      "grade": 12,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "19",
+      "taskId": 3,
+      "studentId": 107,
+      "instructorId": 1,
+      "submittedAt": "2026-07-24T20:10:00",
+      "grade": 40,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "20",
+      "taskId": 1,
+      "studentId": 108,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T21:00:00",
+      "grade": 78,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "21",
+      "taskId": 2,
+      "studentId": 108,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T20:15:00",
+      "grade": 15,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "22",
+      "taskId": 4,
+      "studentId": 108,
+      "instructorId": 1,
+      "submittedAt": "2026-09-30T15:30:00",
+      "grade": 65,
+      "feedback": "JWT assignment submitted"
+    },
+    {
+      "id": "23",
+      "taskId": 1,
+      "studentId": 109,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T22:00:00",
+      "grade": 85,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "24",
+      "taskId": 2,
+      "studentId": 109,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T21:15:00",
+      "grade": 18,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "25",
+      "taskId": 3,
+      "studentId": 109,
+      "instructorId": 1,
+      "submittedAt": "2026-07-24T22:10:00",
+      "grade": 50,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "26",
+      "taskId": 1,
+      "studentId": 110,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T18:00:00",
+      "grade": 92,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "27",
+      "taskId": 3,
+      "studentId": 110,
+      "instructorId": 1,
+      "submittedAt": "2026-07-24T18:10:00",
+      "grade": 29,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "28",
+      "taskId": 4,
+      "studentId": 110,
+      "instructorId": 1,
+      "submittedAt": "2026-09-30T17:30:00",
+      "grade": 87,
+      "feedback": "JWT assignment submitted"
+    },
+    {
+      "id": "29",
+      "taskId": 1,
+      "studentId": 111,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T19:00:00",
+      "grade": 99,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "30",
+      "taskId": 2,
+      "studentId": 111,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T18:15:00",
+      "grade": 13,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "31",
+      "taskId": 3,
+      "studentId": 111,
+      "instructorId": 1,
+      "submittedAt": "2026-07-25T01:10:00",
+      "grade": 34,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "32",
+      "taskId": 1,
+      "studentId": 112,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T20:00:00",
+      "grade": 65,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "33",
+      "taskId": 2,
+      "studentId": 112,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T19:15:00",
+      "grade": 16,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "34",
+      "taskId": 4,
+      "studentId": 112,
+      "instructorId": 1,
+      "submittedAt": "2026-09-30T19:30:00",
+      "grade": 73,
+      "feedback": "JWT assignment submitted"
+    },
+    {
+      "id": "35",
+      "taskId": 1,
+      "studentId": 113,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T21:00:00",
+      "grade": 72,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "36",
+      "taskId": 2,
+      "studentId": 113,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T20:15:00",
+      "grade": 19,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "37",
+      "taskId": 3,
+      "studentId": 113,
+      "instructorId": 1,
+      "submittedAt": "2026-07-24T21:10:00",
+      "grade": 44,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "38",
+      "taskId": 1,
+      "studentId": 114,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T22:00:00",
+      "grade": 79,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "39",
+      "taskId": 2,
+      "studentId": 114,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T21:15:00",
+      "grade": 11,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "40",
+      "taskId": 3,
+      "studentId": 114,
+      "instructorId": 1,
+      "submittedAt": "2026-07-25T01:10:00",
+      "grade": 49,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "41",
+      "taskId": 4,
+      "studentId": 114,
+      "instructorId": 1,
+      "submittedAt": "2026-09-30T15:30:00",
+      "grade": 95,
+      "feedback": "JWT assignment submitted"
+    },
+    {
+      "id": "42",
+      "taskId": 1,
+      "studentId": 115,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T18:00:00",
+      "grade": 86,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "43",
+      "taskId": 3,
+      "studentId": 115,
+      "instructorId": 1,
+      "submittedAt": "2026-07-24T18:10:00",
+      "grade": 28,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "44",
+      "taskId": 1,
+      "studentId": 116,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T19:00:00",
+      "grade": 93,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "45",
+      "taskId": 2,
+      "studentId": 116,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T18:15:00",
+      "grade": 17,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "46",
+      "taskId": 4,
+      "studentId": 116,
+      "instructorId": 1,
+      "submittedAt": "2026-09-30T17:30:00",
+      "grade": 81,
+      "feedback": "JWT assignment submitted"
+    },
+    {
+      "id": "47",
+      "taskId": 1,
+      "studentId": 117,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T20:00:00",
+      "grade": 100,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "48",
+      "taskId": 2,
+      "studentId": 117,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T19:15:00",
+      "grade": 20,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "49",
+      "taskId": 3,
+      "studentId": 117,
+      "instructorId": 1,
+      "submittedAt": "2026-07-25T01:10:00",
+      "grade": 38,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "50",
+      "taskId": 1,
+      "studentId": 118,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T21:00:00",
+      "grade": 66,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "51",
+      "taskId": 2,
+      "studentId": 118,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T20:15:00",
+      "grade": 12,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "52",
+      "taskId": 3,
+      "studentId": 118,
+      "instructorId": 1,
+      "submittedAt": "2026-07-24T21:10:00",
+      "grade": 43,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "53",
+      "taskId": 4,
+      "studentId": 118,
+      "instructorId": 1,
+      "submittedAt": "2026-09-30T19:30:00",
+      "grade": 67,
+      "feedback": "JWT assignment submitted"
+    },
+    {
+      "id": "54",
+      "taskId": 1,
+      "studentId": 119,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T22:00:00",
+      "grade": 73,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "55",
+      "taskId": 2,
+      "studentId": 119,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T21:15:00",
+      "grade": 15,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "56",
+      "taskId": 3,
+      "studentId": 119,
+      "instructorId": 1,
+      "submittedAt": "2026-07-24T22:10:00",
+      "grade": 48,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "57",
+      "taskId": 1,
+      "studentId": 120,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T18:00:00",
+      "grade": 80,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "58",
+      "taskId": 4,
+      "studentId": 120,
+      "instructorId": 1,
+      "submittedAt": "2026-09-30T15:30:00",
+      "grade": 89,
+      "feedback": "JWT assignment submitted"
+    },
+    {
+      "id": "59",
+      "taskId": 1,
+      "studentId": 121,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T19:00:00",
+      "grade": 87,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "60",
+      "taskId": 2,
+      "studentId": 121,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T18:15:00",
+      "grade": 10,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "61",
+      "taskId": 3,
+      "studentId": 121,
+      "instructorId": 1,
+      "submittedAt": "2026-07-24T19:10:00",
+      "grade": 32,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "62",
+      "taskId": 1,
+      "studentId": 122,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T20:00:00",
+      "grade": 94,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "63",
+      "taskId": 2,
+      "studentId": 122,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T19:15:00",
+      "grade": 13,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "64",
+      "taskId": 3,
+      "studentId": 122,
+      "instructorId": 1,
+      "submittedAt": "2026-07-24T20:10:00",
+      "grade": 37,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "65",
+      "taskId": 4,
+      "studentId": 122,
+      "instructorId": 1,
+      "submittedAt": "2026-09-30T17:30:00",
+      "grade": 75,
+      "feedback": "JWT assignment submitted"
+    },
+    {
+      "id": "66",
+      "taskId": 1,
+      "studentId": 123,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T21:00:00",
+      "grade": 60,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "67",
+      "taskId": 2,
+      "studentId": 123,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T20:15:00",
+      "grade": 16,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "68",
+      "taskId": 3,
+      "studentId": 123,
+      "instructorId": 1,
+      "submittedAt": "2026-07-25T01:10:00",
+      "grade": 42,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "69",
+      "taskId": 1,
+      "studentId": 124,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T22:00:00",
+      "grade": 67,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "70",
+      "taskId": 2,
+      "studentId": 124,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T21:15:00",
+      "grade": 19,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "71",
+      "taskId": 4,
+      "studentId": 124,
+      "instructorId": 1,
+      "submittedAt": "2026-09-30T19:30:00",
+      "grade": 97,
+      "feedback": "JWT assignment submitted"
+    },
+    {
+      "id": "72",
+      "taskId": 1,
+      "studentId": 125,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T18:00:00",
+      "grade": 74,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "73",
+      "taskId": 3,
+      "studentId": 125,
+      "instructorId": 1,
+      "submittedAt": "2026-07-24T18:10:00",
+      "grade": 26,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "74",
+      "taskId": 1,
+      "studentId": 126,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T19:00:00",
+      "grade": 81,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "75",
+      "taskId": 2,
+      "studentId": 126,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T18:15:00",
+      "grade": 14,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "76",
+      "taskId": 3,
+      "studentId": 126,
+      "instructorId": 1,
+      "submittedAt": "2026-07-25T01:10:00",
+      "grade": 31,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "77",
+      "taskId": 4,
+      "studentId": 126,
+      "instructorId": 1,
+      "submittedAt": "2026-09-30T15:30:00",
+      "grade": 83,
+      "feedback": "JWT assignment submitted"
+    },
+    {
+      "id": "78",
+      "taskId": 1,
+      "studentId": 127,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T20:00:00",
+      "grade": 88,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "79",
+      "taskId": 2,
+      "studentId": 127,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T19:15:00",
+      "grade": 17,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "80",
+      "taskId": 3,
+      "studentId": 127,
+      "instructorId": 1,
+      "submittedAt": "2026-07-24T20:10:00",
+      "grade": 36,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "81",
+      "taskId": 1,
+      "studentId": 128,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T21:00:00",
+      "grade": 95,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "82",
+      "taskId": 2,
+      "studentId": 128,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T20:15:00",
+      "grade": 20,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "83",
+      "taskId": 4,
+      "studentId": 128,
+      "instructorId": 1,
+      "submittedAt": "2026-09-30T17:30:00",
+      "grade": 69,
+      "feedback": "JWT assignment submitted"
+    },
+    {
+      "id": "84",
+      "taskId": 1,
+      "studentId": 129,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T22:00:00",
+      "grade": 61,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "85",
+      "taskId": 2,
+      "studentId": 129,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T21:15:00",
+      "grade": 12,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "86",
+      "taskId": 3,
+      "studentId": 129,
+      "instructorId": 1,
+      "submittedAt": "2026-07-25T01:10:00",
+      "grade": 46,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "87",
+      "taskId": 1,
+      "studentId": 130,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T18:00:00",
+      "grade": 68,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "88",
+      "taskId": 3,
+      "studentId": 130,
+      "instructorId": 1,
+      "submittedAt": "2026-07-24T18:10:00",
+      "grade": 25,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "89",
+      "taskId": 4,
+      "studentId": 130,
+      "instructorId": 1,
+      "submittedAt": "2026-09-30T19:30:00",
+      "grade": 91,
+      "feedback": "JWT assignment submitted"
+    },
+    {
+      "id": "90",
+      "taskId": 1,
+      "studentId": 131,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T19:00:00",
+      "grade": 75,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "91",
+      "taskId": 2,
+      "studentId": 131,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T18:15:00",
+      "grade": 18,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "92",
+      "taskId": 3,
+      "studentId": 131,
+      "instructorId": 1,
+      "submittedAt": "2026-07-24T19:10:00",
+      "grade": 30,
+      "feedback": "DOM task reviewed"
+    },
+    {
+      "id": "93",
+      "taskId": 1,
+      "studentId": 132,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T20:00:00",
+      "grade": 82,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "94",
+      "taskId": 2,
+      "studentId": 132,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T19:15:00",
+      "grade": 10,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "95",
+      "taskId": 4,
+      "studentId": 132,
+      "instructorId": 1,
+      "submittedAt": "2026-09-30T15:30:00",
+      "grade": 77,
+      "feedback": "JWT assignment submitted"
+    },
+    {
+      "id": "96",
+      "taskId": 1,
+      "studentId": 133,
+      "instructorId": 1,
+      "submittedAt": "2026-07-10T21:00:00",
+      "grade": 89,
+      "feedback": "Good effort"
+    },
+    {
+      "id": "97",
+      "taskId": 2,
+      "studentId": 133,
+      "instructorId": 1,
+      "submittedAt": "2026-07-17T20:15:00",
+      "grade": 13,
+      "feedback": "Keep improving"
+    },
+    {
+      "id": "98",
+      "taskId": 3,
+      "studentId": 133,
+      "instructorId": 1,
+      "submittedAt": "2026-07-24T21:10:00",
+      "grade": 40,
+      "feedback": "DOM task reviewed"
     }
   ],
   "activities": [
@@ -253,6 +1725,261 @@
       "type": "submission_received",
       "message": "Sara Ahmad submitted Auth with JWT",
       "date": "2026-09-30T18:00:00"
+    },
+    {
+      "id": "4",
+      "instructorId": 1,
+      "studentId": 104,
+      "taskId": 4,
+      "type": "submission_received",
+      "message": "Ahmad Nasser submitted Auth with JWT",
+      "date": "2026-09-30T17:30:00"
+    },
+    {
+      "id": "5",
+      "instructorId": 1,
+      "studentId": 105,
+      "type": "attendance_updated",
+      "message": "Dana Khaled's attendance was updated",
+      "date": "2026-09-30T14:20:00"
+    },
+    {
+      "id": "6",
+      "instructorId": 1,
+      "studentId": 106,
+      "taskId": 4,
+      "type": "submission_received",
+      "message": "Faris Mahmoud submitted Auth with JWT",
+      "date": "2026-09-30T19:30:00"
+    },
+    {
+      "id": "7",
+      "instructorId": 1,
+      "studentId": 107,
+      "type": "attendance_updated",
+      "message": "Lina Ahmad's attendance was updated",
+      "date": "2026-09-30T16:20:00"
+    },
+    {
+      "id": "8",
+      "instructorId": 1,
+      "studentId": 108,
+      "taskId": 4,
+      "type": "submission_received",
+      "message": "Yazan Sami submitted Auth with JWT",
+      "date": "2026-09-30T15:30:00"
+    },
+    {
+      "id": "9",
+      "instructorId": 1,
+      "studentId": 109,
+      "type": "attendance_updated",
+      "message": "Rana Adel's attendance was updated",
+      "date": "2026-09-30T18:20:00"
+    },
+    {
+      "id": "10",
+      "instructorId": 1,
+      "studentId": 110,
+      "taskId": 4,
+      "type": "submission_received",
+      "message": "Khaled Omar submitted Auth with JWT",
+      "date": "2026-09-30T17:30:00"
+    },
+    {
+      "id": "11",
+      "instructorId": 1,
+      "studentId": 111,
+      "type": "attendance_updated",
+      "message": "Sara Nabil's attendance was updated",
+      "date": "2026-09-30T20:20:00"
+    },
+    {
+      "id": "12",
+      "instructorId": 1,
+      "studentId": 112,
+      "taskId": 4,
+      "type": "submission_received",
+      "message": "Tareq Ali submitted Auth with JWT",
+      "date": "2026-09-30T19:30:00"
+    },
+    {
+      "id": "13",
+      "instructorId": 1,
+      "studentId": 113,
+      "type": "attendance_updated",
+      "message": "Maya Yousef's attendance was updated",
+      "date": "2026-09-30T15:20:00"
+    },
+    {
+      "id": "14",
+      "instructorId": 1,
+      "studentId": 114,
+      "taskId": 4,
+      "type": "submission_received",
+      "message": "Omar Fadi submitted Auth with JWT",
+      "date": "2026-09-30T15:30:00"
+    },
+    {
+      "id": "15",
+      "instructorId": 1,
+      "studentId": 115,
+      "type": "attendance_updated",
+      "message": "Hala Mohammad's attendance was updated",
+      "date": "2026-09-30T17:20:00"
+    },
+    {
+      "id": "16",
+      "instructorId": 1,
+      "studentId": 116,
+      "taskId": 4,
+      "type": "submission_received",
+      "message": "Ali Sameer submitted Auth with JWT",
+      "date": "2026-09-30T17:30:00"
+    },
+    {
+      "id": "17",
+      "instructorId": 1,
+      "studentId": 117,
+      "type": "attendance_updated",
+      "message": "Noor Hasan's attendance was updated",
+      "date": "2026-09-30T19:20:00"
+    },
+    {
+      "id": "18",
+      "instructorId": 1,
+      "studentId": 118,
+      "taskId": 4,
+      "type": "submission_received",
+      "message": "Basel Naser submitted Auth with JWT",
+      "date": "2026-09-30T19:30:00"
+    },
+    {
+      "id": "19",
+      "instructorId": 1,
+      "studentId": 119,
+      "type": "attendance_updated",
+      "message": "Reem Khalil's attendance was updated",
+      "date": "2026-09-30T14:20:00"
+    },
+    {
+      "id": "20",
+      "instructorId": 1,
+      "studentId": 120,
+      "taskId": 4,
+      "type": "submission_received",
+      "message": "Sami Abdullah submitted Auth with JWT",
+      "date": "2026-09-30T15:30:00"
+    },
+    {
+      "id": "21",
+      "instructorId": 1,
+      "studentId": 121,
+      "type": "attendance_updated",
+      "message": "Rami Ghassan's attendance was updated",
+      "date": "2026-09-30T16:20:00"
+    },
+    {
+      "id": "22",
+      "instructorId": 1,
+      "studentId": 122,
+      "taskId": 4,
+      "type": "submission_received",
+      "message": "Jana Saleh submitted Auth with JWT",
+      "date": "2026-09-30T17:30:00"
+    },
+    {
+      "id": "23",
+      "instructorId": 1,
+      "studentId": 123,
+      "type": "attendance_updated",
+      "message": "Laith Hani's attendance was updated",
+      "date": "2026-09-30T18:20:00"
+    },
+    {
+      "id": "24",
+      "instructorId": 1,
+      "studentId": 124,
+      "taskId": 4,
+      "type": "submission_received",
+      "message": "Malak Samer submitted Auth with JWT",
+      "date": "2026-09-30T19:30:00"
+    },
+    {
+      "id": "25",
+      "instructorId": 1,
+      "studentId": 125,
+      "type": "attendance_updated",
+      "message": "Zaid Mustafa's attendance was updated",
+      "date": "2026-09-30T20:20:00"
+    },
+    {
+      "id": "26",
+      "instructorId": 1,
+      "studentId": 126,
+      "taskId": 4,
+      "type": "submission_received",
+      "message": "Aya Mahmoud submitted Auth with JWT",
+      "date": "2026-09-30T15:30:00"
+    },
+    {
+      "id": "27",
+      "instructorId": 1,
+      "studentId": 127,
+      "type": "attendance_updated",
+      "message": "Yara Hassan's attendance was updated",
+      "date": "2026-09-30T15:20:00"
+    },
+    {
+      "id": "28",
+      "instructorId": 1,
+      "studentId": 128,
+      "taskId": 4,
+      "type": "submission_received",
+      "message": "Fadi Qasem submitted Auth with JWT",
+      "date": "2026-09-30T17:30:00"
+    },
+    {
+      "id": "29",
+      "instructorId": 1,
+      "studentId": 129,
+      "type": "attendance_updated",
+      "message": "Rashed Amin's attendance was updated",
+      "date": "2026-09-30T17:20:00"
+    },
+    {
+      "id": "30",
+      "instructorId": 1,
+      "studentId": 130,
+      "taskId": 4,
+      "type": "submission_received",
+      "message": "Mariam Adel submitted Auth with JWT",
+      "date": "2026-09-30T19:30:00"
+    },
+    {
+      "id": "31",
+      "instructorId": 1,
+      "studentId": 131,
+      "type": "attendance_updated",
+      "message": "Anas Saeed's attendance was updated",
+      "date": "2026-09-30T19:20:00"
+    },
+    {
+      "id": "32",
+      "instructorId": 1,
+      "studentId": 132,
+      "taskId": 4,
+      "type": "submission_received",
+      "message": "Ruba Yasin submitted Auth with JWT",
+      "date": "2026-09-30T15:30:00"
+    },
+    {
+      "id": "33",
+      "instructorId": 1,
+      "studentId": 133,
+      "type": "attendance_updated",
+      "message": "Majd Hatem's attendance was updated",
+      "date": "2026-09-30T14:20:00"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

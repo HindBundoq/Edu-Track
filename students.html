@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/students.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <main class="student-control-container">
+        <!-- == HEADER ========== -->
+        <div class="page-header">
+            <div>
+                <h1>Students</h1>
+                <p>
+                    Manage students, attendance and progress
+                </p>
+            </div>
+            <div class="header-actions">
+                <button
+                    id="exportCsvBtn"
+                    class="export-btn"
+                >
+                    Export CSV
+                </button>
+                <button
+                    id="addStudentBtn"
+                    class="add-btn"
+                >
+                    + Add Student
+                </button>
+            </div>
+        </div>
+        <!-- ================= STATUS TABS ================= -->
+        <div class="status-header">
+            <div class="status-tabs">
+                <button
+                    class="status-filter active"
+                    data-status="active"
+                >
+                    Active
+                    <span id="activeCount">
+                        0
+                    </span>
+                </button>
+                <button
+                    class="status-filter"
+                    data-status="at-risk"
+                >
+                    At Risk
+                    <span id="riskCount">
+                        0
+                    </span>
+                </button>
+                <button
+                    class="status-filter"
+                    data-status="archived"
+                >
+                    Archived
+                    <span id="archivedCount">
+                        0
+                    </span>
+                </button>
+
+                <button
+                    class="status-filter"
+                    data-status="all"
+                >
+                    All
+                    <span id="allCount">
+                        0
+                    </span>
+                </button>
+            </div>
+            <div id="studentsCounter">
+                0 students
+            </div>
+        </div>
+        <!-- ================= FILTERS ================= -->
+        <div class="controls">
+            <!-- Search -->
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search name, email, ID or course"
+            >
+            <!-- Course -->
+            <div class="filter-group">
+                <label for="courseFilter">
+                    Course
+                </label>
+                <select id="courseFilter">
+                    <option value="all">
+                        All
+                    </option>
+                </select>
+            </div>
+            <!-- Sort -->
+            <div class="filter-group">
+                <label for="sortSelect">
+                    Sort
+                </label>
+                <select id="sortSelect">
+                    <option value="name-asc">
+                        Name A-Z
+                    </option>
+                    <option value="name-desc">
+                        Name Z-A
+                    </option>
+                    <option value="attendance-high">
+                        Attendance High-Low
+                    </option>
+                    <option value="attendance-low">
+                        Attendance Low-High
+                    </option>
+                    <option value="score-high">
+                        Score High-Low
+                    </option>
+                    <option value="score-low">
+                        Score Low-High
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <!--  TABLE  -->
+
+        <div class="table-container">
+            <table class="students-table">
+                <thead>
+                    <tr>
+                        <th>
+                            STUDENT
+                        </th>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            COURSE
+                        </th>
+
+                        <th>
+                            ATTENDANCE
+                        </th>
+
+                        <th>
+                            AVG SCORE
+                        </th>
+
+                        <th>
+                            SUBMITTED
+                        </th>
+
+                        <th>
+                            LAST ACTIVE
+                        </th>
+
+                        <th>
+                            STATUS
+                        </th>
+
+                        <th>
+                            ACTIONS
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody id="studentsTableBody">
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <!-- ADD / EDIT STUDENT MODAL-->
+    <div
+        id="studentModal"
+        class="modal"
+    >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">
+                    Add Student
+                </h2>
+                <button
+                    type="button"
+                    id="closeModalBtn"
+                    class="close-btn"
+                >
+                    ×
+                </button>
+            </div>
+            <form id="studentForm">
+                <!-- database id -->
+                <input
+                    type="hidden"
+                    id="studentId"
+                >
+                <!-- Name -->
+                <div class="form-group">
+                    <label for="studentName">
+                        Full Name
+                    </label>
+                    <input
+                        type="text"
+                        id="studentName"
+                        required
+                    >
+                </div>
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="studentEmail">
+                        Email
+                    </label>
+                    <input
+                        type="email"
+                        id="studentEmail"
+                        required
+                    >
+                </div>
+                <!-- Course -->
+                <div class="form-group">
+                    <label for="studentCourse">
+                        Course
+                    </label>
+                    <input
+                        type="text"
+                        id="studentCourse"
+                        required
+                    >
+                </div>
+                <!-- Status -->
+                <div class="form-group">
+                    <label for="studentStatus">
+                        Status
+                    </label>
+                    <select id="studentStatus">
+                        <option value="active">
+                            Active
+                        </option>
+                        <option value="archived">
+                            Archived
+                        </option>
+                    </select>
+                </div>
+                <!-- Phone -->
+                <div class="form-group">
+                    <label for="studentPhone">
+                        Phone
+                    </label>
+                    <input
+                        type="text"
+                        id="studentPhone"
+                    >
+                </div>
+                <!-- Address -->
+                <div class="form-group">
+                    <label for="studentAddress">
+                        Address
+                    </label>
+                    <input
+                        type="text"
+                        id="studentAddress"
+                    >
+                </div>
+                <!-- Age -->
+                <div class="form-group">
+                    <label for="studentAge">
+                        Age
+                    </label>
+                    <input
+                        type="number"
+                        id="studentAge"
+                        min="0"
+                    >
+                </div>
+                <!-- Major -->
+                <div class="form-group">
+                    <label for="studentMajor">
+                        Major
+                    </label>
+                    <input
+                        type="text"
+                        id="studentMajor"
+                    >
+                </div>
+                <button
+                    type="submit"
+                    class="save-btn"
+                >
+                    Save Student
+                </button>
+            </form>
+        </div>
+    </div>
+    <div id="popup" class="popup">
+        <span id="popupMessage"></span>
+    </div>
+    <script type="module" src="./js/pages/studentsPage.js"></script>
+</body>
+
+</html>
