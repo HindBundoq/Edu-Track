@@ -1,0 +1,144 @@
+/* Global Settings */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* ---------- Orange scale (fixed in both modes) ---------- */
+  --orange-100: #ffede0; /* Tonal backgrounds: selected nav, badges */
+  --orange-400: #fba374; /* Primary color in dark mode */
+  --orange-500: #f0864e; /* ★ BRAND — primary buttons, progress, active states */
+  --orange-700: #b4521f; /* Orange text & links on light backgrounds */
+
+  /* ---------- Backgrounds ---------- */
+  --bg: #faf6f2; /* Page background */
+  --surface: #fffcfa; /* Cards, modals, inputs */
+  --surface2: #f5efe9; /* Sidebar, subtle fills, empty progress track */
+
+  /* ---------- Borders ---------- */
+  --line: #ede5dd; /* Dividers, card borders */
+  --line2: #ddd2c7; /* Input & outline-button borders */
+
+  /* ---------- Text ---------- */
+  --text: #1f1a16; /* Headings & body text */
+  --muted: #5e5248; /* Secondary text: captions, labels, meta */
+  --faint: #8a7b6e; /* Placeholders, disabled text */
+
+  /* ---------- Primary ---------- */
+  --pri: var(--orange-500); /* Primary buttons, progress fill, toggles ON */
+  --pri-hover: #e57a42; /* Hover of primary buttons */
+  --on-pri: #2b1307; /* Text on --pri background (not white) */
+  --pri-soft: var(--orange-100); /* Tonal background (selected / highlighted) */
+  --pri-text: var(--orange-700); /* Links & orange text */
+
+  /* ---------- Status (strong = text/icon, soft = badge background) ---------- */
+  --ok: #3f7d52; /* Success: submitted, passed */
+  --ok-soft: #e3f0e6;
+  --warn: #8f6305; /* Warning: due soon, late */
+  --warn-soft: #fbf0d5;
+  --bad: #b23e36; /* Danger: missing, at-risk, delete, errors */
+  --bad-soft: #fbe4e1;
+  --info: #3d6aa3; /* Info: announcements, needs grading */
+  --info-soft: #e3ecf7;
+}
+
+/* ---------- Dark mode — same names, new values ---------- */
+[data-theme="dark"] {
+  --bg: #15110e;
+  --surface: #1e1814;
+  --surface2: #28201b;
+  --line: #342a24;
+  --line2: #4a3d34;
+  --text: #f6eee7;
+  --muted: #bfb0a2;
+  --faint: #8a7b6e;
+
+  --pri: var(--orange-400);
+  --pri-hover: #ffb88f;
+  --on-pri: #2b1307;
+  --pri-soft: #35211a;
+  --pri-text: #ffb88f;
+
+  --ok: #8fc79e;
+  --ok-soft: #1d2b21;
+  --warn: #e6c06a;
+  --warn-soft: #2f2714;
+  --bad: #f0948b;
+  --bad-soft: #361d1a;
+  --info: #93b5e0;
+  --info-soft: #1b2431;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Figtree", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.popup {
+    position: fixed;
+
+    top: 24px;
+    right: 24px;
+
+    min-width: 280px;
+    max-width: 420px;
+
+    padding: 14px 18px;
+
+    border-radius: 12px;
+
+    background: var(--surface);
+    color: var(--text);
+
+    border: 1px solid var(--line);
+
+    box-shadow:
+        0 10px 30px
+        rgba(0, 0, 0, 0.15);
+
+    opacity: 0;
+
+    transform: translateY(-20px);
+
+    pointer-events: none;
+
+    transition: 0.3s ease;
+
+    z-index: 9999;
+}
+
+.popup.show {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.popup.error {
+    background: var(--bad-soft);
+    color: var(--bad);
+    border-color: var(--bad);
+}
+
+.popup.success {
+    background: var(--ok-soft);
+    color: var(--ok);
+    border-color: var(--ok);
+}
+
+.popup.warning {
+    background: var(--warn-soft);
+    color: var(--warn);
+    border-color: var(--warn);
+}
+
+.popup.info {
+    background: var(--info-soft);
+    color: var(--info);
+    border-color: var(--info);
+}
