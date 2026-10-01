@@ -167,6 +167,14 @@
             </div>
           </article>
 
+          <div class="stat-card">
+            <div class="stat-icon">L</div>
+            <div class="stat-info">
+              <span class="stat-label">Lab Average</span>
+              <h3 id="labAverage">-</h3>
+            </div>
+          </div>
+
           <article class="stat-card">
             <div class="stat-icon">★</div>
 
@@ -213,6 +221,35 @@
         </div>
       </section>
 
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <h2>Labs</h2>
+            <p>lab grades and performance</p>
+          </div>
+          <span class="section-count" id="labCount"> 0 </span>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Week</th>
+                <th>Due Date</th>
+                <th>Grade</th>
+                <th>Percentage</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody id="labsTableBody">
+              <!-- Labs will be rendered by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
       <!-- ================= QUIZZES ================= -->
 
       <section class="section">

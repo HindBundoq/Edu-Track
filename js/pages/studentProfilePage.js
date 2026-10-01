@@ -2,6 +2,7 @@ import {
   getStudentById,
   getStudentActivities,
   deleteStudent,
+  getTasks,
 } from "../modules/api.js";
 
 // =====================================================
@@ -97,6 +98,9 @@ const quizCount = document.getElementById("quizCount");
 
 const quizzesTableBody = document.getElementById("quizzesTableBody");
 
+//labs
+const labCount = document.getElementById("labCount");
+
 // Exam
 
 const examResult = document.getElementById("examResult");
@@ -131,21 +135,33 @@ const deleteStudentBtn = document.getElementById("deleteStudentBtn");
 // Load Student
 // =====================================================
 
-async function loadStudent() {
+async function loadStudent(studentId) {
   try {
-    const student = await getStudentById(studentId, currentInstructor.id);
-
+    const student = await getStudentById(studentId, 1);
     // Render Student Information
+    const task = await getTasks(1);
 
     renderStudentInformation(student);
 
     // Render Academic Information
 
-    renderAssignments(student.scores?.assignments || []);
+    const assignments = task.filter(
+      (t) => t.type?.toLowerCase() === "assignment",
+    );
 
-    renderQuizzes(student.scores?.quizzes || []);
+    renderAssignments(assignments || []);
 
-    renderExam(student.scores?.exam);
+    const Labs = task.filter((t) => t.type?.toLowerCase() === "lab");
+
+    renderLabs(Labs);
+
+    const Quizzes = task.filter((t) => t.type?.toLowerCase() === "quiz");
+
+    renderQuizzes(Quizzes || []);
+
+    const Exams = task.filter((t) => t.type?.toLowerCase() === "exam");
+
+    renderExam(Exams);
 
     renderAcademicOverview(student);
 
@@ -159,7 +175,7 @@ async function loadStudent() {
 
     // Load Activities
 
-    await loadActivities(student.id);
+    await loadActivities(studentId);
   } catch (error) {
     console.error(error);
 
@@ -175,7 +191,6 @@ async function loadStudent() {
 
 function renderStudentInformation(student) {
   // Header
-
   studentName.textContent = student.name;
 
   studentEmail.textContent = student.email;
@@ -194,7 +209,7 @@ function renderStudentInformation(student) {
 
   studentCourse.textContent = student.course || "-";
 
-  studentMajor.textContent = student.mager || "-";
+  studentMajor.textContent = student.major;
 
   // Avatar
 
@@ -212,7 +227,7 @@ function renderStudentInformation(student) {
 
   infoAge.textContent = student.age || "-";
 
-  infoMajor.textContent = student.mager || "-";
+  infoMajor.textContent = student.major || "-";
 }
 
 // =====================================================
@@ -271,7 +286,7 @@ function renderAssignments(assignments) {
 
             <td>
                 <strong>
-                    ${assignment.grade}
+                    ${assignment.points}
                 </strong>/100
             </td>
 
@@ -282,13 +297,13 @@ function renderAssignments(assignments) {
                     <div class="progress">
 
                         <span
-                            style="width: ${assignment.grade}%">
+                            style="width: ${assignment.points}%">
                         </span>
 
                     </div>
 
                     <small>
-                        ${assignment.grade}%
+                        ${assignment.points}%
                     </small>
 
                 </div>
@@ -298,6 +313,88 @@ function renderAssignments(assignments) {
         `;
 
     assignmentsTableBody.appendChild(row);
+  });
+}
+
+function renderLabs(labs) {
+  labCount.textContent = labs.length;
+
+  labsTableBody.innerHTML = "";
+
+  if (labs.length === 0) {
+    labsTableBody.innerHTML = `
+            <tr>
+                <td colspan="4">
+                    <div class="empty-state">
+                        No labs available
+                    </div>
+                </td>
+            </tr>
+        `;
+
+    return;
+  }
+
+  labs.forEach((lab, index) => {
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+
+            <td>
+                ${index + 1}
+            </td>
+
+            <td>
+                ${lab.title}
+            </td>
+            
+            <td>
+                ${lab.week}
+            </td>
+        
+            <td>
+                ${new Date(lab.dueDate).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+            </td>
+
+            <td>
+                <strong>
+                    ${lab.points}
+                </strong>/100
+            </td>
+
+            <td>
+
+                <div class="progress-wrapper">
+
+                    <div class="progress">
+
+                        <span
+                            style="width: ${lab.points}%">
+                        </span>
+
+                    </div>
+
+                    <small>
+                        ${lab.points}%
+                    </small>
+
+                </div>
+
+            </td>
+
+            <td>
+              <span class="status-badge ${lab.status?.toLowerCase() === "open" ? "active" : "inactive"}">
+              ${lab.status}
+              </span>
+            </td>
+
+        `;
+
+    labsTableBody.appendChild(row);
   });
 }
 
@@ -339,7 +436,7 @@ function renderQuizzes(quizzes) {
 
             <td>
                 <strong>
-                    ${quiz.grade}
+                    ${quiz.points}
                 </strong>/100
             </td>
 
@@ -350,13 +447,13 @@ function renderQuizzes(quizzes) {
                     <div class="progress">
 
                         <span
-                            style="width: ${quiz.grade}%">
+                            style="width: ${quiz.points}%">
                         </span>
 
                     </div>
 
                     <small>
-                        ${quiz.grade}%
+                        ${quiz.points}%
                     </small>
 
                 </div>
@@ -384,11 +481,11 @@ function renderExam(exam) {
     return;
   }
 
-  examResult.textContent = exam;
+  examResult.textContent = exam.title;
 
-  examPercentage.textContent = `${exam}%`;
+  examPercentage.textContent = `${exam.points}%`;
 
-  examProgress.style.width = `${exam}%`;
+  examProgress.style.width = `${exam.points}%`;
 }
 
 // =====================================================
@@ -561,7 +658,7 @@ function renderFeedback(feedback) {
 
 async function loadActivities(studentId) {
   try {
-    const activities = await getStudentActivities(studentId);
+    const activities = await getStudentActivities(studentId, 1);
 
     renderActivities(activities);
   } catch (error) {
@@ -687,4 +784,4 @@ deleteStudentBtn.addEventListener("click", async function () {
 // Initialize Page
 // =====================================================
 
-loadStudent();
+loadStudent(studentId);
