@@ -17,3 +17,16 @@ themeButtons.forEach((btn) => {
 
 setTheme(localStorage.getItem("theme") || "light");
 
+// ===== Burger menu =====
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+const burgerBtn = document.getElementById("burgerBtn");
+
+function toggleMenu() {
+  sidebar.classList.toggle("is-open");
+  overlay.classList.toggle("is-open");
+}
+
+burgerBtn.addEventListener("click", toggleMenu);
+overlay.addEventListener("click", toggleMenu);
+
