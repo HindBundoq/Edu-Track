@@ -1,16 +1,36 @@
-@import url("/main.css");
-header h3{
-    margin-right: 10px;
+.the-header{
+    display: flex;
+    align-items: center;
+    gap: 300px;
+    margin-top: 50px;
+    gap: 60px;
 
-    display: inline-block;
 }
-header p {
-    display: inline-block;
+.the-header h1{
+    padding-left: 100px;
+    
+}
+
+.the-header p{
+    padding-right: 400px;
     color: var(--faint);
 }
-header{
-   margin: 40px;
-    
+
+
+
+#theme{
+    margin-left: 100px;
+    background-color:var(--orange-700);
+    width: 80px;
+    border-radius: 10px;
+    border: 1px solid var( --pri-hover);
+    background-color: var( --bg);
+
+
+}
+body.dark {
+    background-color:var(--text);
+    color: var(--bg);
 }
 
 .form-login{
@@ -43,21 +63,26 @@ header{
 
 }
 .the-input input[type="email"],
-.the-input input[type="password"]
- {
+.the-input #password {
     width: 100%;
     padding: 15px;
-      background: var(--bg);
-      border-radius: 10px;
-      border: 1px solid var(--line2);
-
-    
+    background: var(--bg);
+    border-radius: 10px;
+    border: 1px solid var(--line2);
 }
 
+
+
 .the-input input[type="email"]:hover,
-.the-input input[type="password"]:hover {
+.the-input #password:hover {
     border: 1px solid var(--pri-hover);
-    
+}
+
+.the-input input[type="email"]:focus,
+.the-input #password:focus {
+    border: 1px solid var(--pri-hover);
+    outline: none;
+    box-shadow: 0 0 10px var(--pri-hover);
 }
 
 .the-input input[type="email"]:focus,
@@ -136,4 +161,60 @@ footer{
     display: flex;
     justify-content: space-between;
    margin:10px 40px;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+
+    header {
+        margin: 30px;
+    }
+
+    .form-login {
+        width: 80%;
+    }
+
+    footer {
+        margin-top: 70px;
+    }
+
+    .the-footer {
+        margin: 10px 30px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    header {
+        margin: 25px 20px;
+    }
+
+    .form-login {
+        width: 90%;
+    }
+
+    .form-login h3 {
+        font-size: large;
+    }
+
+    .form-login span {
+        font-size: small;
+    }
+
+    .the-input input[type="email"],
+    .the-input input[type="password"] {
+        padding: 12px;
+    }
+
+    .the-footer {
+        flex-direction: column;
+        gap: 10px;
+        margin: 10px 20px;
+        font-size: small;
+    }
+
 }
