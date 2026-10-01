@@ -22,10 +22,10 @@
       "email": "sara@gmail.com",
       "course": "JavaScript",
       "status": "active",
-      "address" :"Amman",
-      "phone" : "077354545",
-      "age" : "25",
-      "mager" : "CIS",
+      "address": "Amman",
+      "phone": "077354545",
+      "age": "25",
+      "mager": "CIS",
 
       "scores": {
         "assignments": [
@@ -83,10 +83,10 @@
       "email": "omar@gmail.com",
       "course": "JavaScript",
       "status": "active",
-      "address" :"Amman",
-      "phone" : "077234347",
-      "age" : "22",
-      "mager" : "CS",
+      "address": "Amman",
+      "phone": "077234347",
+      "age": "22",
+      "mager": "CS",
 
       "scores": {
         "assignments": [
@@ -133,10 +133,10 @@
       "email": "lina@gmail.com",
       "course": "HTML & CSS",
       "status": "active",
-      "address" :"Amman",
-      "phone" : "0777777777",
-      "age" : "23",
-      "mager" : "CS",
+      "address": "Amman",
+      "phone": "0777777777",
+      "age": "23",
+      "mager": "CS",
 
       "scores": {
         "assignments": [],

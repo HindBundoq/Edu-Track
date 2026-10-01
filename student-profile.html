@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Student Profile</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/student-profile.css" />
+  </head>
+
+  <body>
+    <!-- ================= HEADER ================= -->
+
+    <header class="profile-header">
+      <div class="header-left">
+        <a href="students.html" class="back-button">
+          <span>←</span>
+          Back to Students
+        </a>
+
+        <div class="page-title">
+          <h1 id="studentName">Loading...</h1>
+
+          <p id="studentEmail">Loading...</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <span id="studentStatus" class="status-badge"> </span>
+
+        <button id="editStudentBtn" class="btn btn-primary">
+          Edit Student
+        </button>
+
+        <button id="deleteStudentBtn" class="btn btn-danger">Delete</button>
+      </div>
+    </header>
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="profile-container">
+      <!-- ================= STUDENT OVERVIEW ================= -->
+
+      <section class="student-overview">
+        <div class="student-avatar" id="studentAvatar"></div>
+
+        <div class="student-main-info">
+          <h2 id="overviewName"></h2>
+
+          <p id="overviewEmail"></p>
+
+          <div class="student-tags">
+            <span class="tag">
+              <strong>Course:</strong>
+
+              <span id="studentCourse"></span>
+            </span>
+
+            <span class="tag">
+              <strong>Major:</strong>
+
+              <span id="studentMajor"></span>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PERSONAL INFORMATION ================= -->
+
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <h2>Personal Information</h2>
+
+            <p>Student contact and personal details</p>
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label"> Full Name </span>
+
+            <span class="info-value" id="infoName"> </span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label"> Email </span>
+
+            <span class="info-value" id="infoEmail"> </span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label"> Phone </span>
+
+            <span class="info-value" id="infoPhone"> </span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label"> Address </span>
+
+            <span class="info-value" id="infoAddress"> </span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label"> Age </span>
+
+            <span class="info-value" id="infoAge"> </span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label"> Major </span>
+
+            <span class="info-value" id="infoMajor"> </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ACADEMIC OVERVIEW ================= -->
+
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <h2>Academic Overview</h2>
+
+            <p>Student performance summary</p>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-icon">A</div>
+
+            <div>
+              <span class="stat-label"> Assignments </span>
+
+              <strong id="assignmentAverage"> - </strong>
+            </div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-icon">Q</div>
+
+            <div>
+              <span class="stat-label"> Quizzes </span>
+
+              <strong id="quizAverage"> - </strong>
+            </div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-icon">E</div>
+
+            <div>
+              <span class="stat-label"> Exam </span>
+
+              <strong id="examGrade"> - </strong>
+            </div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-icon">★</div>
+
+            <div>
+              <span class="stat-label"> Overall </span>
+
+              <strong id="overallGrade"> - </strong>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ================= ASSIGNMENTS ================= -->
+
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <h2>Assignments</h2>
+
+            <p>Assignment grades and performance</p>
+          </div>
+
+          <span class="section-count" id="assignmentCount"> 0 </span>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+
+                <th>Assignment</th>
+
+                <th>Grade</th>
+
+                <th>Performance</th>
+              </tr>
+            </thead>
+
+            <tbody id="assignmentsTableBody">
+              <!-- JavaScript will render assignments -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= QUIZZES ================= -->
+
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <h2>Quizzes</h2>
+
+            <p>Quiz results and performance</p>
+          </div>
+
+          <span class="section-count" id="quizCount"> 0 </span>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+
+                <th>Quiz</th>
+
+                <th>Grade</th>
+
+                <th>Performance</th>
+              </tr>
+            </thead>
+
+            <tbody id="quizzesTableBody">
+              <!-- JavaScript will render quizzes -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= EXAM ================= -->
+
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <h2>Final Exam</h2>
+
+            <p>Final examination result</p>
+          </div>
+        </div>
+
+        <div class="exam-card">
+          <div>
+            <span class="exam-label"> Exam Grade </span>
+
+            <strong id="examResult"> - </strong>
+
+            <span class="exam-total"> / 100 </span>
+          </div>
+
+          <div class="exam-progress">
+            <div class="progress large">
+              <span id="examProgress"></span>
+            </div>
+
+            <span id="examPercentage"> - </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ATTENDANCE ================= -->
+
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <h2>Attendance</h2>
+
+            <p>Student attendance record</p>
+          </div>
+
+          <div class="attendance-summary">
+            <span class="attendance-present">
+              Present:
+
+              <strong id="presentCount"> 0 </strong>
+            </span>
+
+            <span class="attendance-absent">
+              Absent:
+
+              <strong id="absentCount"> 0 </strong>
+            </span>
+          </div>
+        </div>
+
+        <div class="attendance-list" id="attendanceList">
+          <!-- JavaScript will render attendance -->
+        </div>
+      </section>
+
+      <!-- ================= FEEDBACK ================= -->
+
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <h2>Feedback</h2>
+
+            <p>Instructor feedback for this student</p>
+          </div>
+        </div>
+
+        <div class="feedback-list" id="feedbackList">
+          <!-- JavaScript will render feedback -->
+        </div>
+      </section>
+
+      <!-- ================= ACTIVITIES ================= -->
+
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <h2>Recent Activities</h2>
+
+            <p>Recent actions related to this student</p>
+          </div>
+        </div>
+
+        <div class="activities-list" id="activitiesList">
+          <!-- JavaScript will render activities -->
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script type="module" src="js/pages/studentProfilePage.js"></script>
+  </body>
+</html>
