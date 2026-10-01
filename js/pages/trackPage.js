@@ -17,9 +17,29 @@ const instructorId = 1;
 // }
 
 
-const tasks = await getTasks(instructorId);
+let tasks = [];
+let submissions = [];
+let students = [];
 
-const submissions = await getSubmissions(instructorId);
+// load all data first (json-server must be running: npx json-server db.json)
+try {
+    [tasks, submissions, students] = await Promise.all([
+        getTasks(instructorId),
+        getSubmissions(instructorId),
+        getAllStudents(instructorId)
+    ]);
+} catch (error) {
+    console.error(error);
+    document.getElementById("task-details").innerHTML = `
+        <p class="empty-state">
+            Could not load data. Make sure json-server is running on http://localhost:3000
+        </p>
+    `;
+}
+
+// tasks shown by the current filter + the selected task (kept after saving a grade)
+let currentTasks = tasks;
+let selectedTaskId = tasks.length > 0 ? tasks[0].id : null;
 
 function renderHeaderStatistics() {
     const openTasks = tasks.filter(t => t.status === "open");
@@ -102,11 +122,17 @@ filterButtons.forEach(button => {
 //  cards section functionaltye 
 
 const tasksList = document.getElementById("tasks-list");
-const students = await getAllStudents(instructorId);
 
 function renderTasks(tasksToRender) {
 
+    currentTasks = tasksToRender;
+
     tasksList.innerHTML = "";
+
+    if (tasksToRender.length === 0) {
+        tasksList.innerHTML = `<p class="empty-state">No tasks of this type.</p>`;
+        return;
+    }
 
     tasksToRender.forEach(task => {
 
@@ -137,6 +163,10 @@ function renderTasks(tasksToRender) {
         card.classList.add("task-card");
 
         card.dataset.id = task.id;
+
+        if (Number(task.id) === Number(selectedTaskId)) {
+            card.classList.add("active");
+        }
 
 
         card.innerHTML = `
@@ -198,6 +228,7 @@ function renderTasks(tasksToRender) {
     });
 
     card.classList.add("active");
+    selectedTaskId = task.id;
     renderTaskDetails(task);
         });
     });
@@ -213,7 +244,6 @@ function formatDate(date) {
     });
 }
 const taskDetails = document.getElementById("task-details");
-renderTasks(tasks);
 
 
 //  task detailes 
@@ -426,12 +456,12 @@ function renderStudentRows(task) {
 
                 <div class="student-status">
 
-                    <span class="submission-status">
+                    <span class="submission-status ${submission.grade !== null ? "graded" : ""}">
                         ${status}
                     </span>
 
 
-                    <span class="submission-time">
+                    <span class="submission-time ${late ? "late" : ""}">
 
                         ${
                             late
@@ -539,6 +569,9 @@ function renderStudentRows(task) {
         studentsContainer.appendChild(row);
 
     });
+
+    // keep the search filter applied after re-rendering
+    applyStudentSearch();
 
 
     // =====================================================
@@ -667,7 +700,7 @@ function renderStudentRows(task) {
 
                     renderHeaderStatistics();
 
-                    renderTasks(tasks);
+                    renderTasks(currentTasks);
 
                     renderTaskDetails(task);
 
@@ -699,7 +732,7 @@ function renderStudentRows(task) {
 renderTasks(tasks);
 
 
-// show first task automatically
+// show first task automatically (the first card is marked active by renderTasks)
 
 if (tasks.length > 0) {
 
@@ -707,19 +740,96 @@ if (tasks.length > 0) {
         tasks[0]
     );
 
+} else if (taskDetails.querySelector(".empty-state")?.textContent.includes("Loading")) {
 
-    const firstCard =
-        document.querySelector(
-            ".task-card"
-        );
-
-
-    if (firstCard) {
-
-        firstCard.classList.add(
-            "active"
-        );
-
-    }
+    taskDetails.innerHTML = `<p class="empty-state">No tasks yet.</p>`;
 
 }
+
+
+// =====================================================
+// Search students (filters rows of the selected task)
+// =====================================================
+
+const searchInput = document.getElementById("globalSearch");
+
+searchInput.addEventListener("input", applyStudentSearch);
+
+function applyStudentSearch() {
+
+    const query = document.getElementById("globalSearch").value.trim().toLowerCase();
+
+    document.querySelectorAll(".student-row").forEach(row => {
+
+        const text = row.querySelector(".student-info").textContent.toLowerCase();
+
+        row.style.display = text.includes(query) ? "" : "none";
+    });
+}
+
+
+// =====================================================
+// Export gradebook (CSV)
+// =====================================================
+
+document.getElementById("export-btn").addEventListener("click", () => {
+
+    const header = ["Student", "Email", ...tasks.map(task => `${task.title} (/${task.points})`)];
+
+    const rows = students.map(student => {
+
+        const grades = tasks.map(task => {
+
+            const submission = submissions.find(submission => {
+                return (
+                    Number(submission.taskId) === Number(task.id)
+                    &&
+                    Number(submission.studentId) === Number(student.id)
+                );
+            });
+
+            if (!submission) return "missing";
+
+            return submission.grade ?? "needs grading";
+        });
+
+        return [student.name, student.email, ...grades];
+    });
+
+    const csv = [header, ...rows]
+        .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(","))
+        .join("\n");
+
+    const link = document.createElement("a");
+
+    link.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+    link.download = "gradebook.csv";
+    link.click();
+
+    URL.revokeObjectURL(link.href);
+});
+
+
+// =====================================================
+// Light / dark theme (same localStorage key as the dashboard)
+// =====================================================
+
+const themeButtons = document.querySelectorAll(".theme-btn");
+
+function setTheme(theme) {
+
+    document.documentElement.setAttribute("data-theme", theme);
+
+    themeButtons.forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.theme === theme);
+    });
+
+    localStorage.setItem("theme", theme);
+}
+
+themeButtons.forEach(btn => {
+    btn.addEventListener("click", () => setTheme(btn.dataset.theme));
+});
+
+setTheme(localStorage.getItem("theme") || "light");
+
