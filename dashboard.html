@@ -1,17 +1,104 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard Page</title>
 
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- CSS Link -->
-     <link rel="stylesheet" href="css/dashboard.css">
-</head>
-<body>
-    
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <!-- Brand -->
+      <div class="brand">
+        <span class="brand-logo"></span>
+        <span class="brand-name">Edu-Track</span>
+        <span class="brand-role">Instructor</span>
+      </div>
+
+      <!-- Cohort card (js part) -->
+      <div id="cohortCard"></div>
+
+      <!-- Navigation -->
+      <nav class="nav" aria-label="Main">
+        <ul class="nav-links">
+          <li>
+            <a href="dashboard.html" class="link is-active" aria-current="page"
+              >Dashboard</a
+            >
+          </li>
+          <li><a href="students.html" class="link">Students</a></li>
+          <li>
+            <a href="track.html" class="link">Tracking &amp; grades</a>
+          </li>
+          <li>
+            <a href="student-profile.html" class="link">At-risk students</a>
+          </li>
+          <!-- <li><a href="archive.html" class="link">Archive</a></li> -->
+        </ul>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <footer class="sidebar-footer">
+        <div class="user">
+          <!-- js part -->
+          <span class="avatar" id="userAvatar"></span>
+          <div>
+            <!-- js part -->
+            <p class="user-name" id="userName"></p>
+            <p class="user-role">Lead Instructor</p>
+          </div>
+        </div>
+        <button class="btn btn-outline btn-block" type="button" id="signOutBtn">
+          Sign out
+        </button>
+      </footer>
+    </aside>
+
+    <!-- Main -->
+    <div class="main">
+      <!-- Header -->
+      <header class="topbar">
+        <div>
+          <!-- js part -->
+          <p class="topbar-sub"></p>
+          <h1 class="topbar-title"></h1>
+        </div>
+
+        <div class="topbar-actions">
+          <input
+            type="search"
+            class="search"
+            placeholder="Search students by Name or ID"
+          />
+
+          <div class="theme-toggle">
+            <button class="is-active" data-theme="light">Light</button>
+            <button data-theme="dark">Dark</button>
+          </div>
+
+          <button class="btn btn-outline">
+            Notifications <span class="badge">3</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Page content (js part) -->
+      <main class="content" id="content"></main>
+    </div>
 
     <!-- JS Link -->
-     <script src="js/pages/dashboardPage.js"></script>
-</body>
+    <script src="js/pages/dashboardPage.js"></script>
+  </body>
 </html>
