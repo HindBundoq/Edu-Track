@@ -1,0 +1,1065 @@
+/* =========================================================
+   STUDENTS PAGE
+   Uses variables from main.css
+========================================================= */
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.student-control-container {
+  width: 96%;
+  max-width: 1550px;
+  margin: 40px auto;
+}
+
+
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.page-header p {
+  font-size: 16px;
+  color: var(--muted);
+}
+
+
+/* =========================================================
+   ADD BUTTON
+========================================================= */
+
+.add-btn {
+  border: none;
+
+  background: var(--pri);
+  color: var(--on-pri);
+
+  font-size: 15px;
+  font-weight: 700;
+
+  padding: 13px 22px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.add-btn:hover {
+  background: var(--pri-hover);
+  transform: translateY(-1px);
+}
+
+.export-btn {
+    border: none;
+    
+    background: var(--surface2);
+    color: var(--pri-text);
+    
+    font-size: 15px;
+    font-weight: 700;
+    
+    padding: 13px 22px;
+    
+    border-radius: 12px;
+    
+    cursor: pointer;
+    
+    transition: 0.2s ease;
+}
+
+.export-btn:hover {
+    background: var(--surface);
+    color: var(--pri-text);
+    transform: translateY(-1px);
+}
+
+/* =========================================================
+   STATUS HEADER
+========================================================= */
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+
+  margin-bottom: 22px;
+}
+
+
+/* =========================================================
+   STATUS FILTER TABS
+========================================================= */
+
+.status-tabs {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 4px;
+
+  background: var(--surface2);
+
+  padding: 4px;
+
+  border-radius: 24px;
+}
+
+.status-filter {
+  border: none;
+
+  background: transparent;
+
+  color: var(--muted);
+
+  font-size: 14px;
+  font-weight: 600;
+
+  padding: 8px 15px;
+
+  border-radius: 20px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.status-filter span {
+  margin-left: 5px;
+}
+
+.status-filter:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.status-filter.active {
+  background: var(--surface);
+  color: var(--text);
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   STUDENTS COUNTER
+========================================================= */
+
+#studentsCounter {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   CONTROLS WRAPPER
+========================================================= */
+
+.controls {
+  width: 100%;
+
+  background: var(--surface);
+
+  border: 1px solid var(--line);
+
+  border-radius: 18px;
+
+  padding: 14px;
+
+  margin-bottom: 24px;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+
+/* =========================================================
+   SEARCH INPUT
+========================================================= */
+
+#searchInput {
+  flex: 1;
+
+  min-width: 250px;
+
+  height: 48px;
+
+  border: 1px solid var(--line2);
+
+  border-radius: 12px;
+
+  padding: 0 16px;
+
+  font-size: 15px;
+
+  color: var(--text);
+
+  background: var(--surface);
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+#searchInput::placeholder {
+  color: var(--faint);
+}
+
+#searchInput:focus {
+  border-color: var(--pri);
+
+  box-shadow:
+    0 0 0 3px
+    color-mix(
+      in srgb,
+      var(--pri) 15%,
+      transparent
+    );
+}
+
+
+/* =========================================================
+   FILTER GROUPS
+========================================================= */
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.filter-group label {
+  color: var(--muted);
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   SELECT
+========================================================= */
+
+.filter-group select {
+  height: 48px;
+
+  min-width: 150px;
+
+  padding: 0 40px 0 14px;
+
+  border: 1px solid var(--line2);
+
+  border-radius: 12px;
+
+  background: var(--surface);
+
+  color: var(--text);
+
+  font-size: 14px;
+
+  outline: none;
+
+  cursor: pointer;
+}
+
+.filter-group select:focus {
+  border-color: var(--pri);
+}
+
+
+/* =========================================================
+   TABLE CONTAINER
+========================================================= */
+
+.table-container {
+  width: 100%;
+
+  background: var(--surface);
+
+  border: 1px solid var(--line);
+
+  border-radius: 20px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.students-table {
+  width: 100%;
+
+  min-width: 1250px;
+
+  border-collapse: collapse;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.students-table thead {
+  background: var(--surface);
+}
+
+.students-table th {
+  padding: 16px 20px;
+
+  text-align: left;
+
+  color: var(--muted);
+
+  font-size: 13px;
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+
+  border-bottom: 1px solid var(--line);
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   TABLE BODY
+========================================================= */
+
+.students-table td {
+  padding: 15px 20px;
+
+  color: var(--text);
+
+  font-size: 14px;
+
+  vertical-align: middle;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.students-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.students-table tbody tr:hover {
+  background: var(--surface2);
+}
+
+.students-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* =========================================================
+   STUDENT INFO
+========================================================= */
+
+.student-info {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  min-width: 220px;
+}
+
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+.avatar {
+  width: 42px;
+  height: 42px;
+
+  min-width: 42px;
+
+  border-radius: 50%;
+
+  background: var(--pri-soft);
+  color: var(--pri-text);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   STUDENT DETAILS
+========================================================= */
+
+.student-details {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.student-details strong {
+  color: var(--text);
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.student-details span {
+  color: var(--muted);
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   SCORE
+========================================================= */
+
+.score-wrapper {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  min-width: 165px;
+}
+
+.score-bar {
+  width: 120px;
+  height: 8px;
+
+  background: var(--surface2);
+
+  border-radius: 20px;
+
+  overflow: hidden;
+}
+
+.score-progress {
+  height: 100%;
+
+  background: var(--pri);
+
+  border-radius: 20px;
+
+  transition: width 0.3s ease;
+}
+
+.score-wrapper strong {
+  min-width: 40px;
+
+  color: var(--text);
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   SUBMISSION INFO
+========================================================= */
+
+.submission-info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.submission-info strong {
+  color: var(--text);
+
+  font-size: 15px;
+}
+
+.submission-info span {
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   SUBMISSION STATES
+========================================================= */
+
+.missing {
+  color: var(--bad);
+}
+
+.pending {
+  color: var(--warn);
+}
+
+.late {
+  color: var(--warn);
+}
+
+
+/* =========================================================
+   STATUS BADGES
+========================================================= */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 5px 12px;
+
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* Active */
+
+.status.active {
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+
+
+/* At risk */
+
+.status.at-risk {
+  background: var(--bad-soft);
+  color: var(--bad);
+}
+
+
+/* Archived */
+
+.status.archived {
+  background: var(--surface2);
+  color: var(--muted);
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.actions {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+/* =========================================================
+   EDIT BUTTON
+========================================================= */
+
+.edit-btn {
+  border: none;
+
+  background: transparent;
+
+  color: var(--pri-text);
+
+  font-size: 14px;
+  font-weight: 600;
+
+  padding: 5px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.edit-btn:hover {
+  color: var(--pri-hover);
+}
+/* =======================================================
+    VIEW BUTTON
+========================================================== */
+.view-btn {
+  width: 34px;
+  height: 34px;
+
+  border: 1px solid var(--line2);
+
+  border-radius: 8px;
+
+  background: var(--surface);
+  color: var(--muted);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.view-btn:hover {
+  background: var(--pri-soft);
+  color: var(--pri-text);
+  border-color: var(--pri);
+}
+
+/* =========================================================
+   DELETE BUTTON
+========================================================= */
+
+.delete-btn {
+  border: none;
+
+  background: transparent;
+
+  color: var(--bad);
+
+  font-size: 14px;
+  font-weight: 600;
+
+  padding: 5px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.delete-btn:hover {
+  background: var(--bad-soft);
+
+  border-radius: 6px;
+}
+
+
+/* =========================================================
+   EMPTY TABLE
+========================================================= */
+
+.empty-row {
+  text-align: center;
+
+  padding: 45px !important;
+
+  color: var(--faint) !important;
+
+  font-size: 15px;
+}
+
+
+/* =========================================================
+   MODAL OVERLAY
+========================================================= */
+
+.modal {
+  position: fixed;
+
+  inset: 0;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  z-index: 1000;
+}
+
+.modal.show {
+  display: flex;
+}
+
+
+/* =========================================================
+   MODAL CONTENT
+========================================================= */
+
+.modal-content {
+  width: 100%;
+  max-width: 560px;
+
+  max-height: 92vh;
+
+  overflow-y: auto;
+
+  background: var(--surface);
+
+  border: 1px solid var(--line);
+
+  border-radius: 20px;
+
+  padding: 26px;
+
+  box-shadow:
+    0 20px 60px
+    rgba(0, 0, 0, 0.20);
+}
+
+
+/* =========================================================
+   MODAL HEADER
+========================================================= */
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-bottom: 22px;
+}
+
+.modal-header h2 {
+  color: var(--text);
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.close-btn {
+  width: 38px;
+  height: 38px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: var(--surface2);
+
+  color: var(--muted);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 24px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.close-btn:hover {
+  background: var(--pri-soft);
+  color: var(--pri-text);
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   FORM INPUTS
+========================================================= */
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  height: 46px;
+
+  border: 1px solid var(--line2);
+
+  border-radius: 10px;
+
+  background: var(--surface);
+
+  color: var(--text);
+
+  padding: 0 14px;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+.form-group input::placeholder {
+  color: var(--faint);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--pri);
+
+  box-shadow:
+    0 0 0 3px
+    color-mix(
+      in srgb,
+      var(--pri) 15%,
+      transparent
+    );
+}
+
+
+/* =========================================================
+   SAVE BUTTON
+========================================================= */
+
+.save-btn {
+  width: 100%;
+
+  border: none;
+
+  border-radius: 11px;
+
+  background: var(--pri);
+
+  color: var(--on-pri);
+
+  padding: 13px;
+
+  margin-top: 8px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.save-btn:hover {
+  background: var(--pri-hover);
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.table-container::-webkit-scrollbar,
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.table-container::-webkit-scrollbar-track,
+.modal-content::-webkit-scrollbar-track {
+  background: var(--surface2);
+}
+
+.table-container::-webkit-scrollbar-thumb,
+.modal-content::-webkit-scrollbar-thumb {
+  background: var(--line2);
+
+  border-radius: 10px;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .student-control-container {
+    width: 95%;
+  }
+
+
+  .controls {
+    flex-wrap: wrap;
+  }
+
+
+  #searchInput {
+    width: 100%;
+    flex-basis: 100%;
+  }
+
+
+  .filter-group {
+    flex: 1;
+  }
+
+
+  .filter-group select {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .student-control-container {
+    margin: 24px auto;
+  }
+
+
+  /* Header */
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+
+  .page-header h1 {
+    font-size: 28px;
+  }
+
+
+  .add-btn {
+    width: 100%;
+  }
+
+
+  /* Status */
+
+  .status-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+
+  .status-tabs {
+    width: 100%;
+
+    overflow-x: auto;
+
+    justify-content: flex-start;
+  }
+
+
+  .status-filter {
+    white-space: nowrap;
+  }
+
+
+  /* Controls */
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+
+  #searchInput {
+    width: 100%;
+    min-width: 0;
+  }
+
+
+  .filter-group {
+    width: 100%;
+
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 6px;
+  }
+
+
+  .filter-group select {
+    width: 100%;
+  }
+
+
+  /* Modal */
+
+  .modal {
+    padding: 12px;
+  }
+
+
+  .modal-content {
+    padding: 20px;
+
+    border-radius: 16px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .student-control-container {
+    width: 94%;
+  }
+
+
+  .page-header h1 {
+    font-size: 25px;
+  }
+
+
+  .page-header p {
+    font-size: 14px;
+  }
+
+
+  .status-tabs {
+    padding: 3px;
+  }
+
+
+  .status-filter {
+    padding: 8px 12px;
+
+    font-size: 13px;
+  }
+
+
+  #studentsCounter {
+    font-size: 13px;
+  }
+
+
+  .modal-header h2 {
+    font-size: 21px;
+  }
+}
