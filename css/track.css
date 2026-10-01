@@ -1,0 +1,566 @@
+/* ==========================================
+   Edu-Track - Tracking Page Stylesheet
+   Uses only variables from main.css (light + dark)
+   ========================================== */
+
+/* ---------- Layout ---------- */
+.main-content {
+  min-height: 100vh;
+  padding: 25px 30px;
+}
+
+/* ---------- Header ---------- */
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.breadcrumb {
+  font-size: 12px;
+  color: var(--faint);
+}
+
+.top-header h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-wrapper input {
+  padding: 8px 12px;
+  border: 1px solid var(--line2);
+  border-radius: 8px;
+  width: 260px;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  background-color: var(--surface);
+  color: var(--text);
+}
+
+.search-wrapper input::placeholder {
+  color: var(--faint);
+}
+
+.search-wrapper input:focus {
+  border-color: var(--pri);
+}
+
+.theme-toggle {
+  display: flex;
+  background-color: var(--surface2);
+  border-radius: 6px;
+  padding: 2px;
+}
+
+.theme-btn {
+  padding: 4px 10px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.theme-btn.active {
+  background-color: var(--surface);
+  color: var(--text);
+  font-weight: bold;
+}
+
+/* ---------- Subheader (stats filled by JS: #open, #upcoming, #closed, #needs-grading) ---------- */
+.subheader-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.stats-summary-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.stats-summary-text span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stats-summary-text span + span::before {
+  content: "•";
+  color: var(--faint);
+}
+
+#needs-grading {
+  color: var(--info);
+  font-weight: bold;
+}
+
+.action-buttons-group {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-secondary {
+  padding: 8px 14px;
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--line2);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-secondary:hover {
+  background-color: var(--surface2);
+}
+
+/* ---------- Tabs ---------- */
+.tabs-nav {
+  display: flex;
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 15px;
+}
+
+.tab-item {
+  padding: 8px 0;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.tab-item.active {
+  color: var(--pri-text);
+  font-weight: bold;
+  border-bottom-color: var(--pri);
+}
+
+/* ---------- Task type filters (.filter-btn + data-type, counts filled by JS) ---------- */
+.filter-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.filter-btn {
+  padding: 6px 12px;
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--line2);
+  border-radius: 15px;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.filter-btn:hover {
+  background-color: var(--surface2);
+}
+
+.filter-btn.active {
+  background-color: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.filter-btn span {
+  margin-left: 4px;
+  font-weight: bold;
+  opacity: 0.7;
+}
+
+/* ---------- Page layout ---------- */
+.tracking-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  align-items: start;
+  gap: 20px;
+}
+
+/* ---------- Task cards (rendered by JS into #tasks-list) ---------- */
+#tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-card {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.task-card:hover {
+  border-color: var(--line2);
+  background-color: var(--surface2);
+}
+
+.task-card.active {
+  border-color: var(--pri);
+  background-color: var(--pri-soft);
+}
+
+.task-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.task-number {
+  font-size: 11px;
+  font-weight: bold;
+  color: var(--faint);
+}
+
+.task-type {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: capitalize;
+  padding: 2px 6px;
+  background-color: var(--info-soft);
+  color: var(--info);
+  border-radius: 4px;
+}
+
+.task-status {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: capitalize;
+  padding: 2px 6px;
+  background-color: var(--surface2);
+  color: var(--muted);
+  border-radius: 4px;
+}
+
+.task-status.open {
+  background-color: var(--ok-soft);
+  color: var(--ok);
+}
+
+.task-status.upcoming {
+  background-color: var(--info-soft);
+  color: var(--info);
+}
+
+.task-status.closed {
+  background-color: var(--surface2);
+  color: var(--muted);
+}
+
+.task-title {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.task-meta {
+  font-size: 12px;
+  color: var(--faint);
+}
+
+.task-card-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+  margin-top: auto;
+}
+
+/* ---------- Task details panel (filled by JS into #task-details) ---------- */
+#task-details {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px;
+  min-width: 0;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.details-header {
+  margin-bottom: 6px;
+}
+
+.details-header h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 6px;
+  margin-bottom: 4px;
+}
+
+.details-meta {
+  font-size: 12px;
+  color: var(--faint);
+  margin-bottom: 6px;
+}
+
+.task-description {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 15px;
+}
+
+/* ---------- Submission summary (.submission-summary > .summary-box) ---------- */
+.submission-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.summary-box {
+  background-color: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+}
+
+.summary-box span {
+  display: block;
+  font-size: 10px;
+  color: var(--faint);
+  margin-bottom: 2px;
+}
+
+.summary-box strong {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* ---------- Students section ---------- */
+.students-section {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.students-section h3 {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#students-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ---------- Student rows (rendered by JS) ---------- */
+.student-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 2fr auto;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.student-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.student-info strong {
+  font-size: 13px;
+}
+
+.student-info span {
+  font-size: 11px;
+  color: var(--faint);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.student-status {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.submission-status {
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 8px;
+  background-color: var(--info-soft);
+  color: var(--info);
+  border-radius: 10px;
+}
+
+.submission-status.graded {
+  background-color: var(--ok-soft);
+  color: var(--ok);
+}
+
+.submission-time {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.not-submitted {
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 8px;
+  background-color: var(--bad-soft);
+  color: var(--bad);
+  border-radius: 10px;
+}
+
+.student-grade,
+.student-feedback {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.student-grade label,
+.student-feedback label {
+  font-size: 11px;
+  color: var(--faint);
+}
+
+.grade-field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.grade-input,
+.feedback-input {
+  padding: 6px 8px;
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--line2);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 12px;
+  outline: none;
+}
+
+.grade-input {
+  width: 70px;
+}
+
+.feedback-input {
+  width: 100%;
+  min-height: 36px;
+  resize: vertical;
+}
+
+.grade-input::placeholder,
+.feedback-input::placeholder {
+  color: var(--faint);
+}
+
+.grade-input:focus,
+.feedback-input:focus {
+  border-color: var(--pri);
+}
+
+.save-grade-btn {
+  padding: 8px 14px;
+  background-color: var(--pri);
+  color: var(--on-pri);
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.save-grade-btn:hover {
+  background-color: var(--pri-hover);
+}
+
+.submission-time.late {
+  color: var(--warn);
+  font-weight: bold;
+}
+
+.save-grade-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* ---------- Empty states ---------- */
+.empty-state {
+  font-size: 13px;
+  color: var(--faint);
+  text-align: center;
+  padding: 20px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .tracking-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .student-row {
+    grid-template-columns: 1fr;
+  }
+
+  .top-header,
+  .subheader-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .search-wrapper input {
+    width: 100%;
+  }
+}
