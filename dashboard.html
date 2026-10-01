@@ -12,6 +12,11 @@
       href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <!-- Icons (Font Awesome) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
 
     <!-- CSS Link -->
     <link rel="stylesheet" href="css/main.css" />
@@ -45,7 +50,6 @@
           <li>
             <a href="student-profile.html" class="link">At-risk students</a>
           </li>
-          <!-- <li><a href="archive.html" class="link">Archive</a></li> -->
         </ul>
       </nav>
 
@@ -66,14 +70,27 @@
       </footer>
     </aside>
 
+    <!-- Overlay (mobile) -->
+    <div class="overlay" id="overlay"></div>
+
     <!-- Main -->
     <div class="main">
       <!-- Header -->
       <header class="topbar">
-        <div>
-          <!-- js part -->
-          <p class="topbar-sub"></p>
-          <h1 class="topbar-title"></h1>
+        <div class="topbar-left">
+          <button
+            class="burger"
+            id="burgerBtn"
+            type="button"
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
+          <div>
+            <!-- js part -->
+            <p class="topbar-sub"></p>
+            <h1 class="topbar-title"></h1>
+          </div>
         </div>
 
         <div class="topbar-actions">
@@ -84,12 +101,20 @@
           />
 
           <div class="theme-toggle">
-            <button class="is-active" data-theme="light">Light</button>
-            <button data-theme="dark">Dark</button>
+            <button class="is-active" type="button" data-theme="light">
+              Light
+            </button>
+            <button type="button" data-theme="dark">Dark</button>
           </div>
 
-          <button class="btn btn-outline">
-            Notifications <span class="badge">3</span>
+          <button
+            class="btn btn-outline"
+            type="button"
+            aria-label="Notifications"
+          >
+            <i class="fa-regular fa-bell"></i>
+            <!-- js part -->
+            <span class="badge"></span>
           </button>
         </div>
       </header>
