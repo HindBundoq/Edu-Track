@@ -744,6 +744,18 @@
   ],
   "tasks": [
     {
+      "id": "8",
+      "instructorId": 1,
+      "title": "Responsive landing page",
+      "type": "exam",
+      "course": "JavaScript",
+      "description": "Build a responsive landing page using HTML and CSS.",
+      "week": 1,
+      "dueDate": "2026-07-10T23:59:00",
+      "points": 100,
+      "status": "closed"
+    },
+    {
       "id": "1",
       "instructorId": 1,
       "title": "Responsive landing page",
