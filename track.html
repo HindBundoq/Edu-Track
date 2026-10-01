@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking & grades</title>
+    <link rel="stylesheet" href="./css/track.css">
+    <link href="">
+</head>
+<body>
+    <main class="main">
+        <section class="track-header">
+            <div class="title-and-btn">
+
+                <h1>Tracking & grades</h1>
+
+                <p class="tracking-summary">
+                    <span id="open"></span>
+                    ·
+                    <span id="upcoming"></span>
+                    ·
+                    <span id="closed"></span>
+                    ·
+                    <span id="needs-grading"></span>
+                </p>
+
+            </div>
+
+            <div class="export-btn">
+                <button id="export-btn">
+                    Export gradebook (CSV)
+                </button>
+            </div>
+
+        </section>
+        <section class="filters">
+            <div>
+                <p>Tasks & grading</p>
+            </div>
+            <div class="task-filters" id="task-filters">
+
+                <button class="filter-btn active" data-type="all">
+                    All <span id="all-count"></span>
+                </button>
+
+                <button class="filter-btn" data-type="assignment">
+                    Assignments <span id="assignment-count"></span>
+                </button>
+
+                <button class="filter-btn" data-type="quiz">
+                    Quizzes <span id="quiz-count"></span>
+                </button>
+
+                <button class="filter-btn" data-type="project">
+                    Projects <span id="project-count"></span>
+                </button>
+
+                <button class="filter-btn" data-type="lab">
+                    Labs <span id="lab-count"></span>
+                </button>
+
+            </div>
+
+        </section>
+        <section class="cards" >
+            <div class="tasks-list" id="tasks-list"></div>
+            <div class="task-details" id="task-details">
+                <p>Select a task to view details</p>
+            </div>
+        </section>
+    </main>
+    <script type="module" src="./js/pages/trackPage.js"></script>
+</body>
+</html>

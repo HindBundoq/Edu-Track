@@ -62,7 +62,7 @@ export async function getStudentById(id, instructorId) {
       throw new Error("Student not found");
     }
 
-    return students[0];
+    return students;
   } catch (error) {
     console.error(error.message);
     throw error;
@@ -189,10 +189,98 @@ export async function addActivity(activity) {
     if (!response.ok) {
       throw new Error("Failed to add activity");
     }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// ====================================================
+// ===================== TASKS API ===============
+// ===================================================
+
+// ================= Get all instructor tasks =================
+
+export async function getTasks(instructorId) {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/tasks?instructorId=${instructorId}`,
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to get instructor tasks");
+    }
 
     return await response.json();
   } catch (error) {
     console.error(error.message);
+    throw error;
+  }
+}
+
+// ================= Get task by id =================
+
+export async function getTaskById(taskId, instructorId) {
+  try {
+    const response = await fetch(`${BASE_URL}/tasks/${taskId}`);
+
+    if (!response.ok) {
+      throw new Error("Task not found");
+    }
+
+    const task = await response.json();
+
+    if (Number(task.instructorId) !== Number(instructorId)) {
+      throw new Error("Task not found for this instructor");
+    }
+
+    return task;
+  } catch (error) {
+    console.error(error.message);
+    throw error;
+  }
+}
+
+// ================= Get submissions =================
+
+export async function getSubmissions(instructorId) {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/submissions?instructorId=${instructorId}`,
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to get submissions");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error(error.message);
+    throw error;
+  }
+}
+
+// ========== update student grade in truck page =====
+
+export async function updateSubmission(submissionId, updatedData) {
+  try {
+    const response = await fetch(`${BASE_URL}/submissions/${submissionId}`, {
+      method: "PATCH",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(updatedData),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to update submission");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error(error.message);
+
     throw error;
   }
 }
