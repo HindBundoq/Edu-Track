@@ -276,9 +276,22 @@ export async function updateSubmission(submissionId, updatedData) {
     if (!response.ok) {
       throw new Error("Failed to update submission");
     }
+<<<<<<< HEAD
   } catch (error) {
     console.error(error);
   }
+=======
+
+    return await response.json();
+  } catch (error) {
+    console.error(error.message);
+
+    throw error;
+  }
+}
+        throw error;
+    }
+>>>>>>> dc39be98e4c847802311ed3a44c44da0075172bf
 }
 
 export async function getActivities() {
@@ -291,10 +304,13 @@ export async function getActivities() {
       throw new Error("Failed to get activities");
     }
 
+<<<<<<< HEAD
     return await response.json();
   } catch (error) {
     console.error("Activities error:", error);
 
     return [];
   }
+=======
+>>>>>>> dc39be98e4c847802311ed3a44c44da0075172bf
 }
