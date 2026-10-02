@@ -102,20 +102,25 @@ form.addEventListener("submit", async function (event) {
             return;
         }
 
-        // 5.3 save the logged in instructor so the other pages can use it
-        // (dashboard reads "instructorId", student profile reads "currentInstructor")
-        localStorage.setItem("instructorId", instructor.id);
-        localStorage.setItem("currentInstructor", JSON.stringify(instructor));
+        // 5.3 save the logged in instructor (without password)
+        const { password: _pw, ...safeInstructor } = instructor;
+        const safeJson = JSON.stringify(safeInstructor);
 
-        // 5.4 remember the email only if the checkbox is checked
+        localStorage.setItem("instructorId", safeInstructor.id);
+
+        // 5.4 remember me: localStorage keeps session; otherwise sessionStorage only
         if (rememberMe.checked) {
+            localStorage.setItem("currentInstructor", safeJson);
+            sessionStorage.removeItem("currentInstructor");
             localStorage.setItem("rememberedEmail", email);
         } else {
+            sessionStorage.setItem("currentInstructor", safeJson);
+            localStorage.removeItem("currentInstructor");
             localStorage.removeItem("rememberedEmail");
         }
 
         // 5.5 success: go to the dashboard
-        showMessage(`Welcome back ${instructor.name}!`, "success");
+        showMessage(`Welcome back ${safeInstructor.name}!`, "success");
 
         setTimeout(function () {
             window.location.href = "dashboard.html";
