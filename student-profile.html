@@ -25,6 +25,62 @@
   </head>
 
   <body>
+    <div id="studentModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle">Add Student</h2>
+          <button type="button" id="closeModalBtn" class="close-btn">×</button>
+        </div>
+        <form id="studentForm">
+          <input type="hidden" id="modalStudentId" />
+
+          <div class="form-group">
+            <label for="modalStudentName">Full Name</label>
+            <input type="text" id="modalStudentName" required />
+          </div>
+
+          <div class="form-group">
+            <label for="modalStudentEmail">Email</label>
+            <input type="email" id="modalStudentEmail" required />
+          </div>
+
+          <div class="form-group">
+            <label for="modalStudentCourse">Course</label>
+            <input type="text" id="modalStudentCourse" required />
+          </div>
+
+          <div class="form-group">
+            <label for="modalStudentStatus">Status</label>
+            <select id="modalStudentStatus">
+              <option value="active">Active</option>
+              <option value="archived">Archived</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="modalStudentPhone">Phone</label>
+            <input type="text" id="modalStudentPhone" />
+          </div>
+
+          <div class="form-group">
+            <label for="modalStudentAddress">Address</label>
+            <input type="text" id="modalStudentAddress" />
+          </div>
+
+          <div class="form-group">
+            <label for="modalStudentAge">Age</label>
+            <input type="number" id="modalStudentAge" min="0" />
+          </div>
+
+          <div class="form-group">
+            <label for="modalStudentMajor">Major</label>
+            <input type="text" id="modalStudentMajor" />
+          </div>
+
+          <button type="submit" class="save-btn">Save Student</button>
+        </form>
+      </div>
+    </div>
     <!-- Layout Container (Fixed Sidebar + Fixed Topbar) -->
     <div id="layout-container"></div>
 
@@ -32,326 +88,326 @@
     <div class="main">
       <!-- ================= HEADER ================= -->
 
-    <header class="profile-header">
-      <div class="header-left">
-        <a href="students.html" class="back-button">
-          <span>←</span>
-          Back to Students
-        </a>
+      <header class="profile-header">
+        <div class="header-left">
+          <a href="students.html" class="back-button">
+            <span>←</span>
+            Back to Students
+          </a>
 
-        <!-- <div class="page-title">
+          <!-- <div class="page-title">
           <h1 id="studentName">Loading...</h1>
 
           <p id="studentEmail">Loading...</p>
         </div> -->
-      </div>
-
-      <div class="header-actions">
-        <span id="studentStatus" class="status-badge"> </span>
-
-        <button id="editStudentBtn" class="btn btn-primary">
-          Edit Student
-        </button>
-
-        <button id="deleteStudentBtn" class="btn btn-danger">Delete</button>
-      </div>
-    </header>
-
-    <!-- ================= MAIN ================= -->
-
-    <main class="profile-container">
-      <!-- ================= STUDENT OVERVIEW ================= -->
-
-      <section class="student-overview">
-        <div class="student-avatar" id="studentAvatar"></div>
-
-        <div class="student-main-info">
-          <h2 id="overviewName"></h2>
-
-          <p id="overviewEmail"></p>
-
-          <div class="student-tags">
-            <span class="tag">
-              <strong>Course:</strong>
-
-              <span id="studentCourse"></span>
-            </span>
-
-            <span class="tag">
-              <strong>Major:</strong>
-
-              <span id="studentMajor"></span>
-            </span>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= PERSONAL INFORMATION ================= -->
-
-      <section class="section">
-        <div class="section-header">
-          <div>
-            <h2>Personal Information</h2>
-
-            <p>Student contact and personal details</p>
-          </div>
         </div>
 
-        <div class="info-grid">
-          <div class="info-item">
-            <span class="info-label"> Full Name </span>
+        <div class="header-actions">
+          <span id="studentStatus" class="status-badge"> </span>
 
-            <span class="info-value" id="infoName"> </span>
-          </div>
+          <button id="editStudentBtn" class="btn btn-primary">
+            Edit Student
+          </button>
 
-          <div class="info-item">
-            <span class="info-label"> Email </span>
-
-            <span class="info-value" id="infoEmail"> </span>
-          </div>
-
-          <div class="info-item">
-            <span class="info-label"> Phone </span>
-
-            <span class="info-value" id="infoPhone"> </span>
-          </div>
-
-          <div class="info-item">
-            <span class="info-label"> Address </span>
-
-            <span class="info-value" id="infoAddress"> </span>
-          </div>
-
-          <div class="info-item">
-            <span class="info-label"> Age </span>
-
-            <span class="info-value" id="infoAge"> </span>
-          </div>
-
-          <div class="info-item">
-            <span class="info-label"> Major </span>
-
-            <span class="info-value" id="infoMajor"> </span>
-          </div>
+          <button id="deleteStudentBtn" class="btn btn-danger">Delete</button>
         </div>
-      </section>
+      </header>
 
-      <!-- ================= ACADEMIC OVERVIEW ================= -->
+      <!-- ================= MAIN ================= -->
 
-      <section class="section">
-        <div class="section-header">
-          <div>
-            <h2>Academic Overview</h2>
+      <main class="profile-container">
+        <!-- ================= STUDENT OVERVIEW ================= -->
 
-            <p>Student performance summary</p>
+        <section class="student-overview">
+          <div class="student-avatar" id="studentAvatar"></div>
+
+          <div class="student-main-info">
+            <h2 id="overviewName"></h2>
+
+            <p id="overviewEmail"></p>
+
+            <div class="student-tags">
+              <span class="tag">
+                <strong>Course:</strong>
+
+                <span id="studentCourse"></span>
+              </span>
+
+              <span class="tag">
+                <strong>Major:</strong>
+
+                <span id="studentMajor"></span>
+              </span>
+            </div>
           </div>
-        </div>
+        </section>
 
-        <div class="stats-grid">
-          <article class="stat-card">
-            <div class="stat-icon">A</div>
+        <!-- ================= PERSONAL INFORMATION ================= -->
 
+        <section class="section">
+          <div class="section-header">
             <div>
-              <span class="stat-label"> Assignments </span>
+              <h2>Personal Information</h2>
 
-              <strong id="assignmentAverage"> - </strong>
+              <p>Student contact and personal details</p>
             </div>
-          </article>
+          </div>
 
-          <article class="stat-card">
-            <div class="stat-icon">Q</div>
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-label"> Full Name </span>
 
+              <span class="info-value" id="infoName"> </span>
+            </div>
+
+            <div class="info-item">
+              <span class="info-label"> Email </span>
+
+              <span class="info-value" id="infoEmail"> </span>
+            </div>
+
+            <div class="info-item">
+              <span class="info-label"> Phone </span>
+
+              <span class="info-value" id="infoPhone"> </span>
+            </div>
+
+            <div class="info-item">
+              <span class="info-label"> Address </span>
+
+              <span class="info-value" id="infoAddress"> </span>
+            </div>
+
+            <div class="info-item">
+              <span class="info-label"> Age </span>
+
+              <span class="info-value" id="infoAge"> </span>
+            </div>
+
+            <div class="info-item">
+              <span class="info-label"> Major </span>
+
+              <span class="info-value" id="infoMajor"> </span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= ACADEMIC OVERVIEW ================= -->
+
+        <section class="section">
+          <div class="section-header">
             <div>
-              <span class="stat-label"> Quizzes </span>
+              <h2>Academic Overview</h2>
 
-              <strong id="quizAverage"> - </strong>
-            </div>
-          </article>
-          <div class="stat-card">
-            <div class="stat-icon">L</div>
-            <div class="stat-info">
-              <span class="stat-label">Lab Average</span>
-              <h3 id="labAverage">-</h3>
+              <p>Student performance summary</p>
             </div>
           </div>
 
-          <article class="stat-card">
-            <div class="stat-icon">★</div>
+          <div class="stats-grid">
+            <article class="stat-card">
+              <div class="stat-icon">A</div>
 
+              <div>
+                <span class="stat-label"> Assignments </span>
+
+                <strong id="assignmentAverage"> - </strong>
+              </div>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-icon">Q</div>
+
+              <div>
+                <span class="stat-label"> Quizzes </span>
+
+                <strong id="quizAverage"> - </strong>
+              </div>
+            </article>
+            <div class="stat-card">
+              <div class="stat-icon">L</div>
+              <div class="stat-info">
+                <span class="stat-label">Lab Average</span>
+                <h3 id="labAverage">-</h3>
+              </div>
+            </div>
+
+            <article class="stat-card">
+              <div class="stat-icon">★</div>
+
+              <div>
+                <span class="stat-label"> Overall </span>
+
+                <strong id="overallGrade"> - </strong>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ================= ASSIGNMENTS ================= -->
+
+        <section class="section">
+          <div class="section-header">
             <div>
-              <span class="stat-label"> Overall </span>
+              <h2>Assignments</h2>
 
-              <strong id="overallGrade"> - </strong>
+              <p>Assignment grades and performance</p>
             </div>
-          </article>
-        </div>
-      </section>
 
-      <!-- ================= ASSIGNMENTS ================= -->
-
-      <section class="section">
-        <div class="section-header">
-          <div>
-            <h2>Assignments</h2>
-
-            <p>Assignment grades and performance</p>
+            <span class="section-count" id="assignmentCount"> 0 </span>
           </div>
 
-          <span class="section-count" id="assignmentCount"> 0 </span>
-        </div>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
 
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
+                  <th>Assignment</th>
 
-                <th>Assignment</th>
+                  <th>Grade</th>
 
-                <th>Grade</th>
+                  <th>Performance</th>
+                </tr>
+              </thead>
 
-                <th>Performance</th>
-              </tr>
-            </thead>
-
-            <tbody id="assignmentsTableBody">
-              <!-- JavaScript will render assignments -->
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-header">
-          <div>
-            <h2>Labs</h2>
-            <p>lab grades and performance</p>
+              <tbody id="assignmentsTableBody">
+                <!-- JavaScript will render assignments -->
+              </tbody>
+            </table>
           </div>
-          <span class="section-count" id="labCount"> 0 </span>
-        </div>
+        </section>
 
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Title</th>
-                <th>Week</th>
-                <th>Due Date</th>
-                <th>Grade</th>
-                <th>Percentage</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-
-            <tbody id="labsTableBody">
-              <!-- Labs will be rendered by JavaScript -->
-            </tbody>
-          </table>
-        </div>
-      </section>
-      <!-- ================= QUIZZES ================= -->
-
-      <section class="section">
-        <div class="section-header">
-          <div>
-            <h2>Quizzes</h2>
-
-            <p>Quiz results and performance</p>
+        <section class="section">
+          <div class="section-header">
+            <div>
+              <h2>Labs</h2>
+              <p>lab grades and performance</p>
+            </div>
+            <span class="section-count" id="labCount"> 0 </span>
           </div>
 
-          <span class="section-count" id="quizCount"> 0 </span>
-        </div>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Title</th>
+                  <th>Week</th>
+                  <th>Due Date</th>
+                  <th>Grade</th>
+                  <th>Percentage</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
 
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
+              <tbody id="labsTableBody">
+                <!-- Labs will be rendered by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <!-- ================= QUIZZES ================= -->
 
-                <th>Quiz</th>
+        <section class="section">
+          <div class="section-header">
+            <div>
+              <h2>Quizzes</h2>
 
-                <th>Grade</th>
+              <p>Quiz results and performance</p>
+            </div>
 
-                <th>Performance</th>
-              </tr>
-            </thead>
-
-            <tbody id="quizzesTableBody">
-              <!-- JavaScript will render quizzes -->
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- ================= ATTENDANCE ================= -->
-
-      <section class="section">
-        <div class="section-header">
-          <div>
-            <h2>Attendance</h2>
-
-            <p>Student attendance record</p>
+            <span class="section-count" id="quizCount"> 0 </span>
           </div>
 
-          <div class="attendance-summary">
-            <span class="attendance-present">
-              Present:
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
 
-              <strong id="presentCount"> 0 </strong>
-            </span>
+                  <th>Quiz</th>
 
-            <span class="attendance-absent">
-              Absent:
+                  <th>Grade</th>
 
-              <strong id="absentCount"> 0 </strong>
-            </span>
+                  <th>Performance</th>
+                </tr>
+              </thead>
+
+              <tbody id="quizzesTableBody">
+                <!-- JavaScript will render quizzes -->
+              </tbody>
+            </table>
           </div>
-        </div>
+        </section>
 
-        <div class="attendance-list" id="attendanceList">
-          <!-- JavaScript will render attendance -->
-        </div>
-      </section>
+        <!-- ================= ATTENDANCE ================= -->
 
-      <!-- ================= FEEDBACK ================= -->
+        <section class="section">
+          <div class="section-header">
+            <div>
+              <h2>Attendance</h2>
 
-      <section class="section">
-        <div class="section-header">
-          <div>
-            <h2>Feedback</h2>
+              <p>Student attendance record</p>
+            </div>
 
-            <p>Instructor feedback for this student</p>
+            <div class="attendance-summary">
+              <span class="attendance-present">
+                Present:
+
+                <strong id="presentCount"> 0 </strong>
+              </span>
+
+              <span class="attendance-absent">
+                Absent:
+
+                <strong id="absentCount"> 0 </strong>
+              </span>
+            </div>
           </div>
-        </div>
 
-        <div class="feedback-list" id="feedbackList">
-          <!-- JavaScript will render feedback -->
-        </div>
-      </section>
-
-      <!-- ================= ACTIVITIES ================= -->
-
-      <section class="section">
-        <div class="section-header">
-          <div>
-            <h2>Recent Activities</h2>
-
-            <p>Recent actions related to this student</p>
+          <div class="attendance-list" id="attendanceList">
+            <!-- JavaScript will render attendance -->
           </div>
-        </div>
+        </section>
 
-        <div class="activities-list" id="activitiesList">
-          <!-- JavaScript will render activities -->
-        </div>
-      </section>
-    </main>
+        <!-- ================= FEEDBACK ================= -->
+
+        <section class="section">
+          <div class="section-header">
+            <div>
+              <h2>Feedback</h2>
+
+              <p>Instructor feedback for this student</p>
+            </div>
+          </div>
+
+          <div class="feedback-list" id="feedbackList">
+            <!-- JavaScript will render feedback -->
+          </div>
+        </section>
+
+        <!-- ================= ACTIVITIES ================= -->
+
+        <section class="section">
+          <div class="section-header">
+            <div>
+              <h2>Recent Activities</h2>
+
+              <p>Recent actions related to this student</p>
+            </div>
+          </div>
+
+          <div class="activities-list" id="activitiesList">
+            <!-- JavaScript will render activities -->
+          </div>
+        </section>
+      </main>
     </div>
 
     <!-- ================= JAVASCRIPT ================= -->
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="js/pages/layout.js"></script>
     <script type="module" src="js/pages/studentProfilePage.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>
