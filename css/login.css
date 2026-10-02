@@ -11,23 +11,29 @@
     }
 }
 
+body {
+    min-height: 100vh;
 
-.the-header{
+}
+.the-header {
     display: flex;
     align-items: center;
-    gap: 300px;
-    margin-top: 10px;
-    gap: 60px;
-    margin-left: 10px;
-
+    justify-content: space-between;
+    padding: 10px 100px;
 }
-.the-header h1{
-    padding-left: 100px;
-    
+.the-header h1 {
+    padding: 0;
 }
 
-.the-header p{
-    padding-right: 400px;
+.the-header img {
+    width: 150px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.the-header p {
+    padding: 0;
     color: var(--faint);
 }
 
@@ -75,6 +81,7 @@ body.dark {
     width: 100%;
     padding: 15px;
     background: var(--bg);
+    color: black;
     border-radius: 10px;
     border: 1px solid var(--line2);
         transition: transform 0.3s ease;
@@ -97,12 +104,7 @@ body.dark {
     box-shadow: 0 0 10px var(--pri-hover);
 }
 
-.the-input input[type="email"]:focus,
-.the-input input[type="password"]:focus {
-    border: 1px solid var(--pri-hover);
-    outline: none; /*يشيل الإطار الخارجي اللي يظهر حول العنصر لما تضغطي علي */
-    box-shadow: 0 0 10px var(--pri-hover) ;
-}
+
 
 .pass-show {    /* كلاس لحقل الباسوورد وال show مع بعض*/
     position: relative;
@@ -185,7 +187,7 @@ footer{
 .the-footer{
     display: flex;
     justify-content: space-between;
-       margin:10px 100px;
+       margin:10px ;
 
 }
 
