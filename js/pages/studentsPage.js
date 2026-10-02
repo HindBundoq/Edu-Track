@@ -30,6 +30,7 @@ const modalTitle = document.getElementById("modalTitle");
 const searchInput = document.getElementById("searchInput");
 const courseFilter = document.getElementById("courseFilter");
 const sortSelect = document.getElementById("sortSelect");
+searchInput.value = new URLSearchParams(window.location.search).get("search") || "";
 
 // Counts
 const activeCount = document.getElementById("activeCount");
@@ -60,8 +61,13 @@ let activities = [];
 let processedStudents = [];
 let displayedStudents = [];
 const urlStatus = new URLSearchParams(window.location.search).get("status");
+const urlSearch = new URLSearchParams(window.location.search).get("search");
 const allowedStatuses = ["active", "at-risk", "archived", "all"];
-let selectedStatus = allowedStatuses.includes(urlStatus) ? urlStatus : "active";
+let selectedStatus = allowedStatuses.includes(urlStatus)
+    ? urlStatus
+    : urlSearch
+        ? "all"
+        : "active";
 
 // Exporte 
 const exportCsvBtn =
