@@ -1,3 +1,5 @@
+import { getAllStudents } from "../modules/api.js";
+
 const LAYOUT_TEMPLATE = `
 <aside class="sidebar" id="sidebar">
   <div class="brand">
@@ -44,17 +46,19 @@ const LAYOUT_TEMPLATE = `
   </div>
 
   <div class="topbar-actions">
-    <input type="search" class="search" id="topbarSearch" placeholder="Search students by Name or ID..." />
+    <div class="header-search">
+      <input type="search" class="search" id="topbarSearch" placeholder="Search students by name or ID..." autocomplete="off" role="combobox" aria-label="Search students" aria-autocomplete="list" aria-expanded="false" aria-controls="topbarSearchResults" />
+      <div class="search-dropdown" id="topbarSearchResults" hidden>
+        <div class="search-results" role="listbox" aria-label="Matching students"></div>
+        <div class="search-status" role="status" aria-live="polite"></div>
+      </div>
+    </div>
 
     <div class="theme-toggle">
       <button type="button" data-theme="light">Light</button>
       <button type="button" data-theme="dark">Dark</button>
     </div>
 
-    <button class="btn btn-outline" type="button" aria-label="Notifications" id="notificationBtn">
-      <i class="fa-regular fa-bell"></i>
-      <span class="badge" id="notificationBadge" hidden>0</span>
-    </button>
   </div>
 </header>
 `;
@@ -95,6 +99,159 @@ export function initLayout() {
   setActiveNav();
   loadInstructorInfo();
   setPageTitle();
+  initGlobalStudentSearch();
+}
+
+function initGlobalStudentSearch() {
+  const searchInput = document.getElementById("topbarSearch");
+  const searchDropdown = document.getElementById("topbarSearchResults");
+  const searchResults = searchDropdown?.querySelector(".search-results");
+  const searchStatus = searchDropdown?.querySelector(".search-status");
+  const searchWrapper = searchInput?.closest(".header-search");
+  if (!searchInput || !searchDropdown || !searchResults || !searchStatus) return;
+
+  if (window.location.pathname.endsWith("students.html")) {
+    searchInput.value = new URLSearchParams(window.location.search).get("search") || "";
+  }
+
+  let studentsPromise;
+  let matchedStudents = [];
+  let activeIndex = -1;
+  let requestId = 0;
+
+  function setDropdownOpen(isOpen) {
+    searchDropdown.hidden = !isOpen;
+    searchInput.setAttribute("aria-expanded", String(isOpen));
+    if (!isOpen) {
+      searchInput.removeAttribute("aria-activedescendant");
+      activeIndex = -1;
+    }
+  }
+
+  function setActiveOption(options, index) {
+    activeIndex = index;
+    options.forEach((option, optionIndex) => {
+      const isActive = optionIndex === activeIndex;
+      option.classList.toggle("is-active", isActive);
+      option.setAttribute("aria-selected", String(isActive));
+    });
+
+    const activeOption = options[activeIndex];
+    if (activeOption) {
+      searchInput.setAttribute("aria-activedescendant", activeOption.id);
+    } else {
+      searchInput.removeAttribute("aria-activedescendant");
+    }
+  }
+
+  function openStudentProfile(student) {
+    window.location.href = `student-profile.html?id=${encodeURIComponent(student.id)}`;
+  }
+
+  function renderStudents(matches) {
+    searchResults.replaceChildren();
+    matchedStudents = matches.slice(0, 8);
+    activeIndex = -1;
+
+    matchedStudents.forEach((student, index) => {
+      const option = document.createElement("button");
+      const name = document.createElement("span");
+      const details = document.createElement("span");
+
+      option.type = "button";
+      option.className = "search-result";
+      option.id = `topbar-search-option-${index}`;
+      option.setAttribute("role", "option");
+      option.setAttribute("aria-selected", "false");
+      name.className = "search-result-name";
+      name.textContent = student.name || "Unnamed student";
+      details.className = "search-result-details";
+      details.textContent = [student.email, `ID: ${student.id}`].filter(Boolean).join(" | ");
+
+      option.append(name, details);
+      option.addEventListener("click", () => openStudentProfile(student));
+      searchResults.appendChild(option);
+    });
+
+    searchStatus.textContent = matches.length === 0 ? "No students found" : "";
+    setDropdownOpen(true);
+  }
+
+  async function searchStudents() {
+    const currentRequest = ++requestId;
+    const query = searchInput.value.trim().toLowerCase();
+    searchResults.replaceChildren();
+    activeIndex = -1;
+
+    if (!query) {
+      searchStatus.textContent = "";
+      setDropdownOpen(false);
+      return;
+    }
+
+    searchStatus.textContent = "Searching...";
+    setDropdownOpen(true);
+
+    try {
+      if (!studentsPromise) {
+        let instructor = null;
+        try {
+          instructor = JSON.parse(localStorage.getItem("currentInstructor"))
+            || JSON.parse(sessionStorage.getItem("currentInstructor"));
+        } catch (error) {
+          instructor = null;
+        }
+
+        if (!instructor?.id) throw new Error("No signed-in instructor");
+        studentsPromise = getAllStudents(instructor.id);
+      }
+
+      const students = await studentsPromise;
+      if (currentRequest !== requestId) return;
+
+      const matches = students.filter((student) => {
+        const searchableText = `${student.name || ""} ${student.email || ""} ${student.id || ""}`.toLowerCase();
+        return searchableText.includes(query);
+      });
+
+      renderStudents(matches);
+    } catch (error) {
+      studentsPromise = null;
+      if (currentRequest !== requestId) return;
+      searchResults.replaceChildren();
+      searchStatus.textContent = "Could not load students";
+      setDropdownOpen(true);
+      console.error(error);
+    }
+  }
+
+  searchInput.addEventListener("input", searchStudents);
+  searchInput.addEventListener("keydown", (event) => {
+    const options = [...searchResults.querySelectorAll('[role="option"]')];
+
+    if (event.key === "ArrowDown" && options.length > 0) {
+      event.preventDefault();
+      setActiveOption(options, Math.min(activeIndex + 1, options.length - 1));
+    } else if (event.key === "ArrowUp" && options.length > 0) {
+      event.preventDefault();
+      setActiveOption(options, Math.max(activeIndex - 1, 0));
+    } else if (event.key === "Escape") {
+      setDropdownOpen(false);
+    } else if (event.key === "Enter") {
+      event.preventDefault();
+      if (options.length > 0) {
+        openStudentProfile(matchedStudents[activeIndex >= 0 ? activeIndex : 0]);
+      } else {
+        const query = searchInput.value.trim();
+        if (query) window.location.href = `students.html?search=${encodeURIComponent(query)}`;
+      }
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!searchWrapper?.contains(event.target)) setDropdownOpen(false);
+  });
+
 }
 
 function initTheme() {
