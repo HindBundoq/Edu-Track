@@ -13,7 +13,7 @@ const LAYOUT_TEMPLATE = `
       <li><a href="dashboard.html" class="link">Dashboard</a></li>
       <li><a href="students.html" class="link">Students</a></li>
       <li><a href="track.html" class="link">Tracking &amp; grades</a></li>
-      <li><a href="student-profile.html" class="link">At-risk students</a></li>
+      <li><a href="attendance.html" class="link">Attendance</a></li>
     </ul>
   </nav>
 
@@ -205,7 +205,7 @@ function setPageTitle() {
     "dashboard.html": "Dashboard",
     "students.html": "Students",
     "track.html": "Tracking & grades",
-    "student-profile.html": "At-risk students"
+    "attendance.html": "Attendance"
   };
 
   if (pageTitle && titles[currentPage]) {
