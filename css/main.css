@@ -1,7 +1,6 @@
 /* Global Settings */
 * {
   box-sizing: border-box;
-  margin: 0;
   padding: 0;
 }
 
@@ -73,8 +72,8 @@
 
 body {
   background: var(--bg);
-  color: var(--text);
   font-family: "Figtree", system-ui, sans-serif;
+  color: var(--text);
   font-size: 15px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
