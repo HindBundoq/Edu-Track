@@ -217,6 +217,31 @@ export async function getTasks(instructorId) {
   }
 }
 
+// ================= Add new task =================
+
+export async function addTask(task) {
+  try {
+    const response = await fetch(`${BASE_URL}/tasks`, {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(task),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to add task");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error(error.message);
+    throw error;
+  }
+}
+
 // ================= Get task by id =================
 
 export async function getTaskById(taskId, instructorId) {
