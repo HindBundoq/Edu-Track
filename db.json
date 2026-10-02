@@ -11,6 +11,18 @@
       "name": "Ahmad Ali",
       "email": "ahmad@gmail.com",
       "password": "123456"
+    },
+    {
+      "name": "hindbondoq",
+      "email": "hindbundoq@gmail.com",
+      "password": "12345678",
+      "id": "k1AaDQAfwnw"
+    },
+    {
+      "name": "Hind Bundoq",
+      "email": "hindbundoq2002@gmail.com",
+      "password": "hind1234",
+      "id": "99J0zG6z6eQ"
     }
   ],
   "students": [
@@ -37,6 +49,10 @@
         {
           "date": "2026-09-30",
           "status": "present"
+        },
+        {
+          "date": "2026-10-02",
+          "status": "absent"
         }
       ],
       "feedback": []
@@ -64,6 +80,10 @@
         {
           "date": "2026-09-30",
           "status": "present"
+        },
+        {
+          "date": "2026-10-02",
+          "status": "absent"
         }
       ],
       "feedback": []
@@ -91,6 +111,10 @@
         {
           "date": "2026-09-30",
           "status": "present"
+        },
+        {
+          "date": "2026-10-02",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -113,6 +137,10 @@
         },
         {
           "date": "2026-09-29",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-02",
           "status": "present"
         }
       ],
@@ -141,6 +169,10 @@
         {
           "date": "2026-09-30",
           "status": "absent"
+        },
+        {
+          "date": "2026-10-02",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -167,6 +199,10 @@
         },
         {
           "date": "2026-09-30",
+          "status": "absent"
+        },
+        {
+          "date": "2026-10-02",
           "status": "absent"
         }
       ],
@@ -195,6 +231,10 @@
         {
           "date": "2026-09-30",
           "status": "present"
+        },
+        {
+          "date": "2026-10-02",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -222,6 +262,10 @@
         {
           "date": "2026-09-30",
           "status": "absent"
+        },
+        {
+          "date": "2026-10-02",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -237,7 +281,12 @@
       "phone": "0797777774",
       "age": 22,
       "major": "Software Engineering",
-      "attendance": [],
+      "attendance": [
+        {
+          "date": "2026-10-02",
+          "status": "present"
+        }
+      ],
       "feedback": []
     },
     {
@@ -262,6 +311,10 @@
         },
         {
           "date": "2026-09-30",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-02",
           "status": "present"
         }
       ],
@@ -290,6 +343,10 @@
         {
           "date": "2026-09-30",
           "status": "absent"
+        },
+        {
+          "date": "2026-10-02",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -317,6 +374,10 @@
         {
           "date": "2026-09-30",
           "status": "absent"
+        },
+        {
+          "date": "2026-10-02",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -343,6 +404,10 @@
         },
         {
           "date": "2026-09-30",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-02",
           "status": "present"
         }
       ],
@@ -371,6 +436,10 @@
         {
           "date": "2026-09-30",
           "status": "present"
+        },
+        {
+          "date": "2026-10-02",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -397,6 +466,10 @@
         },
         {
           "date": "2026-09-30",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-02",
           "status": "present"
         }
       ],
@@ -425,6 +498,10 @@
         {
           "date": "2026-09-30",
           "status": "present"
+        },
+        {
+          "date": "2026-10-02",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -447,6 +524,10 @@
         },
         {
           "date": "2026-09-29",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-02",
           "status": "present"
         }
       ],
@@ -475,6 +556,10 @@
         {
           "date": "2026-09-30",
           "status": "present"
+        },
+        {
+          "date": "2026-10-02",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -501,6 +586,10 @@
         },
         {
           "date": "2026-09-30",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-02",
           "status": "present"
         }
       ],
@@ -529,6 +618,10 @@
         {
           "date": "2026-09-30",
           "status": "present"
+        },
+        {
+          "date": "2026-10-02",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -556,6 +649,10 @@
         {
           "date": "2026-09-30",
           "status": "absent"
+        },
+        {
+          "date": "2026-10-02",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -574,6 +671,10 @@
       "attendance": [
         {
           "date": "2026-09-28",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-02",
           "status": "present"
         }
       ],
@@ -602,6 +703,10 @@
         {
           "date": "2026-09-30",
           "status": "absent"
+        },
+        {
+          "date": "2026-10-02",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -628,6 +733,10 @@
         },
         {
           "date": "2026-09-30",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-02",
           "status": "present"
         }
       ],
@@ -656,6 +765,10 @@
         {
           "date": "2026-09-30",
           "status": "present"
+        },
+        {
+          "date": "2026-10-02",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -682,6 +795,10 @@
         },
         {
           "date": "2026-09-30",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-02",
           "status": "present"
         }
       ],
@@ -1926,6 +2043,206 @@
       "type": "attendance_updated",
       "message": "Majd Hatem's attendance was updated",
       "date": "2026-09-30T14:20:00"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "106",
+      "type": "attendance_updated",
+      "message": "Faris Mahmoud's attendance was updated",
+      "date": "2026-10-02T14:59:42.434Z",
+      "id": "zSY_iRX7BNc"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "128",
+      "type": "attendance_updated",
+      "message": "Fadi Qasem's attendance was updated",
+      "date": "2026-10-02T14:59:42.511Z",
+      "id": "uJjFyM7OumE"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "129",
+      "type": "attendance_updated",
+      "message": "Rashed Amin's attendance was updated",
+      "date": "2026-10-02T14:59:42.513Z",
+      "id": "8-QEChC_xcM"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "130",
+      "type": "attendance_updated",
+      "message": "Mariam Adel's attendance was updated",
+      "date": "2026-10-02T14:59:42.514Z",
+      "id": "agU4_hoqS_w"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "123",
+      "type": "attendance_updated",
+      "message": "Laith Hani's attendance was updated",
+      "date": "2026-10-02T14:59:42.514Z",
+      "id": "4ri5mH33p2o"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "107",
+      "type": "attendance_updated",
+      "message": "Lina Ahmad's attendance was updated",
+      "date": "2026-10-02T14:59:42.439Z",
+      "id": "SdzV5eenqcQ"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "109",
+      "type": "attendance_updated",
+      "message": "Rana Adel's attendance was updated",
+      "date": "2026-10-02T14:59:42.440Z",
+      "id": "EihYnAmHBXM"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "108",
+      "type": "attendance_updated",
+      "message": "Yazan Sami's attendance was updated",
+      "date": "2026-10-02T14:59:42.440Z",
+      "id": "6gTWH6e-CLw"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "110",
+      "type": "attendance_updated",
+      "message": "Khaled Omar's attendance was updated",
+      "date": "2026-10-02T14:59:42.441Z",
+      "id": "WKJwD2zCo8Y"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "105",
+      "type": "attendance_updated",
+      "message": "Dana Khaled's attendance was updated",
+      "date": "2026-10-02T14:59:42.441Z",
+      "id": "_rLwrY181sA"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "112",
+      "type": "attendance_updated",
+      "message": "Tareq Ali's attendance was updated",
+      "date": "2026-10-02T14:59:42.460Z",
+      "id": "RcqJTDlr1UM"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "113",
+      "type": "attendance_updated",
+      "message": "Maya Yousef's attendance was updated",
+      "date": "2026-10-02T14:59:42.464Z",
+      "id": "WsYtxCIQ26Q"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "115",
+      "type": "attendance_updated",
+      "message": "Hala Mohammad's attendance was updated",
+      "date": "2026-10-02T14:59:42.465Z",
+      "id": "fvzdK0kCXb0"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "114",
+      "type": "attendance_updated",
+      "message": "Omar Fadi's attendance was updated",
+      "date": "2026-10-02T14:59:42.465Z",
+      "id": "TftyeL1Ww78"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "116",
+      "type": "attendance_updated",
+      "message": "Ali Sameer's attendance was updated",
+      "date": "2026-10-02T14:59:42.467Z",
+      "id": "AMyAB3Mka-8"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "120",
+      "type": "attendance_updated",
+      "message": "Sami Abdullah's attendance was updated",
+      "date": "2026-10-02T14:59:42.488Z",
+      "id": "eGJ5joMe0qY"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "122",
+      "type": "attendance_updated",
+      "message": "Jana Saleh's attendance was updated",
+      "date": "2026-10-02T14:59:42.490Z",
+      "id": "N-awJqYG-kg"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "117",
+      "type": "attendance_updated",
+      "message": "Noor Hasan's attendance was updated",
+      "date": "2026-10-02T14:59:42.490Z",
+      "id": "pTOHbJbcS3s"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "124",
+      "type": "attendance_updated",
+      "message": "Malak Samer's attendance was updated",
+      "date": "2026-10-02T14:59:42.507Z",
+      "id": "K6HRlU8qKnk"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "125",
+      "type": "attendance_updated",
+      "message": "Zaid Mustafa's attendance was updated",
+      "date": "2026-10-02T14:59:42.510Z",
+      "id": "9tX-G4lwMv8"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "133",
+      "type": "attendance_updated",
+      "message": "Majd Hatem's attendance was updated",
+      "date": "2026-10-02T14:59:42.548Z",
+      "id": "5Iv15ucaCEA"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "132",
+      "type": "attendance_updated",
+      "message": "Ruba Yasin's attendance was updated",
+      "date": "2026-10-02T14:59:42.612Z",
+      "id": "tLR3StuNaJk"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "106",
+      "type": "attendance_updated",
+      "message": "Faris Mahmoud's attendance was updated",
+      "date": "2026-10-02T14:59:50.422Z",
+      "id": "3SVwnY3bHQc"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "110",
+      "type": "attendance_updated",
+      "message": "Khaled Omar's attendance was updated",
+      "date": "2026-10-02T14:59:50.424Z",
+      "id": "yJitQhGMI-s"
+    },
+    {
+      "instructorId": 1,
+      "studentId": "105",
+      "type": "attendance_updated",
+      "message": "Dana Khaled's attendance was updated",
+      "date": "2026-10-02T14:59:50.425Z",
+      "id": "y8qKwIit5NI"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

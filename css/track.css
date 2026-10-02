@@ -131,6 +131,23 @@
   background-color: var(--surface2);
 }
 
+.btn-primary {
+  padding: 8px 14px;
+  background-color: var(--pri);
+  color: var(--on-pri);
+  border: 1px solid var(--pri);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: var(--pri-hover);
+}
+
+
 /* ---------- Tabs ---------- */
 .tabs-nav {
   display: flex;
@@ -539,6 +556,72 @@
   color: var(--faint);
   text-align: center;
   padding: 20px;
+}
+
+
+/* ---------- Add task modal ---------- */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  z-index: 100;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 460px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.modal-title {
+  font-size: 18px;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+#add-task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#add-task-form label {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+#add-task-form input,
+#add-task-form select,
+#add-task-form textarea {
+  padding: 8px 10px;
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--line2);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 14px;
 }
 
 /* ---------- Responsive ---------- */
