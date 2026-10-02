@@ -195,21 +195,20 @@
    SCROLLBAR
 ========================================================= */
 
-.table-container::-webkit-scrollbar,
+.table-wrapper::-webkit-scrollbar,
 .modal-content::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
-.table-container::-webkit-scrollbar-track,
+.table-wrapper::-webkit-scrollbar-track,
 .modal-content::-webkit-scrollbar-track {
   background: var(--surface2);
 }
 
-.table-container::-webkit-scrollbar-thumb,
+.table-wrapper::-webkit-scrollbar-thumb,
 .modal-content::-webkit-scrollbar-thumb {
   background: var(--line2);
-
   border-radius: 10px;
 }
 
@@ -298,6 +297,11 @@
 .status-badge.active {
   color: var(--ok);
   background: var(--ok-soft);
+}
+
+.status-badge.archived {
+  color: var(--bad);
+  background: var(--bad-soft);
 }
 
 .status-badge.inactive {
