@@ -8,6 +8,8 @@ import {
     getInstructorActivities
 } from "../modules/api.js";
 
+import { isAtRisk } from "../modules/reports.js";
+
 // CURRENT INSTRUCTOR (temporary, later get it from localStorage)
 const currentInstructor  = JSON.parse(localStorage.getItem("currentInstructor")) || JSON.parse(sessionStorage.getItem("currentInstructor"));
 
@@ -57,7 +59,9 @@ let submissions = [];
 let activities = [];
 let processedStudents = [];
 let displayedStudents = [];
-let selectedStatus = "active";
+const urlStatus = new URLSearchParams(window.location.search).get("status");
+const allowedStatuses = ["active", "at-risk", "archived", "all"];
+let selectedStatus = allowedStatuses.includes(urlStatus) ? urlStatus : "active";
 
 // Exporte 
 const exportCsvBtn =
@@ -76,9 +80,6 @@ async function loadStudents() {
         ]);
 
         students = results[0];
-        // for debugging purposes, log the current instructor and the students fetched from the API
-        console.log("CURRENT INSTRUCTOR:", currentInstructor);
-        console.log("STUDENTS FROM API:", students);
         tasks = results[1];
         submissions = results[2];
         activities = results[3];
@@ -102,7 +103,7 @@ function processStudents() {
         const averageScore = getAverageScore(student);
         const submissionInfo = getSubmissionInfo(student);
         const lastActive = getLastActive(student);
-        const calculatedStatus = getCalculatedStatus(student, attendancePercentage, averageScore);
+        const calculatedStatus = getCalculatedStatus(student);
 
         return {
             ...student,
@@ -276,23 +277,13 @@ function formatRelativeDate(date) {
     return date.toLocaleDateString();
 }
 
-// CALCULATED STATUS
-function getCalculatedStatus(student, attendancePercentage, averageScore) {
-    // manually archived
+// CALCULATED STATUS (same rules as reports.js: avg < 50 or attendance < 75)
+function getCalculatedStatus(student) {
     if (student.status === "archived") {
         return "archived";
     }
 
-    const hasAttendance = student.attendance && student.attendance.length > 0;
-
-    const hasGrade = submissions.some(
-        submission => String(submission.studentId) === String(student.id)
-    );
-
-    const lowAttendance = hasAttendance && attendancePercentage < 60;
-    const lowScore = hasGrade && averageScore < 60;
-
-    if (lowAttendance || lowScore) {
+    if (isAtRisk(student, submissions, tasks)) {
         return "at-risk";
     }
 
@@ -491,6 +482,8 @@ function getInitials(name) {
 
 // STATUS FILTER BUTTONS
 statusButtons.forEach(button => {
+    button.classList.toggle("active", button.dataset.status === selectedStatus);
+
     button.addEventListener("click", () => {
         statusButtons.forEach(btn => btn.classList.remove("active"));
 
@@ -549,7 +542,6 @@ studentForm.addEventListener("submit", async event => {
 
     try {
         // ADD
-        console.log("studentId value:", studentId.value);
         if (studentId.value === "") {
             const newStudent = {
                 ...data,
@@ -557,7 +549,6 @@ studentForm.addEventListener("submit", async event => {
                 attendance: [],
                 feedback: []
             };
-            console.log("newStudent:", newStudent);
             await addStudent(newStudent);
         }
 
@@ -662,7 +653,7 @@ studentsTableBody.addEventListener("click", async event => {
             cancelButtonText: "Cancel"
         });
 
-        if (!confirmed) {
+        if (!confirmed.isConfirmed) {
             return;
         }
 
@@ -671,7 +662,15 @@ studentsTableBody.addEventListener("click", async event => {
             await loadStudents();
         } catch (error) {
             console.error(error);
-            await showPopup("Failed to delete student", "error");
+            const result = await Swal.fire({
+                title: "Error",
+                text: "Failed to delete student",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+            if (!result.isConfirmed) {
+                return;
+            }
         }
     }
 });
