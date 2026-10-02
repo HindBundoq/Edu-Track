@@ -321,8 +321,9 @@ export async function getActivities() {
     }
 
     return await response.json();
-  } catch (error) {
-    console.error("Activities error:", error);
-    return [];
+  
+}catch (error) {
+    console.error(error.message);
+    throw error;
   }
 }
