@@ -284,9 +284,6 @@ export async function updateSubmission(submissionId, updatedData) {
     throw error;
   }
 }
-        throw error;
-    }
-}
 
 
 export async function getActivities() {

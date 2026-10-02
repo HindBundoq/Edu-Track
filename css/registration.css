@@ -179,6 +179,13 @@ body.dark {
 
     box-sizing: border-box;
 
+    /* it is a button now, so use the same font as the page */
+    font-family: inherit;
+
+    font-size: inherit;
+
+    cursor: pointer;
+
 }
 
 
