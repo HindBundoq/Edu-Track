@@ -14,12 +14,18 @@
 .the-header {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 300px;
     margin-top: 10px;
     gap: 60px;
     margin-left: 10px;
 }
-
+.the-header img {
+    width: 200px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+}
 
 .the-header h1 {
     padding-left: 100px;
