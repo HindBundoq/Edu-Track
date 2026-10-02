@@ -13,18 +13,34 @@ import { getLayout } from "./layout.js";
 
 // ===================== Config =====================
 const API = "http://localhost:3000";
-// Saved by the login page. Falls back to 1 while testing.
-const currentInstructor  =
-    JSON.parse(localStorage.getItem("currentInstructor")) ||
-    JSON.parse(sessionStorage.getItem("currentInstructor"));
-if (!currentInstructor) {
-    window.location.href = "index.html";
+
+// Saved by the login page (localStorage = "remember me", sessionStorage = normal login)
+function readInstructor() {
+  try {
+    return (
+      JSON.parse(localStorage.getItem("currentInstructor")) ||
+      JSON.parse(sessionStorage.getItem("currentInstructor"))
+    );
+  } catch {
+    return null;
+  }
 }
+
+const currentInstructor = readInstructor();
+
+if (!currentInstructor?.id) {
+  window.location.href = "./index.html";
+  throw new Error("No logged-in instructor");
+}
+
+const instructorId = currentInstructor.id;
+const encodedId = encodeURIComponent(instructorId);
 const content = document.getElementById("content");
 
 // ===================== Helpers =====================
+// Compare as strings so it works with numeric ids (1) and json-server string ids ("1", "a3f2")
 function sameId(a, b) {
-  return Number(a) === Number(b);
+  return String(a) === String(b);
 }
 
 function initials(name) {
@@ -213,20 +229,39 @@ function renderDistribution(dist, total) {
   </div>`;
 }
 
+// ===================== Data =====================
+// Fetch only this instructor's data, then filter again on the client
+// as a safety net (in case the server ignores the query param).
+async function loadInstructorData() {
+  const [instructor, rawStudents, rawTasks, rawSubmissions, rawActivities] =
+    await Promise.all([
+      getJSON(`instructors/${encodedId}`),
+      getJSON(`students?instructorId=${encodedId}`),
+      getJSON(`tasks?instructorId=${encodedId}`),
+      getJSON(`submissions?instructorId=${encodedId}`),
+      getJSON(`activities?instructorId=${encodedId}`),
+    ]);
+
+  const students = rawStudents.filter((s) => sameId(s.instructorId, instructorId));
+  const tasks = rawTasks.filter((t) => sameId(t.instructorId, instructorId));
+
+  // Keep only submissions that belong to this instructor's students
+  const studentIds = new Set(students.map((s) => String(s.id)));
+  const submissions = rawSubmissions.filter((s) => studentIds.has(String(s.studentId)));
+
+  const activities = rawActivities.filter((a) => sameId(a.instructorId, instructorId));
+
+  return { instructor, students, tasks, submissions, activities };
+}
+
 // ===================== Main =====================
 async function loadDashboard() {
   await getLayout();
   content.innerHTML = `<p class="loading">Loading dashboard…</p>`;
 
   try {
-    const [instructor, students, tasks, submissions, activities, allStudents] =
-      await Promise.all([
-        getJSON(`instructors/${currentInstructor.id}`),
-        getJSON(`students?instructorId=${currentInstructor.id}`),
-        getJSON(`tasks?instructorId=${currentInstructor.id}`),
-        getJSON(`submissions?instructorId=${currentInstructor.id}`),
-        getJSON(`activities?instructorId=${currentInstructor.id}`),
-      ]);
+    const { instructor, students, tasks, submissions, activities } =
+      await loadInstructorData();
 
     // ----- Header + sidebar -----
     const firstName = instructor.name.split(" ")[0];

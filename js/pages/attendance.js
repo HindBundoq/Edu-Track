@@ -1,417 +1,283 @@
-const studentsBody = document.getElementById("studentsBody");
-const searchInput = document.getElementById("searchInput");
-const dateInput = document.getElementById("dateInput");
-const courseSelect = document.getElementById("courseSelect");
-
-// ===== إضافة: تاريخ اليوم كقيمة افتراضية =====
-dateInput.value = new Date().toLocaleDateString("en-CA");
-
-fetch("http://localhost:3000/students")
-  .then(response => response.json())
-  .then(students => {
-
-    // إضافة الكورسات الموجودة في البيانات
-    const courses = [];
-
-    students.forEach(student => {
-
-      if (!courses.includes(student.course)) {
-        courses.push(student.course);
-      }
-
-    });
-
-    courses.forEach(course => {
-
-      courseSelect.innerHTML += `
-        <option value="${course}">${course}</option>
-      `;
-
-    });
-
-
-    function displayStudents(studentList) {
-
-      studentsBody.innerHTML = "";
-
-      studentList.forEach(student => {
-
-        // حالة الطالب في التاريخ المختار
-        const attendance = student.attendance.find(
-          item => item.date === dateInput.value
-        );
-
-        let status = "-";
-
-        if (attendance) {
-          status = attendance.status;
-        }
-
-
-        // حساب Overall
-        const totalDays = student.attendance.length;
-
-        const presentDays = student.attendance.filter(
-          item => item.status === "present"
-        ).length;
-
-        let overall = 0;
-
-        if (totalDays > 0) {
-          overall = Math.round((presentDays / totalDays) * 100);
-        }
-
-
-        // عرض الطالب في الجدول
-        studentsBody.innerHTML += `
-          <tr>
-            <td>${student.name}</td>
-            <td>${student.id}</td>
-            <td>${student.course}</td>
-            <td>${overall}%</td>
-            <td>${status}</td>
-          </tr>
-        `;
-
-      });
-
-    }
-
-
-    // عرض جميع الطلاب
-    displayStudents(students);
-
-
-    // تغيير التاريخ
-    dateInput.addEventListener("change", () => {
-
-      displayStudents(students);
-
-    });
-
-
-    // البحث بالاسم أو ID
-    searchInput.addEventListener("input", () => {
-
-      const searchValue = searchInput.value.toLowerCase();
-
-      const filteredStudents = students.filter(student =>
-        student.id.includes(searchValue) ||
-        student.name.toLowerCase().includes(searchValue)
-      );
-
-      displayStudents(filteredStudents);
-
-    });
-
-
-    // اختيار الكورس
-    courseSelect.addEventListener("change", () => {
-
-      const selectedCourse = courseSelect.value;
-
-      if (selectedCourse === "all") {
-
-        displayStudents(students);
-
-      } else {
-
-        const filteredStudents = students.filter(student =>
-          student.course === selectedCourse
-        );
-
-        displayStudents(filteredStudents);
-
-      }
-
-    });
-
-
-    // =====================================================
-    // ===== إضافة: كل اللي تحت جديد ومكمّل على الكود فوق =====
-    // =====================================================
-
-    const markAllBtn = document.getElementById("markAllBtn");
-    const saveBtn = document.getElementById("saveBtn");
-    const toast = document.getElementById("toast");
-    const statPresent = document.getElementById("statPresent");
-    const statAbsent = document.getElementById("statAbsent");
-    const statNotMarked = document.getElementById("statNotMarked");
-    const statRate = document.getElementById("statRate");
-
-    // التعديلات اللي لسا ما انحفظت { id: "present" / "absent" }
-    let changes = {};
-
-
-    // نجيب الطالب من الـ ID
-    function findStudent(id) {
-      return students.find(student => String(student.id) === String(id));
-    }
-
-
-    // حالة الطالب (التعديل إذا موجود، وإلا المحفوظة)
-    function getStatus(student) {
-
-      if (changes[student.id]) {
-        return changes[student.id];
-      }
-
-      const attendance = student.attendance.find(
-        item => item.date === dateInput.value
-      );
-
-      if (attendance) {
-        return attendance.status;
-      }
-
-      return "-";
-
-    }
-
-
-    // الأحرف الأولى من الاسم للأفاتار
-    function getInitials(name) {
-
-      const words = name.split(" ");
-      let initials = "";
-
-      words.forEach(word => {
-        if (word) {
-          initials += word[0].toUpperCase();
-        }
-      });
-
-      return initials.slice(0, 2);
-
-    }
-
-
-    // نحوّل الصف العادي لشكل الصورة (أفاتار + إيميل + أزرار)
-    function enhanceRow(row) {
-
-      const cells = row.cells;
-      const student = findStudent(cells[1].textContent.trim());
-
-      if (!student) return;
-
-      // عمود الطالب (مرة وحدة بس)
-      if (!row.dataset.enhanced) {
-        cells[0].innerHTML = `
-          <div class="att-student">
-            <span class="att-avatar">${getInitials(student.name)}</span>
-            <div>
-              <div class="att-name">${student.name}</div>
-              <div class="att-email">${student.email}</div>
-            </div>
-          </div>
-        `;
-        row.dataset.enhanced = "true";
-      }
-
-      // عمود Overall (بنحدّثه بعد الحفظ)
-      const totalDays = student.attendance.length;
-      const presentDays = student.attendance.filter(
-        item => item.status === "present"
-      ).length;
-
-      let overall = 0;
-
-      if (totalDays > 0) {
-        overall = Math.round((presentDays / totalDays) * 100);
-      }
-
-      cells[3].textContent = overall + "%";
-
-      // عمود الحالة: أزرار Present / Absent
-      const status = getStatus(student);
-
-      let presentClass = "";
-      let absentClass = "";
-
-      if (status === "present") presentClass = "is-present";
-      if (status === "absent") absentClass = "is-absent";
-
-      cells[4].innerHTML = `
-        <div class="att-toggle">
-          <button type="button" class="${presentClass}"
-            data-id="${student.id}" data-status="present">Present</button>
-          <button type="button" class="${absentClass}"
-            data-id="${student.id}" data-status="absent">Absent</button>
-        </div>
-      `;
-
-    }
-
-
-    // نحدّث كل الصفوف الظاهرة
-    function enhanceAllRows() {
-
-      const rows = studentsBody.rows;
-
-      // إذا ما في طلاب
-      if (rows.length === 0) {
-        studentsBody.innerHTML = `
-          <tr><td colspan="5" class="att-empty">No students found</td></tr>
-        `;
-        return;
-      }
-
-      for (const row of rows) {
-        if (row.cells.length === 5) {
-          enhanceRow(row);
-        }
-      }
-
-      updateStats();
-
-    }
-
-
-    // تحديث الكروت وزر الحفظ
-    function updateStats() {
-
-      let present = 0;
-      let absent = 0;
-      let notMarked = 0;
-
-      students.forEach(student => {
-
-        if (courseSelect.value !== "all" && student.course !== courseSelect.value) {
-          return;
-        }
-
-        const status = getStatus(student);
-
-        if (status === "present") present++;
-        else if (status === "absent") absent++;
-        else notMarked++;
-
-      });
-
-      let rate = 0;
-
-      if (present + absent > 0) {
-        rate = Math.round((present / (present + absent)) * 100);
-      }
-
-      statPresent.textContent = present;
-      statAbsent.textContent = absent;
-      statNotMarked.textContent = notMarked;
-      statRate.textContent = rate + "%";
-
-      // زر الحفظ بيشتغل بس إذا في تعديلات
-      saveBtn.disabled = Object.keys(changes).length === 0;
-
-    }
-
-
-    // رسالة صغيرة تحت
-    function showToast(message) {
-
-      toast.textContent = message;
-      toast.classList.add("show");
-
-      setTimeout(() => {
-        toast.classList.remove("show");
-      }, 2500);
-
-    }
-
-
-    // كل ما displayStudents ترسم الجدول، بنحوّل الصفوف تلقائياً
-    const observer = new MutationObserver(enhanceAllRows);
-    observer.observe(studentsBody, { childList: true });
-
-    // أول مرة (الجدول انرسم قبل ما نشغّل الـ observer)
-    enhanceAllRows();
-
-
-    // تغيير التاريخ: التعديلات بتخص اليوم القديم
-    dateInput.addEventListener("change", () => {
-
-      changes = {};
-      enhanceAllRows();
-
-    });
-
-
-    // اختيار الكورس: نحدّث الكروت حسب الكورس
-    courseSelect.addEventListener("change", () => {
-
-      updateStats();
-
-    });
-
-
-    // الضغط على Present / Absent
-    studentsBody.addEventListener("click", event => {
-
-      const button = event.target.closest("button[data-status]");
-
-      if (!button) return;
-
-      changes[button.dataset.id] = button.dataset.status;
-
-      enhanceRow(button.closest("tr"));
-      updateStats();
-
-    });
-
-
-    // Mark all present (للطلاب الظاهرين بالجدول)
-    markAllBtn.addEventListener("click", () => {
-
-      for (const row of studentsBody.rows) {
-        if (row.cells.length === 5) {
-          changes[row.cells[1].textContent.trim()] = "present";
-        }
-      }
-
-      enhanceAllRows();
-
-    });
-
-
-    // Save attendance
-    saveBtn.addEventListener("click", () => {
-
-      saveBtn.disabled = true;
-      saveBtn.textContent = "Saving…";
-
-      const requests = Object.keys(changes).map(id => {
-
-        const student = findStudent(id);
-
-        // نحدّث يوم موجود أو نضيف يوم جديد
-        const attendance = student.attendance.filter(
-          item => item.date !== dateInput.value
-        );
-
-        attendance.push({ date: dateInput.value, status: changes[id] });
-
-        return fetch(`http://localhost:3000/students/${student.id}`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ attendance: attendance })
-        }).then(() => {
-          student.attendance = attendance;
-        });
-
-      });
-
-      Promise.all(requests)
-        .then(() => {
-          changes = {};
-          showToast("Attendance saved");
-        })
-        .catch(() => {
-          showToast("Something went wrong, try again");
-        })
-        .finally(() => {
-          saveBtn.textContent = "Save attendance";
-          enhanceAllRows();
-        });
-
-    });
-
+import { calculateAttendanceRate } from "../modules/reports.js";
+import { getLayout } from "./layout.js";
+
+// ===================== Config =====================
+const API = "http://localhost:3000";
+
+function readInstructor() {
+  try {
+    return (
+      JSON.parse(localStorage.getItem("currentInstructor")) ||
+      JSON.parse(sessionStorage.getItem("currentInstructor"))
+    );
+  } catch {
+    return null;
+  }
+}
+
+const currentInstructor = readInstructor();
+
+if (!currentInstructor?.id) {
+  window.location.href = "./index.html";
+  throw new Error("No logged-in instructor");
+}
+
+const instructorId = currentInstructor.id;
+const encodedId = encodeURIComponent(instructorId);
+const content = document.getElementById("content");
+
+// ===================== State =====================
+let students = [];             // only this instructor's students
+let selectedDate = todayISO();
+let marks = {};                // { studentId: "present" | "absent" } for the selected date
+let searchTerm = "";
+
+// ===================== Helpers =====================
+function sameId(a, b) {
+  return String(a) === String(b);
+}
+
+function todayISO() {
+  const d = new Date();
+  const offset = d.getTimezoneOffset() * 60000;
+  return new Date(d - offset).toISOString().slice(0, 10);
+}
+
+function initials(name) {
+  if (!name) return "?";
+  return name
+    .split(" ")
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
+
+function escapeHTML(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+async function getJSON(path) {
+  const res = await fetch(`${API}/${path}`);
+  if (!res.ok) throw new Error(`${path} → ${res.status}`);
+  return res.json();
+}
+
+async function sendJSON(path, method, body) {
+  const res = await fetch(`${API}/${path}`, {
+    method,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
   });
+  if (!res.ok) throw new Error(`${method} ${path} → ${res.status}`);
+  return res.json();
+}
+
+// Read the saved status of every student for the selected date
+function loadMarksForDate() {
+  marks = {};
+  students.forEach((st) => {
+    const entry = (st.attendance || []).find((a) => a.date === selectedDate);
+    if (entry) marks[st.id] = entry.status;
+  });
+}
+
+// ===================== Data =====================
+async function loadStudents() {
+  const raw = await getJSON(`students?instructorId=${encodedId}`);
+
+  // Safety net: instructor ids are strings ("1") but students store numbers (1)
+  students = raw
+    .filter((s) => sameId(s.instructorId, instructorId))
+    .filter((s) => s.status !== "archived")
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+async function saveAttendance() {
+  const saveBtn = document.getElementById("saveBtn");
+  saveBtn.disabled = true;
+  saveBtn.textContent = "Saving…";
+
+  try {
+    // Only students whose status for this date actually changed
+    const changed = students.filter((st) => {
+      const old = (st.attendance || []).find((a) => a.date === selectedDate);
+      return marks[st.id] && marks[st.id] !== old?.status;
+    });
+
+    await Promise.all(
+      changed.map(async (st) => {
+        const attendance = (st.attendance || []).filter((a) => a.date !== selectedDate);
+        attendance.push({ date: selectedDate, status: marks[st.id] });
+        attendance.sort((a, b) => a.date.localeCompare(b.date));
+
+        const updated = await sendJSON(`students/${encodeURIComponent(st.id)}`, "PATCH", {
+          attendance,
+        });
+        st.attendance = updated.attendance;
+
+        await sendJSON("activities", "POST", {
+          instructorId,
+          studentId: st.id,
+          type: "attendance_updated",
+          message: `${st.name}'s attendance was updated`,
+          date: new Date().toISOString(),
+        });
+      }),
+    );
+
+    showMessage(
+      changed.length ? `Saved attendance for ${changed.length} student(s) ✅` : "Nothing changed",
+      "ok",
+    );
+    render();
+  } catch (error) {
+    console.error(error);
+    showMessage("Couldn't save attendance. Is json-server running?", "bad");
+    saveBtn.disabled = false;
+    saveBtn.textContent = "Save attendance";
+  }
+}
+
+// ===================== Render =====================
+function showMessage(text, type) {
+  const box = document.getElementById("message");
+  if (!box) return;
+  box.innerHTML = `<p class="tag ${type === "bad" ? "tag-bad" : ""}">${escapeHTML(text)}</p>`;
+  setTimeout(() => (box.innerHTML = ""), 3000);
+}
+
+function summary() {
+  const present = students.filter((s) => marks[s.id] === "present").length;
+  const absent = students.filter((s) => marks[s.id] === "absent").length;
+  const unmarked = students.length - present - absent;
+  return { present, absent, unmarked };
+}
+
+function renderRows() {
+  const term = searchTerm.trim().toLowerCase();
+  const list = students.filter(
+    (s) => !term || s.name.toLowerCase().includes(term) || String(s.id).includes(term),
+  );
+
+  if (students.length === 0) {
+    return `<p class="empty">No students assigned to you yet</p>`;
+  }
+  if (list.length === 0) {
+    return `<p class="empty">No students match "${escapeHTML(searchTerm)}"</p>`;
+  }
+
+  return `<ul class="list">
+    ${list
+      .map((st) => {
+        const status = marks[st.id];
+        const rate = calculateAttendanceRate(st);
+        return `
+          <li class="list-item">
+            <span class="mini-avatar">${initials(st.name)}</span>
+            <div class="list-main">
+              <p class="list-title">${escapeHTML(st.name)}</p>
+              <p class="list-meta">ID ${escapeHTML(st.id)} · Attendance ${rate.toFixed(0)}%</p>
+            </div>
+            <div class="att-actions">
+              <button class="btn btn-sm ${status === "present" ? "" : "btn-outline"}"
+                      data-id="${escapeHTML(st.id)}" data-status="present">
+                <i class="fa-solid fa-check"></i> Present
+              </button>
+              <button class="btn btn-sm ${status === "absent" ? "btn-danger" : "btn-outline"}"
+                      data-id="${escapeHTML(st.id)}" data-status="absent">
+                <i class="fa-solid fa-xmark"></i> Absent
+              </button>
+            </div>
+          </li>`;
+      })
+      .join("")}
+  </ul>`;
+}
+
+function render() {
+  const { present, absent, unmarked } = summary();
+
+  content.innerHTML = `
+    <section class="card">
+      <header class="card-head">
+        <h2>Attendance <span class="count">${students.length}</span></h2>
+      </header>
+
+      <div class="att-toolbar">
+        <input type="date" id="dateInput" value="${selectedDate}" max="${todayISO()}" />
+        <input type="search" id="searchInput" placeholder="Search by name or ID" value="${escapeHTML(searchTerm)}" />
+        <button class="btn btn-outline btn-sm" id="allPresentBtn">Mark all present</button>
+      </div>
+
+      <p class="list-meta">
+        Present: <strong>${present}</strong> ·
+        Absent: <strong>${absent}</strong> ·
+        Not marked: <strong>${unmarked}</strong>
+      </p>
+
+      <div id="rows">${renderRows()}</div>
+
+      <div class="att-footer">
+        <div id="message"></div>
+        <button class="btn" id="saveBtn" ${students.length ? "" : "disabled"}>Save attendance</button>
+      </div>
+    </section>
+  `;
+
+  bindEvents();
+}
+
+// ===================== Events =====================
+function bindEvents() {
+  document.getElementById("dateInput").addEventListener("change", (e) => {
+    selectedDate = e.target.value || todayISO();
+    loadMarksForDate();
+    render();
+  });
+
+  document.getElementById("searchInput").addEventListener("input", (e) => {
+    searchTerm = e.target.value;
+    document.getElementById("rows").innerHTML = renderRows();
+  });
+
+  document.getElementById("allPresentBtn").addEventListener("click", () => {
+    students.forEach((st) => (marks[st.id] = "present"));
+    render();
+  });
+
+  document.getElementById("rows").addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-status]");
+    if (!btn) return;
+    marks[btn.dataset.id] = btn.dataset.status;
+    render();
+  });
+
+  document.getElementById("saveBtn").addEventListener("click", saveAttendance);
+}
+
+// ===================== Main =====================
+async function init() {
+  await getLayout();
+  content.innerHTML = `<p class="loading">Loading students…</p>`;
+
+  try {
+    await loadStudents();
+    loadMarksForDate();
+    render();
+  } catch (error) {
+    console.error(error);
+    content.innerHTML = `
+      <div class="card error-card">
+        <h2>Couldn't load attendance</h2>
+        <p>Make sure json-server is running:</p>
+        <code>npx json-server db.json --port 3000</code>
+      </div>`;
+  }
+}
+
+init();
