@@ -106,14 +106,16 @@ form.addEventListener("submit", async function (event) {
         const { password: _pw, ...safeInstructor } = instructor;
         const safeJson = JSON.stringify(safeInstructor);
 
-        localStorage.setItem("instructorId", safeInstructor.id);
-
         // 5.4 remember me: localStorage keeps session; otherwise sessionStorage only
         if (rememberMe.checked) {
+            localStorage.setItem("instructorId", safeInstructor.id);
+            sessionStorage.removeItem("instructorId");
             localStorage.setItem("currentInstructor", safeJson);
             sessionStorage.removeItem("currentInstructor");
             localStorage.setItem("rememberedEmail", email);
         } else {
+            sessionStorage.setItem("instructorId", safeInstructor.id);
+            localStorage.removeItem("instructorId");
             sessionStorage.setItem("currentInstructor", safeJson);
             localStorage.removeItem("currentInstructor");
             localStorage.removeItem("rememberedEmail");
