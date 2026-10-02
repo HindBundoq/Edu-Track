@@ -9,47 +9,17 @@ import {
   getGradeDistribution,
 } from "../modules/reports.js";
 
-// ===================== Theme (Light / Dark) =====================
-const themeButtons = document.querySelectorAll(".theme-toggle button");
-
-function setTheme(theme) {
-  document.documentElement.setAttribute("data-theme", theme);
-  themeButtons.forEach((btn) => {
-    btn.classList.toggle("is-active", btn.dataset.theme === theme);
-  });
-  localStorage.setItem("theme", theme);
-}
-
-themeButtons.forEach((btn) => {
-  btn.addEventListener("click", () => setTheme(btn.dataset.theme));
-});
-
-setTheme(localStorage.getItem("theme") || "light");
-
-// ===================== Burger menu =====================
-const sidebar = document.getElementById("sidebar");
-const overlay = document.getElementById("overlay");
-const burgerBtn = document.getElementById("burgerBtn");
-
-function toggleMenu() {
-  sidebar.classList.toggle("is-open");
-  overlay.classList.toggle("is-open");
-}
-
-burgerBtn.addEventListener("click", toggleMenu);
-overlay.addEventListener("click", toggleMenu);
-
-// ===================== Sign out =====================
-document.getElementById("signOutBtn").addEventListener("click", () => {
-  localStorage.removeItem("instructorId");
-  window.location.href = "index.html";
-});
+import { getLayout } from "./layout.js";
 
 // ===================== Config =====================
 const API = "http://localhost:3000";
 // Saved by the login page. Falls back to 1 while testing.
-const instructorId = Number(localStorage.getItem("instructorId")) || 1;
-
+const currentInstructor  =
+    JSON.parse(localStorage.getItem("currentInstructor")) ||
+    JSON.parse(sessionStorage.getItem("currentInstructor"));
+if (!currentInstructor) {
+    window.location.href = "index.html";
+}
 const content = document.getElementById("content");
 
 // ===================== Helpers =====================
@@ -244,44 +214,54 @@ function renderDistribution(dist, total) {
 
 // ===================== Main =====================
 async function loadDashboard() {
+  await getLayout();
   content.innerHTML = `<p class="loading">Loading dashboard…</p>`;
 
   try {
     const [instructor, students, tasks, submissions, activities] =
       await Promise.all([
-        getJSON(`instructors/${instructorId}`),
-        getJSON(`students?instructorId=${instructorId}`),
-        getJSON(`tasks?instructorId=${instructorId}`),
-        getJSON(`submissions?instructorId=${instructorId}`),
-        getJSON(`activities?instructorId=${instructorId}`),
+        getJSON(`instructors/${currentInstructor.id}`),
+        getJSON(`students?instructorId=${currentInstructor.id}`),
+        getJSON(`tasks?instructorId=${currentInstructor.id}`),
+        getJSON(`submissions?instructorId=${currentInstructor.id}`),
+        getJSON(`activities?instructorId=${currentInstructor.id}`),
       ]);
 
     // ----- Header + sidebar -----
     const firstName = instructor.name.split(" ")[0];
-    document.querySelector(".topbar-sub").textContent =
-      new Date().toLocaleDateString("en-GB", {
+    const topbarSub = document.querySelector(".topbar-sub");
+    if (topbarSub) {
+      topbarSub.textContent = new Date().toLocaleDateString("en-GB", {
         weekday: "long",
         day: "numeric",
         month: "long",
       });
-    document.querySelector(".topbar-title").textContent =
-      `Welcome back, ${firstName} 👋`;
-    document.getElementById("userName").textContent = instructor.name;
-    document.getElementById("userAvatar").textContent = initials(
-      instructor.name,
-    );
+    }
+    const topbarTitle = document.querySelector(".topbar-title");
+    if (topbarTitle) {
+      topbarTitle.textContent = `Welcome back, ${firstName} 👋`;
+    }
+    const userName = document.getElementById("userName");
+    if (userName) userName.textContent = instructor.name;
+    const userAvatar = document.getElementById("userAvatar");
+    if (userAvatar) userAvatar.textContent = initials(instructor.name);
 
     const badge = document.querySelector(".badge");
-    badge.textContent = activities.length;
-    badge.hidden = activities.length === 0;
+    if (badge) {
+      badge.textContent = activities.length;
+      badge.hidden = activities.length === 0;
+    }
 
     const course = students[0]?.course || tasks[0]?.course || "—";
-    document.getElementById("cohortCard").innerHTML = `
-      <div class="cohort-card">
-        <p class="cohort-label">Current cohort</p>
-        <p class="cohort-name">${course}</p>
-        <p class="cohort-meta">${students.length} students · ${tasks.length} tasks</p>
-      </div>`;
+    const cohortCard = document.getElementById("cohortCard");
+    if (cohortCard) {
+      cohortCard.innerHTML = `
+        <div class="cohort-card">
+          <p class="cohort-label">Current cohort</p>
+          <p class="cohort-name">${course}</p>
+          <p class="cohort-meta">${students.length} students · ${tasks.length} tasks</p>
+        </div>`;
+    }
 
     // ----- Numbers -----
     const atRisk = getAtRiskStudents(students, submissions, tasks);
