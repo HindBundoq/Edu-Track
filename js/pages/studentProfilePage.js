@@ -11,21 +11,21 @@ import {
 
 const urlParams = new URLSearchParams(window.location.search);
 
-//const studentId = urlParams.get("id");
-const studentId = 101;
+const studentId =  Number(urlParams.get("id")) || 101
+// const studentId = 101;
 
 // =====================================================
 // Get Current Instructor
 // =====================================================
 
-const currentInstructor = JSON.parse(localStorage.getItem("currentInstructor"));
+const currentInstructor = JSON.parse(localStorage.getItem("currentInstructor")) || { id: 1, name: "Nada Sarraf" };
 
 // =====================================================
 // Check Login
 // =====================================================
 
 if (!currentInstructor) {
-  window.location.href = "login.html";
+  window.location.href = "index.html";
 }
 
 // =====================================================
