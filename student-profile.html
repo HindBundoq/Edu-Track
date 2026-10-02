@@ -19,6 +19,87 @@
   </head>
 
   <body>
+    <!-- ================= STUDENT MODAL ================= -->
+
+    <div class="modal" id="studentModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle">Add Student</h2>
+
+          <button
+            type="button"
+            id="closeModalBtn"
+            class="close-btn"
+            aria-label="Close modal"
+          >
+            ×
+          </button>
+        </div>
+
+        <form id="studentForm">
+          <!-- Database ID -->
+          <input type="hidden" id="modalStudentId" />
+
+          <!-- Name -->
+          <div class="form-group">
+            <label for="modalStudentName">Full Name</label>
+            <input type="text" id="modalStudentName" required />
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="modalStudentEmail">Email</label>
+            <input type="email" id="modalStudentEmail" required />
+          </div>
+
+          <!-- Course -->
+          <div class="form-group">
+            <label for="modalStudentCourse">Course</label>
+            <input type="text" id="modalStudentCourse" required />
+          </div>
+
+          <!-- Status -->
+          <div class="form-group">
+            <label for="modalStudentStatus">Status</label>
+
+            <select id="modalStudentStatus">
+              <option value="active">Active</option>
+              <option value="archived">Archived</option>
+            </select>
+          </div>
+
+          <!-- Phone -->
+          <div class="form-group">
+            <label for="modalStudentPhone">Phone</label>
+
+            <input type="text" id="modalStudentPhone" />
+          </div>
+
+          <!-- Address -->
+          <div class="form-group">
+            <label for="modalStudentAddress">Address</label>
+
+            <input type="text" id="modalStudentAddress" />
+          </div>
+
+          <!-- Age -->
+          <div class="form-group">
+            <label for="modalStudentAge">Age</label>
+
+            <input type="number" id="modalStudentAge" min="0" />
+          </div>
+
+          <!-- Major -->
+          <div class="form-group">
+            <label for="modalStudentMajor">Major</label>
+
+            <input type="text" id="modalStudentMajor" />
+          </div>
+
+          <button type="submit" class="btn btn-primary">Save Student</button>
+        </form>
+      </div>
+    </div>
     <!-- ================= HEADER ================= -->
 
     <header class="profile-header">
@@ -28,11 +109,11 @@
           Back to Students
         </a>
 
-        <div class="page-title">
+        <!-- <div class="page-title">
           <h1 id="studentName">Loading...</h1>
 
           <p id="studentEmail">Loading...</p>
-        </div>
+        </div> -->
       </div>
 
       <div class="header-actions">
@@ -156,17 +237,6 @@
               <strong id="quizAverage"> - </strong>
             </div>
           </article>
-
-          <article class="stat-card">
-            <div class="stat-icon">E</div>
-
-            <div>
-              <span class="stat-label"> Exam </span>
-
-              <strong id="examGrade"> - </strong>
-            </div>
-          </article>
-
           <div class="stat-card">
             <div class="stat-icon">L</div>
             <div class="stat-info">
@@ -284,36 +354,6 @@
         </div>
       </section>
 
-      <!-- ================= EXAM ================= -->
-
-      <section class="section">
-        <div class="section-header">
-          <div>
-            <h2>Final Exam</h2>
-
-            <p>Final examination result</p>
-          </div>
-        </div>
-
-        <div class="exam-card">
-          <div>
-            <span class="exam-label"> Exam Grade </span>
-
-            <strong id="examResult"> - </strong>
-
-            <span class="exam-total"> / 100 </span>
-          </div>
-
-          <div class="exam-progress">
-            <div class="progress large">
-              <span id="examProgress"></span>
-            </div>
-
-            <span id="examPercentage"> - </span>
-          </div>
-        </div>
-      </section>
-
       <!-- ================= ATTENDANCE ================= -->
 
       <section class="section">
@@ -380,5 +420,6 @@
     <!-- ================= JAVASCRIPT ================= -->
 
     <script type="module" src="js/pages/studentProfilePage.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>
