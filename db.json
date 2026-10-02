@@ -897,6 +897,54 @@
       "dueDate": "2026-10-05T23:59:00",
       "points": 100,
       "status": "open"
+    },
+    {
+      "instructorId": 1,
+      "title": "build html website",
+      "type": "project",
+      "course": "HTML & CSS",
+      "description": "erthrutf",
+      "week": 1,
+      "dueDate": "2026-10-07T18:32",
+      "points": 100,
+      "status": "upcoming",
+      "id": "L4UPtKbBYLo"
+    },
+    {
+      "instructorId": 1,
+      "title": "build html website",
+      "type": "project",
+      "course": "JavaScript",
+      "description": "hdfxndnnfb",
+      "week": 1,
+      "dueDate": "2026-10-07T18:33",
+      "points": 100,
+      "status": "upcoming",
+      "id": "E9x7L_M7t1A"
+    },
+    {
+      "instructorId": 1,
+      "title": "build html & CSS website",
+      "type": "project",
+      "course": "HTML & CSS",
+      "description": "LJMHNGFBVDBHNJMK,UJH",
+      "week": 1,
+      "dueDate": "2026-10-05T18:37",
+      "points": 100,
+      "status": "upcoming",
+      "id": "b43Q3dhjAto"
+    },
+    {
+      "instructorId": 1,
+      "title": "build html & CSS website",
+      "type": "project",
+      "course": "HTML & CSS",
+      "description": "oihopjp]fdk[\\f",
+      "week": 1,
+      "dueDate": "2026-10-06T18:51",
+      "points": 100,
+      "status": "upcoming",
+      "id": "vqW4l8QDduY"
     }
   ],
   "submissions": [
