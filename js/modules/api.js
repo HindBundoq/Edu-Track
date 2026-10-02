@@ -320,4 +320,9 @@ export async function getActivities() {
       throw new Error("Failed to get activities");
     }
 
+    return await response.json();
+  } catch (error) {
+    console.error("Activities error:", error);
+    return [];
+  }
 }
