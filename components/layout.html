@@ -45,16 +45,18 @@
   </div>
 
   <div class="topbar-actions">
-    <input type="search" class="search" id="topbarSearch" placeholder="Search students by Name or ID..." />
+    <div class="header-search">
+      <input type="search" class="search" id="topbarSearch" placeholder="Search students by name or ID..." autocomplete="off" role="combobox" aria-label="Search students" aria-autocomplete="list" aria-expanded="false" aria-controls="topbarSearchResults" />
+      <div class="search-dropdown" id="topbarSearchResults" hidden>
+        <div class="search-results" role="listbox" aria-label="Matching students"></div>
+        <div class="search-status" role="status" aria-live="polite"></div>
+      </div>
+    </div>
 
     <div class="theme-toggle">
       <button type="button" data-theme="light">Light</button>
       <button type="button" data-theme="dark">Dark</button>
     </div>
 
-    <button class="btn btn-outline" type="button" aria-label="Notifications" id="notificationBtn">
-      <i class="fa-regular fa-bell"></i>
-      <span class="badge" id="notificationBadge" hidden>0</span>
-    </button>
   </div>
 </header>
