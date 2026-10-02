@@ -7,9 +7,14 @@
 
     <title>Registration</title>
 
-    <link rel="stylesheet" href="CSS/main.css" />
-    <link rel="stylesheet" href="CSS/registration.css" />
-  </head>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/registration.css">
+
+</head>
+
+
+<body>
+
 
   <body>
     <header class="the-header">
@@ -104,7 +109,42 @@
 
             <!-- Register -->
 
-            <a href="index.html" id="register-button"> Register </a>
+                        <input
+                            type="password"
+                            id="confirm-password"
+                            placeholder="Confirm your password"
+                            required>
+
+                        <button type="button" id="show-confirm-pass">
+                            Show
+                        </button>
+
+                    </div>
+
+
+                    <br>
+
+
+                    <!-- Register -->
+
+                    <button type="submit" id="register-button">
+                        Register
+                    </button>
+
+
+                    <p id="message"></p>
+
+
+                    <!-- Link to the login page for users who already have an account -->
+
+                    <a href="index.html">Already have an account? Log in</a>
+
+
+                </section>
+
+            </section>
+
+        </form>
 
             <p id="message"></p>
           </section>
@@ -122,6 +162,9 @@
       </section>
     </footer>
 
-    <script src="./js/pages/registrationPage.js"></script>
-  </body>
+
+    <script type="module" src="./js/pages/registrationPage.js"></script>
+
+</body>
+
 </html>
