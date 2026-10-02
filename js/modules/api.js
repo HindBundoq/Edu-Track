@@ -48,21 +48,19 @@ export async function getAllStudents(instructorId) {
 // Get one student belonging to one instructor
 export async function getStudentById(id, instructorId) {
   try {
-    const response = await fetch(
-      `${BASE_URL}/students/${id}?instructorId=${instructorId}`,
-    );
+    const response = await fetch(`${BASE_URL}/students/${id}`);
 
     if (!response.ok) {
       throw new Error("Failed to get student");
     }
 
-    const students = await response.json();
+    const student = await response.json();
 
-    if (students.length === 0) {
+    if (!student || Number(student.instructorId) !== Number(instructorId)) {
       throw new Error("Student not found");
     }
 
-    return students;
+    return student;
   } catch (error) {
     console.error(error.message);
     throw error;

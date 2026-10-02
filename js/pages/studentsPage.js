@@ -567,7 +567,7 @@ studentForm.addEventListener("submit", async event => {
             const student = students.find(student => String(student.id) === String(id));
 
             if (!student) {
-                const result = await swal.fire({
+                const result = await Swal.fire({
                     title: "Error",
                     text: "Student not found",
                     icon: "error",
@@ -577,7 +577,7 @@ studentForm.addEventListener("submit", async event => {
             }
 
             if (Number(student.instructorId) !== Number(currentInstructor.id)) {
-                const result = await swal.fire({
+                const result = await Swal.fire({
                     title: "Error",
                     text: "You cannot update this student",
                     icon: "error",
@@ -594,7 +594,7 @@ studentForm.addEventListener("submit", async event => {
         await loadStudents();
     } catch (error) {
         console.error(error);
-        const result = await swal.fire({
+        const result = await Swal.fire({
             title: "Error",
             text: "Failed to save student",
             icon: "error",
@@ -644,7 +644,7 @@ studentsTableBody.addEventListener("click", async event => {
         }
 
         if (Number(student.instructorId) !== Number(currentInstructor.id)) {
-            const result = await swal.fire({
+            const result = await Swal.fire({
                 title: "Error",
                 text: "You cannot delete this student",
                 icon: "error",
@@ -653,7 +653,7 @@ studentsTableBody.addEventListener("click", async event => {
             return;
         }
 
-        const confirmed = await swal.fire({
+        const confirmed = await Swal.fire({
             title: "Confirm Delete",
             text: `Are you sure you want to delete ${student.name}?`,
             icon: "warning",
