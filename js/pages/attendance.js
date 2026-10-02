@@ -2,11 +2,19 @@ const studentsBody = document.getElementById("studentsBody");
 const searchInput = document.getElementById("searchInput");
 const dateInput = document.getElementById("dateInput");
 const courseSelect = document.getElementById("courseSelect");
+const currentInstructor =
+  JSON.parse(localStorage.getItem("currentInstructor")) ||
+  JSON.parse(sessionStorage.getItem("currentInstructor"));
+
+if (!currentInstructor?.id) {
+  window.location.href = "./index.html";
+  throw new Error("No logged-in instructor");
+}
 
 // ===== إضافة: تاريخ اليوم كقيمة افتراضية =====
 dateInput.value = new Date().toLocaleDateString("en-CA");
 
-fetch("http://localhost:3000/students")
+fetch(`http://localhost:3000/students?instructorId=${encodeURIComponent(currentInstructor.id)}`)
   .then(response => response.json())
   .then(students => {
 
