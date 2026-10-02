@@ -556,6 +556,10 @@ studentForm.addEventListener("submit", async event => {
                 feedback: []
             };
             await addStudent(newStudent);
+            selectedStatus = "all";
+            statusButtons.forEach(button => {
+                button.classList.toggle("active", button.dataset.status === selectedStatus);
+            });
         }
 
         // UPDATE
