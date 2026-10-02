@@ -320,4 +320,8 @@ export async function getActivities() {
       throw new Error("Failed to get activities");
     }
 
+}catch (error) {
+    console.error(error.message);
+    throw error;
+  }
 }
