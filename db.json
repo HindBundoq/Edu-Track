@@ -58,7 +58,7 @@
         },
         {
           "date": "2026-10-02",
-          "status": "absent"
+          "status": "present"
         }
       ],
       "feedback": []
@@ -89,7 +89,7 @@
         },
         {
           "date": "2026-10-02",
-          "status": "absent"
+          "status": "present"
         }
       ],
       "feedback": []
@@ -820,7 +820,12 @@
       "age": 22,
       "major": "cis",
       "instructorId": null,
-      "attendance": [],
+      "attendance": [
+        {
+          "date": "2026-10-02",
+          "status": "present"
+        }
+      ],
       "feedback": [],
       "id": "yYDD8goKFQ8"
     }
