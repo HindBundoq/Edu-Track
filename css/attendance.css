@@ -1,3 +1,73 @@
+/* ===== Attendance page (standalone — ما بيحتاج main.css) ===== */
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Colors (نفس متغيرات main.css) */
+:root {
+  --bg: #faf6f2;
+  --surface: #fffcfa;
+  --surface2: #f5efe9;
+  --line: #ede5dd;
+  --line2: #ddd2c7;
+  --text: #1f1a16;
+  --muted: #5e5248;
+  --faint: #8a7b6e;
+
+  --pri: #f0864e;
+  --pri-hover: #e57a42;
+  --on-pri: #2b1307;
+  --pri-soft: #ffede0;
+  --pri-text: #b4521f;
+
+  --ok: #3f7d52;
+  --ok-soft: #e3f0e6;
+  --bad: #b23e36;
+  --bad-soft: #fbe4e1;
+}
+
+[data-theme="dark"] {
+  --bg: #15110e;
+  --surface: #1e1814;
+  --surface2: #28201b;
+  --line: #342a24;
+  --line2: #4a3d34;
+  --text: #f6eee7;
+  --muted: #bfb0a2;
+  --faint: #8a7b6e;
+
+  --pri: #fba374;
+  --pri-hover: #ffb88f;
+  --on-pri: #2b1307;
+  --pri-soft: #35211a;
+  --pri-text: #ffb88f;
+
+  --ok: #8fc79e;
+  --ok-soft: #1d2b21;
+  --bad: #f0948b;
+  --bad-soft: #361d1a;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Figtree", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Page */
+.att-page {
+  padding: 28px 32px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
 /* Stat cards */
 .att-stats {
   display: grid;
@@ -85,9 +155,7 @@
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition:
-    background 0.15s,
-    opacity 0.15s;
+  transition: background 0.15s, opacity 0.15s;
 }
 
 .att-btn-outline {
@@ -258,6 +326,9 @@
 }
 
 @media (max-width: 560px) {
+  .att-page {
+    padding: 16px;
+  }
   .att-stats {
     gap: 10px;
   }

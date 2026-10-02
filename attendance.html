@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendance</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="css/attendance.css" />
+  </head>
+  <body>
+    <main class="att-page">
+      <!-- Stat cards -->
+      <section class="att-stats">
+        <article class="att-card">
+          <p class="att-card-label">Present</p>
+          <p class="att-card-value" id="statPresent">0</p>
+        </article>
+        <article class="att-card">
+          <p class="att-card-label">Absent</p>
+          <p class="att-card-value" id="statAbsent">0</p>
+        </article>
+        <article class="att-card">
+          <p class="att-card-label">Not marked</p>
+          <p class="att-card-value" id="statNotMarked">0</p>
+        </article>
+        <article class="att-card">
+          <p class="att-card-label">Attendance rate</p>
+          <p class="att-card-value" id="statRate">0%</p>
+        </article>
+      </section>
+
+      <!-- Toolbar -->
+      <section class="att-toolbar">
+        <label class="att-field">
+          <span>Date</span>
+          <input type="date" id="dateInput" class="att-input" />
+        </label>
+
+        <label class="att-field">
+          <span>Course</span>
+          <select id="courseSelect" class="att-input">
+            <option value="all">All</option>
+          </select>
+        </label>
+
+        <input
+          type="search"
+          id="searchInput"
+          class="att-input att-search"
+          placeholder="Search name or ID"
+        />
+
+        <button type="button" class="att-btn att-btn-outline" id="markAllBtn">
+          Mark all present
+        </button>
+        <button type="button" class="att-btn att-btn-primary" id="saveBtn" disabled>
+          Save attendance
+        </button>
+      </section>
+
+      <!-- Table -->
+      <section class="att-table-wrap">
+        <table class="att-table">
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>ID</th>
+              <th>Course</th>
+              <th>Overall</th>
+              <th>Status on this day</th>
+            </tr>
+          </thead>
+          <tbody id="studentsBody">
+            <tr><td colspan="5" class="att-empty">Loading students…</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <p class="att-toast" id="toast" role="status"></p>
+    </main>
+
+    <script type="module" src="./js/pages/attendance.js"></script>
+  </body>
+</html>
