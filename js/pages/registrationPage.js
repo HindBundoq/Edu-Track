@@ -26,7 +26,6 @@ const confirmPasswordInput = document.getElementById("confirm-password");
 const showPasswordBtn = document.getElementById("showpass");
 const showConfirmPasswordBtn = document.getElementById("show-confirm-pass");
 
-const registerButton = document.getElementById("register-button");
 const message = document.getElementById("message");
 
 
@@ -78,9 +77,7 @@ function showMessage(text, type) {
 
 async function handleRegister(event) {
 
-    // stop the default action:
-    // - the Register link would go to index.html directly
-    // - the form would reload the page
+    // stop the form from reloading the page
     event.preventDefault();
 
     // read the values (trim() removes extra spaces at the start and end)
@@ -135,10 +132,9 @@ async function handleRegister(event) {
 
 // =====================================================
 // 5. Events
-// - click on the Register link
-// - pressing Enter inside any input submits the form
+// Register is a submit button, so one "submit" event covers both:
+// - click on the Register button
+// - pressing Enter inside any input
 // =====================================================
-
-registerButton.addEventListener("click", handleRegister);
 
 form.addEventListener("submit", handleRegister);
