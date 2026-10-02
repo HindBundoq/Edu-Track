@@ -339,3 +339,13 @@ body {
     flex: 1;
   }
 }
+
+/* الصفحة تاخذ العرض كامل */
+.main {
+  max-width: none;
+}
+
+.att-page {
+  max-width: none;
+  width: 100%;
+}
