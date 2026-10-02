@@ -43,6 +43,8 @@
             </p>
             <div class="action-buttons-group">
                 <button class="btn-secondary" id="export-btn">Export gradebook (CSV)</button>
+                <button class="btn-primary" id="add-task-btn">Add task</button>
+
             </div>
         </section>
 
@@ -74,6 +76,49 @@
         </div>
 
     </main>
+        <!-- Add task modal: hidden until the "Add task" button is clicked -->
+    <div class="modal-overlay" id="add-task-modal">
+        <div class="modal-box">
+            <h2 class="modal-title">Add new task</h2>
+
+            <form id="add-task-form">
+                <label for="task-title">Title</label>
+                <input type="text" id="task-title" required>
+
+                <label for="task-type">Type</label>
+                <select id="task-type" required>
+                    <option value="assignment">Assignment</option>
+                    <option value="quiz">Quiz</option>
+                    <option value="project">Project</option>
+                    <option value="lab">Lab</option>
+                </select>
+
+                <label for="task-course">Course</label>
+                <select id="task-course" required>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="HTML & CSS">HTML & CSS</option>
+                </select>
+
+                <label for="task-description">Description</label>
+                <textarea id="task-description" rows="3"></textarea>
+
+                <label for="task-week">Week</label>
+                <input type="number" id="task-week" min="1" required>
+
+                <label for="task-due-date">Due date</label>
+                <input type="datetime-local" id="task-due-date" required>
+
+                <label for="task-points">Points</label>
+                <input type="number" id="task-points" min="1" value="100" required>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cancel-task-btn">Cancel</button>
+                    <button type="submit" class="btn-primary">Save task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 
     <script type="module" src="./js/pages/trackPage.js"></script>
 </body>
