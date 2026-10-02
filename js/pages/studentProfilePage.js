@@ -22,7 +22,9 @@ const studentId = Number(urlParams.get("id"));
 //   JSON.parse(localStorage.getItem("currentInstructor")) ||
 //   JSON.parse(sessionStorage.getItem("currentInstructor"));
 
-const instructorId = Number(localStorage.getItem("instructorId"));
+const instructorId = Number(
+  localStorage.getItem("instructorId") || sessionStorage.getItem("instructorId")
+);
 
 // =====================================================
 // Login Check
