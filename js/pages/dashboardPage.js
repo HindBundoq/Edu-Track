@@ -295,7 +295,7 @@ async function loadDashboard() {
           <h2>Needs review <span class="count">${pendingCount}</span></h2>
           <a href="track.html" class="card-link">Open grading</a>
         </header>
-        ${renderNeedsReview(submissions, tasks, allStudents)}
+        ${renderNeedsReview(submissions, tasks, students)}
       </section>
 
       <section class="card">
