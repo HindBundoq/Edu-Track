@@ -839,22 +839,54 @@ function closeAddTaskModal() {
 
 document.getElementById("cancel-task-btn").addEventListener("click", closeAddTaskModal);
 
+// close the modal when the user clicks outside the white box
+addTaskModal.addEventListener("click", (event) => {
+    if (event.target === addTaskModal) {
+        closeAddTaskModal();
+    }
+});
+
+// close the modal when the user presses the Escape key
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && addTaskModal.classList.contains("open")) {
+        closeAddTaskModal();
+    }
+});
+
+const saveTaskButton = addTaskForm.querySelector('button[type="submit"]');
+
 // save the new task
 addTaskForm.addEventListener("submit", async (event) => {
 
     event.preventDefault();
 
+    const title = document.getElementById("task-title").value.trim();
+
+    // stop if the title has only spaces
+    if (title === "") {
+        alert("Please enter a task title.");
+        return;
+    }
+
+    const dueDate = document.getElementById("task-due-date").value;
+
+    // if the due date is already in the past the task is closed, if not it is upcoming
+    const status = new Date(dueDate) < new Date() ? "closed" : "upcoming";
+
     const newTask = {
-        instructorId: currentInstructor.id,
-        title: document.getElementById("task-title").value.trim(),
+        instructorId: Number(currentInstructor.id),
+        title: title,
         type: document.getElementById("task-type").value,
         course: document.getElementById("task-course").value,
         description: document.getElementById("task-description").value.trim(),
         week: Number(document.getElementById("task-week").value),
-        dueDate: document.getElementById("task-due-date").value,
+        dueDate: dueDate,
         points: Number(document.getElementById("task-points").value),
-        status: "upcoming"
+        status: status
     };
+
+    // disable the button while saving, so a double click does not save the task twice
+    saveTaskButton.disabled = true;
 
     try {
 
@@ -883,6 +915,9 @@ addTaskForm.addEventListener("submit", async (event) => {
             confirmButtonText: "OK"
         });
     }
+
+    // enable the button again (after success or error)
+    saveTaskButton.disabled = false;
 });
 
 
