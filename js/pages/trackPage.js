@@ -629,9 +629,12 @@ function renderStudentRows(task) {
 
                 if (gradeValue === "") {
 
-                    alert(
-                        "Please enter a grade."
-                    );
+                    await swal.fire({
+                        title: "Error",
+                        text: "Please enter a grade.",
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
 
                     return;
                 }
@@ -647,9 +650,12 @@ function renderStudentRows(task) {
                     grade > task.points
                 ) {
 
-                    alert(
-                        `Grade must be between 0 and ${task.points}`
-                    );
+                    await swal.fire({
+                        title: "Error",
+                        text: `Grade must be between 0 and ${task.points}`,
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
 
                     return;
                 }
@@ -703,18 +709,24 @@ function renderStudentRows(task) {
                     renderTaskDetails(task);
 
 
-                    alert(
-                        "Grade and feedback saved successfully."
-                    );
+                    await swal.fire({
+                        title: "Success",
+                        text: "Grade and feedback saved successfully.",
+                        icon: "success",
+                        confirmButtonText: "OK"
+                    });
 
 
                 } catch (error) {
 
                     console.error(error);
 
-                    alert(
-                        "Failed to save grade."
-                    );
+                    await swal.fire({
+                        title: "Error",
+                        text: "Failed to save grade.",
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
 
                 }
 
@@ -864,7 +876,12 @@ addTaskForm.addEventListener("submit", async (event) => {
         closeAddTaskModal();
 
     } catch (error) {
-        alert("Could not save the task. Make sure json-server is running.");
+        await swal.fire({
+            title: "Error",
+            text: "Could not save the task. Make sure json-server is running.",
+            icon: "error",
+            confirmButtonText: "OK"
+        });
     }
 });
 

@@ -18,14 +18,17 @@ const studentId =  Number(urlParams.get("id")) || 101
 // Get Current Instructor
 // =====================================================
 
-const currentInstructor = JSON.parse(localStorage.getItem("currentInstructor")) || { id: 1, name: "Nada Sarraf" };
+const currentInstructor =
+  JSON.parse(localStorage.getItem("currentInstructor")) ||
+  JSON.parse(sessionStorage.getItem("currentInstructor"));
 
 // =====================================================
 // Check Login
 // =====================================================
 
-if (!currentInstructor) {
+if (!currentInstructor || !currentInstructor.id) {
   window.location.href = "index.html";
+  throw new Error("No logged-in instructor");
 }
 
 // =====================================================
@@ -33,9 +36,14 @@ if (!currentInstructor) {
 // =====================================================
 
 if (!studentId) {
-  alert("Student ID is missing");
-
-  window.location.href = "students.html";
+  swal.fire({
+    title: "Error",
+    text: "Student ID is missing",
+    icon: "error",
+    confirmButtonText: "OK"
+  }).then(() => {
+    window.location.href = "students.html";
+  });
 }
 
 // =====================================================
@@ -143,9 +151,9 @@ const deleteStudentBtn = document.getElementById("deleteStudentBtn");
 
 async function loadStudent(studentId) {
   try {
-    const student = await getStudentById(studentId, 1);
+    const student = await getStudentById(studentId, currentInstructor.id);
     // Render Student Information
-    const task = await getTasks(1);
+    const task = await getTasks(currentInstructor.id);
 
     renderStudentInformation(student);
 
@@ -181,7 +189,12 @@ async function loadStudent(studentId) {
   } catch (error) {
     console.error(error);
 
-    alert(error.message);
+    await swal.fire({
+      title: "Error",
+      text: error.message,
+      icon: "error",
+      confirmButtonText: "OK"
+    });
 
     //window.location.href = "students.html";
   }
@@ -627,7 +640,7 @@ function renderFeedback(feedback) {
 
 async function loadActivities(studentId) {
   try {
-    const activities = await getStudentActivities(studentId, 1);
+    const activities = await getStudentActivities(studentId, currentInstructor.id);
 
     renderActivities(activities);
   } catch (error) {
@@ -722,7 +735,7 @@ function capitalize(value) {
 // =====================================================
 
 editStudentBtn.addEventListener("click", async function () {
-  const student = await getStudentById(studentId, 1);
+  const student = await getStudentById(studentId, currentInstructor.id);
   // Open modal
   studentModal.classList.add("show");
 
@@ -750,22 +763,39 @@ closeModalBtn.addEventListener("click", function () {
 // =====================================================
 
 deleteStudentBtn.addEventListener("click", async function () {
-  const confirmed = confirm("Are you sure you want to delete this student?");
+  const confirmed = await swal.fire({
+    title: "Confirm Delete",
+    text: "Are you sure you want to delete this student?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Delete",
+    cancelButtonText: "Cancel"
+  });
 
-  if (!confirmed) {
+  if (!confirmed.isConfirmed) {
     return;
   }
 
   try {
     await deleteStudent(studentId);
 
-    alert("Student deleted successfully");
+    await swal.fire({
+      title: "Success",
+      text: "Student deleted successfully",
+      icon: "success",
+      confirmButtonText: "OK"
+    });
 
     window.location.href = "students.html";
   } catch (error) {
     console.error(error);
 
-    alert("Failed to delete student");
+    await swal.fire({
+      title: "Error",
+      text: "Failed to delete student",
+      icon: "error",
+      confirmButtonText: "OK"
+    });
   }
 });
 
