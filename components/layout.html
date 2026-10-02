@@ -1,0 +1,61 @@
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <span class="brand-logo"></span>
+    <span class="brand-name">Edu-Track</span>
+    <span class="brand-role">Instructor</span>
+  </div>
+
+  <div id="cohortCard"></div>
+
+  <nav class="nav" aria-label="Main">
+    <ul class="nav-links">
+      <li><a href="dashboard.html" class="link">Dashboard</a></li>
+      <li><a href="students.html" class="link">Students</a></li>
+      <li><a href="track.html" class="link">Tracking &amp; grades</a></li>
+      <li><a href="student-profile.html" class="link">At-risk students</a></li>
+    </ul>
+  </nav>
+
+  <footer class="sidebar-footer">
+    <div class="user">
+      <span class="avatar" id="userAvatar">IN</span>
+      <div>
+        <p class="user-name" id="userName">Instructor</p>
+        <p class="user-role">Lead Instructor</p>
+      </div>
+    </div>
+
+    <button class="btn btn-outline btn-block" type="button" id="signOutBtn">
+      Sign out
+    </button>
+  </footer>
+</aside>
+
+<!-- Overlay (mobile drawer) -->
+<div class="overlay" id="overlay"></div>
+
+<!-- Topbar / Header -->
+<header class="topbar">
+  <div class="topbar-left">
+    <button class="burger" id="burgerBtn" type="button" aria-label="Open menu">☰</button>
+    <div>
+      <p class="topbar-sub" id="topbarSub">Instructor Portal</p>
+      <h1 class="topbar-title" id="pageTitle">Dashboard</h1>
+    </div>
+  </div>
+
+  <div class="topbar-actions">
+    <input type="search" class="search" id="topbarSearch" placeholder="Search students by Name or ID..." />
+
+    <div class="theme-toggle">
+      <button type="button" data-theme="light">Light</button>
+      <button type="button" data-theme="dark">Dark</button>
+    </div>
+
+    <button class="btn btn-outline" type="button" aria-label="Notifications" id="notificationBtn">
+      <i class="fa-regular fa-bell"></i>
+      <span class="badge" id="notificationBadge" hidden>0</span>
+    </button>
+  </div>
+</header>
