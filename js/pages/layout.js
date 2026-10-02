@@ -176,7 +176,8 @@ function loadInstructorInfo() {
   }
 
   if (!instructor) {
-    instructor = { name: "Nada Sarraf", role: "Lead Instructor" };
+    window.location.href = "index.html";
+    return;
   }
 
   const userName = document.getElementById("userName");
