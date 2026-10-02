@@ -6,17 +6,13 @@ import {
     addTask
 } from "../modules/api.js";
 
-// const instructor = JSON.parse(localStorage.getItem("instructor"));
+const currentInstructor  =
+    JSON.parse(localStorage.getItem("currentInstructor")) ||
+    JSON.parse(sessionStorage.getItem("currentInstructor"));
 
-// const instructorId = instructor.id;
-// after save the instructor id in localstorge 
-
-const instructorId = 1;
-
-// if (!instructor) {
-//     window.location.href = "./login.html";
-// }
-
+if (!currentInstructor) {
+    window.location.href = "./index.html";
+} else {
 
 let tasks = [];
 let submissions = [];
@@ -25,9 +21,9 @@ let students = [];
 // load all data first (json-server must be running: npx json-server db.json)
 try {
     [tasks, submissions, students] = await Promise.all([
-        getTasks(instructorId),
-        getSubmissions(instructorId),
-        getAllStudents(instructorId)
+        getTasks(currentInstructor.id),
+        getSubmissions(currentInstructor.id),
+        getAllStudents(currentInstructor.id)
     ]);
 } catch (error) {
     console.error(error);
@@ -895,4 +891,6 @@ themeButtons.forEach(btn => {
 });
 
 setTheme(localStorage.getItem("theme") || "light");
+
+}
 

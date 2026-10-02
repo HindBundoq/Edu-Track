@@ -309,7 +309,6 @@ export async function updateSubmission(submissionId, updatedData) {
     throw error;
   }
 }
-}
 
 export async function getActivities() {
   try {
