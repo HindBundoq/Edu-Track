@@ -833,7 +833,7 @@ addTaskForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const newTask = {
-        instructorId: instructorId,
+        instructorId: currentInstructor.id,
         title: document.getElementById("task-title").value.trim(),
         type: document.getElementById("task-type").value,
         course: document.getElementById("task-course").value,
