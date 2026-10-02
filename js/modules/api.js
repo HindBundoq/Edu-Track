@@ -276,11 +276,25 @@ export async function updateSubmission(submissionId, updatedData) {
     if (!response.ok) {
       throw new Error("Failed to update submission");
     }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getActivities() {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/activities?instructorId=${instructor.id}`,
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to get activities");
+    }
 
     return await response.json();
   } catch (error) {
-    console.error(error.message);
+    console.error("Activities error:", error);
 
-    throw error;
+    return [];
   }
 }
