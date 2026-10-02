@@ -302,6 +302,7 @@ function initSignOut() {
     localStorage.removeItem("currentInstructor");
     sessionStorage.removeItem("currentInstructor");
     localStorage.removeItem("instructorId");
+    sessionStorage.removeItem("instructorId");
     window.location.href = "index.html";
   });
 }
