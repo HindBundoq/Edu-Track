@@ -48,21 +48,19 @@ export async function getAllStudents(instructorId) {
 // Get one student belonging to one instructor
 export async function getStudentById(id, instructorId) {
   try {
-    const response = await fetch(
-      `${BASE_URL}/students/${id}?instructorId=${instructorId}`,
-    );
+    const response = await fetch(`${BASE_URL}/students/${id}`);
 
     if (!response.ok) {
       throw new Error("Failed to get student");
     }
 
-    const students = await response.json();
+    const student = await response.json();
 
-    if (students.length === 0) {
+    if (!student || Number(student.instructorId) !== Number(instructorId)) {
       throw new Error("Student not found");
     }
 
-    return students;
+    return student;
   } catch (error) {
     console.error(error.message);
     throw error;
@@ -217,6 +215,31 @@ export async function getTasks(instructorId) {
   }
 }
 
+// ================= Add new task =================
+
+export async function addTask(task) {
+  try {
+    const response = await fetch(`${BASE_URL}/tasks`, {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(task),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to add task");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error(error.message);
+    throw error;
+  }
+}
+
 // ================= Get task by id =================
 
 export async function getTaskById(taskId, instructorId) {
@@ -284,42 +307,21 @@ export async function updateSubmission(submissionId, updatedData) {
     throw error;
   }
 }
-        throw error;
-    }
-}
-
 
 export async function getActivities() {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/activities?instructorId=${instructor.id}`,
+    );
 
-    try {
-
-        const response =
-            await fetch(
-                `${BASE_URL}/activities?instructorId=${instructor.id}`
-            );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Failed to get activities"
-            );
-
-        }
-
-
-        return await response.json();
-
-
-    } catch (error) {
-
-        console.error(
-            "Activities error:",
-            error
-        );
-
-        return [];
-
+    if (!response.ok) {
+      throw new Error("Failed to get activities");
     }
 
+    return await response.json();
+  
+}catch (error) {
+    console.error(error.message);
+    throw error;
+  }
 }

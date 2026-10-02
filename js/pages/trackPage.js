@@ -2,20 +2,17 @@ import {
     getTasks,
     getSubmissions,
     getAllStudents,
-    updateSubmission
+    updateSubmission,
+    addTask
 } from "../modules/api.js";
 
-// const instructor = JSON.parse(localStorage.getItem("instructor"));
+const currentInstructor  =
+    JSON.parse(localStorage.getItem("currentInstructor")) ||
+    JSON.parse(sessionStorage.getItem("currentInstructor"));
 
-// const instructorId = instructor.id;
-// after save the instructor id in localstorge 
-
-const instructorId = 1;
-
-// if (!instructor) {
-//     window.location.href = "./login.html";
-// }
-
+if (!currentInstructor) {
+    window.location.href = "./index.html";
+} else {
 
 let tasks = [];
 let submissions = [];
@@ -24,9 +21,9 @@ let students = [];
 // load all data first (json-server must be running: npx json-server db.json)
 try {
     [tasks, submissions, students] = await Promise.all([
-        getTasks(instructorId),
-        getSubmissions(instructorId),
-        getAllStudents(instructorId)
+        getTasks(currentInstructor.id),
+        getSubmissions(currentInstructor.id),
+        getAllStudents(currentInstructor.id)
     ]);
 } catch (error) {
     console.error(error);
@@ -164,7 +161,8 @@ function renderTasks(tasksToRender) {
 
         card.dataset.id = task.id;
 
-        if (Number(task.id) === Number(selectedTaskId)) {
+        // compare as text: new tasks from json-server get text ids like "AQ-SwIH-uj4"
+        if (String(task.id) === String(selectedTaskId)) {
             card.classList.add("active");
         }
 
@@ -631,9 +629,12 @@ function renderStudentRows(task) {
 
                 if (gradeValue === "") {
 
-                    alert(
-                        "Please enter a grade."
-                    );
+                    await swal.fire({
+                        title: "Error",
+                        text: "Please enter a grade.",
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
 
                     return;
                 }
@@ -649,9 +650,12 @@ function renderStudentRows(task) {
                     grade > task.points
                 ) {
 
-                    alert(
-                        `Grade must be between 0 and ${task.points}`
-                    );
+                    await swal.fire({
+                        title: "Error",
+                        text: `Grade must be between 0 and ${task.points}`,
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
 
                     return;
                 }
@@ -705,18 +709,24 @@ function renderStudentRows(task) {
                     renderTaskDetails(task);
 
 
-                    alert(
-                        "Grade and feedback saved successfully."
-                    );
+                    await swal.fire({
+                        title: "Success",
+                        text: "Grade and feedback saved successfully.",
+                        icon: "success",
+                        confirmButtonText: "OK"
+                    });
 
 
                 } catch (error) {
 
                     console.error(error);
 
-                    alert(
-                        "Failed to save grade."
-                    );
+                    await swal.fire({
+                        title: "Error",
+                        text: "Failed to save grade.",
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
 
                 }
 
@@ -811,6 +821,72 @@ document.getElementById("export-btn").addEventListener("click", () => {
 
 
 // =====================================================
+// Add task (modal form)
+// =====================================================
+
+const addTaskModal = document.getElementById("add-task-modal");
+const addTaskForm = document.getElementById("add-task-form");
+
+// open / close the modal
+document.getElementById("add-task-btn").addEventListener("click", () => {
+    addTaskModal.classList.add("open");
+});
+
+function closeAddTaskModal() {
+    addTaskModal.classList.remove("open");
+    addTaskForm.reset();
+}
+
+document.getElementById("cancel-task-btn").addEventListener("click", closeAddTaskModal);
+
+// save the new task
+addTaskForm.addEventListener("submit", async (event) => {
+
+    event.preventDefault();
+
+    const newTask = {
+        instructorId: currentInstructor.id,
+        title: document.getElementById("task-title").value.trim(),
+        type: document.getElementById("task-type").value,
+        course: document.getElementById("task-course").value,
+        description: document.getElementById("task-description").value.trim(),
+        week: Number(document.getElementById("task-week").value),
+        dueDate: document.getElementById("task-due-date").value,
+        points: Number(document.getElementById("task-points").value),
+        status: "upcoming"
+    };
+
+    try {
+
+        const savedTask = await addTask(newTask);
+
+        tasks.push(savedTask);
+
+        // update the header stats and the filter counts
+        renderHeaderStatistics();
+        allCount.textContent = tasks.length;
+        document.getElementById(`${savedTask.type}-count`).textContent =
+            tasks.filter(task => task.type === savedTask.type).length;
+
+        // show all tasks with the new one selected
+        selectedTaskId = savedTask.id;
+        document.querySelector('.filter-btn[data-type="all"]').click();
+        renderTaskDetails(savedTask);
+
+        closeAddTaskModal();
+
+    } catch (error) {
+        await swal.fire({
+            title: "Error",
+            text: "Could not save the task. Make sure json-server is running.",
+            icon: "error",
+            confirmButtonText: "OK"
+        });
+    }
+});
+
+
+// =====================================================
 // Light / dark theme (same localStorage key as the dashboard)
 // =====================================================
 
@@ -832,4 +908,6 @@ themeButtons.forEach(btn => {
 });
 
 setTheme(localStorage.getItem("theme") || "light");
+
+}
 

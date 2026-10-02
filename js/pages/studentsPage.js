@@ -9,10 +9,11 @@ import {
 } from "../modules/api.js";
 
 // CURRENT INSTRUCTOR (temporary, later get it from localStorage)
-const instructor = { id: 1 };
-// const instructor = JSON.parse(localStorage.getItem("currentInstructor"));
-if (!instructor) {
-    window.location.href = "login.html";
+const currentInstructor  = JSON.parse(localStorage.getItem("currentInstructor")) || JSON.parse(sessionStorage.getItem("currentInstructor"));
+
+if (!currentInstructor || !currentInstructor.id) {
+    window.location.href = "index.html";
+    throw new Error("No logged-in instructor");
 }
 
 // ELEMENTS
@@ -68,13 +69,16 @@ const exportCsvBtn =
 async function loadStudents() {
     try {
         const results = await Promise.all([
-            getAllStudents(instructor.id),
-            getTasks(instructor.id),
-            getSubmissions(instructor.id),
-            getInstructorActivities(instructor.id)
+            getAllStudents(currentInstructor.id),
+            getTasks(currentInstructor.id),
+            getSubmissions(currentInstructor.id),
+            getInstructorActivities(currentInstructor.id)
         ]);
 
         students = results[0];
+        // for debugging purposes, log the current instructor and the students fetched from the API
+        console.log("CURRENT INSTRUCTOR:", currentInstructor);
+        console.log("STUDENTS FROM API:", students);
         tasks = results[1];
         submissions = results[2];
         activities = results[3];
@@ -163,7 +167,7 @@ function getAverageScore(student) {
 function getSubmissionInfo(student) {
     // tasks belonging to instructor and same course as student
     const studentTasks = tasks.filter(task => {
-        const sameInstructor = Number(task.instructorId) === Number(instructor.id);
+        const sameInstructor = Number(task.instructorId) === Number(currentInstructor.id);
         const sameCourse = String(task.course).toLowerCase() === String(student.course).toLowerCase();
 
         return sameInstructor && sameCourse;
@@ -549,11 +553,11 @@ studentForm.addEventListener("submit", async event => {
         if (studentId.value === "") {
             const newStudent = {
                 ...data,
-                instructorId: instructor.id,
+                instructorId: Number(currentInstructor.id),
                 attendance: [],
                 feedback: []
             };
-
+            console.log("newStudent:", newStudent);
             await addStudent(newStudent);
         }
 
@@ -563,7 +567,7 @@ studentForm.addEventListener("submit", async event => {
             const student = students.find(student => String(student.id) === String(id));
 
             if (!student) {
-                const result = await swal.fire({
+                const result = await Swal.fire({
                     title: "Error",
                     text: "Student not found",
                     icon: "error",
@@ -572,8 +576,8 @@ studentForm.addEventListener("submit", async event => {
                 return;
             }
 
-            if (Number(student.instructorId) !== Number(instructor.id)) {
-                const result = await swal.fire({
+            if (Number(student.instructorId) !== Number(currentInstructor.id)) {
+                const result = await Swal.fire({
                     title: "Error",
                     text: "You cannot update this student",
                     icon: "error",
@@ -590,7 +594,7 @@ studentForm.addEventListener("submit", async event => {
         await loadStudents();
     } catch (error) {
         console.error(error);
-        const result = await swal.fire({
+        const result = await Swal.fire({
             title: "Error",
             text: "Failed to save student",
             icon: "error",
@@ -639,8 +643,8 @@ studentsTableBody.addEventListener("click", async event => {
             return;
         }
 
-        if (Number(student.instructorId) !== Number(instructor.id)) {
-            const result = await swal.fire({
+        if (Number(student.instructorId) !== Number(currentInstructor.id)) {
+            const result = await Swal.fire({
                 title: "Error",
                 text: "You cannot delete this student",
                 icon: "error",
@@ -649,7 +653,7 @@ studentsTableBody.addEventListener("click", async event => {
             return;
         }
 
-        const confirmed = await swal.fire({
+        const confirmed = await Swal.fire({
             title: "Confirm Delete",
             text: `Are you sure you want to delete ${student.name}?`,
             icon: "warning",

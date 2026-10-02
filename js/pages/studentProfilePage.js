@@ -11,21 +11,24 @@ import {
 
 const urlParams = new URLSearchParams(window.location.search);
 
-//const studentId = urlParams.get("id");
-const studentId = 101;
+const studentId =  Number(urlParams.get("id")) || 101
+// const studentId = 101;
 
 // =====================================================
 // Get Current Instructor
 // =====================================================
 
-const currentInstructor = JSON.parse(localStorage.getItem("currentInstructor"));
+const currentInstructor =
+  JSON.parse(localStorage.getItem("currentInstructor")) ||
+  JSON.parse(sessionStorage.getItem("currentInstructor"));
 
 // =====================================================
 // Check Login
 // =====================================================
 
-if (!currentInstructor) {
-  window.location.href = "login.html";
+if (!currentInstructor || !currentInstructor.id) {
+  window.location.href = "index.html";
+  throw new Error("No logged-in instructor");
 }
 
 // =====================================================
@@ -33,20 +36,41 @@ if (!currentInstructor) {
 // =====================================================
 
 if (!studentId) {
-  alert("Student ID is missing");
-
-  window.location.href = "students.html";
+  swal.fire({
+    title: "Error",
+    text: "Student ID is missing",
+    icon: "error",
+    confirmButtonText: "OK"
+  }).then(() => {
+    window.location.href = "students.html";
+  });
 }
 
 // =====================================================
 // DOM Elements
 // =====================================================
 
+const studentModal = document.getElementById("studentModal");
+const modalTitle = document.getElementById("modalTitle");
+
+const modalStudentId = document.getElementById("modalStudentId");
+const modalStudentName = document.getElementById("modalStudentName");
+const modalStudentEmail = document.getElementById("modalStudentEmail");
+const modalStudentCourse = document.getElementById("modalStudentCourse");
+const modalStudentStatus = document.getElementById("modalStudentStatus");
+const modalStudentPhone = document.getElementById("modalStudentPhone");
+const modalStudentAddress = document.getElementById("modalStudentAddress");
+const modalStudentAge = document.getElementById("modalStudentAge");
+const modalStudentMajor = document.getElementById("modalStudentMajor");
+
+const closeModalBtn = document.getElementById("closeModalBtn");
+const studentForm = document.getElementById("studentForm");
+
 // Header
 
-const studentName = document.getElementById("studentName");
+// const studentName = document.getElementById("studentName");
 
-const studentEmail = document.getElementById("studentEmail");
+// const studentEmail = document.getElementById("studentEmail");
 
 const studentStatus = document.getElementById("studentStatus");
 
@@ -82,8 +106,6 @@ const assignmentAverage = document.getElementById("assignmentAverage");
 
 const quizAverage = document.getElementById("quizAverage");
 
-const examGrade = document.getElementById("examGrade");
-
 const overallGrade = document.getElementById("overallGrade");
 
 // Assignments
@@ -100,14 +122,6 @@ const quizzesTableBody = document.getElementById("quizzesTableBody");
 
 //labs
 const labCount = document.getElementById("labCount");
-
-// Exam
-
-const examResult = document.getElementById("examResult");
-
-const examProgress = document.getElementById("examProgress");
-
-const examPercentage = document.getElementById("examPercentage");
 
 // Attendance
 
@@ -137,9 +151,9 @@ const deleteStudentBtn = document.getElementById("deleteStudentBtn");
 
 async function loadStudent(studentId) {
   try {
-    const student = await getStudentById(studentId, 1);
+    const student = await getStudentById(studentId, currentInstructor.id);
     // Render Student Information
-    const task = await getTasks(1);
+    const task = await getTasks(currentInstructor.id);
 
     renderStudentInformation(student);
 
@@ -159,10 +173,6 @@ async function loadStudent(studentId) {
 
     renderQuizzes(Quizzes || []);
 
-    const Exams = task.filter((t) => t.type?.toLowerCase() === "exam");
-
-    renderExam(Exams);
-
     renderAcademicOverview(student);
 
     // Render Attendance
@@ -179,7 +189,12 @@ async function loadStudent(studentId) {
   } catch (error) {
     console.error(error);
 
-    alert(error.message);
+    await swal.fire({
+      title: "Error",
+      text: error.message,
+      icon: "error",
+      confirmButtonText: "OK"
+    });
 
     //window.location.href = "students.html";
   }
@@ -190,10 +205,10 @@ async function loadStudent(studentId) {
 // =====================================================
 
 function renderStudentInformation(student) {
-  // Header
-  studentName.textContent = student.name;
+  // // Header
+  // studentName.textContent = student.name;
 
-  studentEmail.textContent = student.email;
+  // studentEmail.textContent = student.email;
 
   // Status
 
@@ -467,28 +482,6 @@ function renderQuizzes(quizzes) {
 }
 
 // =====================================================
-// Render Exam
-// =====================================================
-
-function renderExam(exam) {
-  if (exam === null || exam === undefined) {
-    examResult.textContent = "-";
-
-    examPercentage.textContent = "-";
-
-    examProgress.style.width = "0%";
-
-    return;
-  }
-
-  examResult.textContent = exam.title;
-
-  examPercentage.textContent = `${exam.points}%`;
-
-  examProgress.style.width = `${exam.points}%`;
-}
-
-// =====================================================
 // Calculate Average
 // =====================================================
 
@@ -511,8 +504,6 @@ function renderAcademicOverview(student) {
 
   const quizzes = student.scores?.quizzes || [];
 
-  const exam = student.scores?.exam;
-
   const assignmentAvg = calculateAverage(assignments);
 
   const quizAvg = calculateAverage(quizzes);
@@ -526,11 +517,6 @@ function renderAcademicOverview(student) {
 
   quizAverage.textContent = quizAvg !== null ? `${quizAvg.toFixed(1)}%` : "-";
 
-  // Exam
-
-  examGrade.textContent =
-    exam !== null && exam !== undefined ? `${exam}%` : "-";
-
   // Overall
 
   const grades = [];
@@ -541,10 +527,6 @@ function renderAcademicOverview(student) {
 
   if (quizAvg !== null) {
     grades.push(quizAvg);
-  }
-
-  if (exam !== null && exam !== undefined) {
-    grades.push(Number(exam));
   }
 
   if (grades.length === 0) {
@@ -658,7 +640,7 @@ function renderFeedback(feedback) {
 
 async function loadActivities(studentId) {
   try {
-    const activities = await getStudentActivities(studentId, 1);
+    const activities = await getStudentActivities(studentId, currentInstructor.id);
 
     renderActivities(activities);
   } catch (error) {
@@ -752,8 +734,28 @@ function capitalize(value) {
 // Edit Student
 // =====================================================
 
-editStudentBtn.addEventListener("click", function () {
-  window.location.href = `edit-student.html?id=${studentId}`;
+editStudentBtn.addEventListener("click", async function () {
+  const student = await getStudentById(studentId, currentInstructor.id);
+  // Open modal
+  studentModal.classList.add("show");
+
+  // Change modal title
+  modalTitle.textContent = "Edit Student";
+
+  // Fill student data
+  modalStudentId.value = student.id;
+  modalStudentName.value = student.name;
+  modalStudentEmail.value = student.email;
+  modalStudentCourse.value = student.course;
+  modalStudentStatus.value = student.status;
+  modalStudentPhone.value = student.phone || "";
+  modalStudentAddress.value = student.address || "";
+  modalStudentAge.value = student.age || "";
+  modalStudentMajor.value = student.major || "";
+});
+
+closeModalBtn.addEventListener("click", function () {
+  studentModal.classList.remove("show");
 });
 
 // =====================================================
@@ -761,22 +763,39 @@ editStudentBtn.addEventListener("click", function () {
 // =====================================================
 
 deleteStudentBtn.addEventListener("click", async function () {
-  const confirmed = confirm("Are you sure you want to delete this student?");
+  const confirmed = await swal.fire({
+    title: "Confirm Delete",
+    text: "Are you sure you want to delete this student?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Delete",
+    cancelButtonText: "Cancel"
+  });
 
-  if (!confirmed) {
+  if (!confirmed.isConfirmed) {
     return;
   }
 
   try {
     await deleteStudent(studentId);
 
-    alert("Student deleted successfully");
+    await swal.fire({
+      title: "Success",
+      text: "Student deleted successfully",
+      icon: "success",
+      confirmButtonText: "OK"
+    });
 
     window.location.href = "students.html";
   } catch (error) {
     console.error(error);
 
-    alert("Failed to delete student");
+    await swal.fire({
+      title: "Error",
+      text: "Failed to delete student",
+      icon: "error",
+      confirmButtonText: "OK"
+    });
   }
 });
 

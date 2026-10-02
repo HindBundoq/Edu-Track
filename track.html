@@ -4,77 +4,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tracking & Grades - Edu-Track</title>
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Icons (Font Awesome) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
     <!-- Global variables (light + dark) then page styles -->
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/track.css">
+    <link rel="stylesheet" href="./css/layout.css">
 </head>
 <body>
 
-    <!-- Main content section for tracking and grading -->
-    <main class="main-content">
+    <!-- Layout Container (Fixed Sidebar + Fixed Topbar) -->
+    <div id="layout-container"></div>
 
-        <!-- Top header area with title, search, and theme toggle -->
-        <header class="top-header">
-            <div class="header-title-wrapper">
-                <span class="breadcrumb">Cohort 12</span>
-                <h1>Tracking & grades</h1>
-            </div>
+    <!-- Main Container (Offset for fixed sidebar & topbar) -->
+    <div class="main">
+        <!-- Main content section for tracking and grading -->
+        <main class="main-content">
 
-            <div class="header-actions">
-                <!-- Search input for filtering the student rows of the selected task -->
-                <div class="search-wrapper">
-                    <input type="text" id="globalSearch" placeholder="Search students by name or email">
+            <!-- Top header area with title and search -->
+            <div class="top-header">
+                <div class="header-title-wrapper">
+                    <span class="breadcrumb">Cohort 12</span>
+                    <h1 class="track-page-title">Tracking &amp; grades</h1>
                 </div>
-                <!-- Light and dark theme toggle buttons -->
-                <div class="theme-toggle">
-                    <button class="theme-btn active" data-theme="light">Light</button>
-                    <button class="theme-btn" data-theme="dark">Dark</button>
+
+                <div class="header-actions">
+                    <!-- Search input for filtering the student rows of the selected task -->
+                    <div class="search-wrapper">
+                        <input type="text" id="globalSearch" placeholder="Search students by name or email">
+                    </div>
                 </div>
             </div>
-        </header>
 
-        <!-- Subheader: summary stats (filled by trackPage.js) and export button -->
-        <section class="subheader-section">
-            <p class="stats-summary-text">
-                <span id="open"></span>
-                <span id="upcoming"></span>
-                <span id="closed"></span>
-                <span id="needs-grading"></span>
-            </p>
-            <div class="action-buttons-group">
-                <button class="btn-secondary" id="export-btn">Export gradebook (CSV)</button>
-            </div>
-        </section>
-
-        <!-- Section title -->
-        <div class="tabs-nav">
-            <span class="tab-item active">Tasks & grading</span>
-        </div>
-
-        <!-- Task type filters (counts filled by trackPage.js) -->
-        <div class="filter-chips-row" id="task-filters">
-            <button class="filter-btn active" data-type="all">All <span id="all-count"></span></button>
-            <button class="filter-btn" data-type="assignment">Assignments <span id="assignment-count"></span></button>
-            <button class="filter-btn" data-type="quiz">Quizzes <span id="quiz-count"></span></button>
-            <button class="filter-btn" data-type="project">Projects <span id="project-count"></span></button>
-            <button class="filter-btn" data-type="lab">Labs <span id="lab-count"></span></button>
-        </div>
-
-        <!-- Two columns: task cards on the left, selected task details on the right -->
-        <div class="tracking-layout">
-
-            <!-- Task cards rendered by trackPage.js -->
-            <section class="tasks-list" id="tasks-list"></section>
-
-            <!-- Selected task details + student grading rows rendered by trackPage.js -->
-            <section class="task-details" id="task-details">
-                <p class="empty-state">Loading tasks...</p>
+            <!-- Subheader: summary stats (filled by trackPage.js) and export button -->
+            <section class="subheader-section">
+                <p class="stats-summary-text">
+                    <span id="open"></span>
+                    <span id="upcoming"></span>
+                    <span id="closed"></span>
+                    <span id="needs-grading"></span>
+                </p>
+                <div class="action-buttons-group">
+                    <button class="btn-secondary" id="export-btn">Export gradebook (CSV)</button>
+                    <button class="btn-primary" id="add-task-btn">Add task</button>
+                </div>
             </section>
 
-        </div>
+            <!-- Section title -->
+            <div class="tabs-nav">
+                <span class="tab-item active">Tasks &amp; grading</span>
+            </div>
+
+            <!-- Task type filters (counts filled by trackPage.js) -->
+            <div class="filter-chips-row" id="task-filters">
+                <button class="filter-btn active" data-type="all">All <span id="all-count"></span></button>
+                <button class="filter-btn" data-type="assignment">Assignments <span id="assignment-count"></span></button>
+                <button class="filter-btn" data-type="quiz">Quizzes <span id="quiz-count"></span></button>
+                <button class="filter-btn" data-type="project">Projects <span id="project-count"></span></button>
+                <button class="filter-btn" data-type="lab">Labs <span id="lab-count"></span></button>
+            </div>
+
+            <!-- Two columns: task cards on the left, selected task details on the right -->
+            <div class="tracking-layout">
+
+                <!-- Task cards rendered by trackPage.js -->
+                <section class="tasks-list" id="tasks-list"></section>
+
+                <!-- Selected task details + student grading rows rendered by trackPage.js -->
+                <section class="task-details" id="task-details">
+                    <p class="empty-state">Loading tasks...</p>
+                </section>
+
+            </div>
 
     </main>
 
+    <!-- Add task modal: hidden until the "Add task" button is clicked -->
+    <div class="modal-overlay" id="add-task-modal">
+        <div class="modal-box">
+            <h2 class="modal-title">Add new task</h2>
+
+            <form id="add-task-form">
+                <label for="task-title">Title</label>
+                <input type="text" id="task-title" required>
+
+                <label for="task-type">Type</label>
+                <select id="task-type" required>
+                    <option value="assignment">Assignment</option>
+                    <option value="quiz">Quiz</option>
+                    <option value="project">Project</option>
+                    <option value="lab">Lab</option>
+                </select>
+
+                <label for="task-course">Course</label>
+                <select id="task-course" required>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="HTML & CSS">HTML & CSS</option>
+                </select>
+
+                <label for="task-description">Description</label>
+                <textarea id="task-description" rows="3"></textarea>
+
+                <label for="task-week">Week</label>
+                <input type="number" id="task-week" min="1" required>
+
+                <label for="task-due-date">Due date</label>
+                <input type="datetime-local" id="task-due-date" required>
+
+                <label for="task-points">Points</label>
+                <input type="number" id="task-points" min="1" value="100" required>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cancel-task-btn">Cancel</button>
+                    <button type="submit" class="btn-primary">Save task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="./js/pages/layout.js"></script>
     <script type="module" src="./js/pages/trackPage.js"></script>
 </body>
 </html>
