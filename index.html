@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Log-In</title>
+
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/login.css">
+</head>
+
+<body>
+
+    <header class="the-header">
+        <!--عنوان الصفحه -->
+        <h1>🎓 EduTrack</h1>
+        <p>Coding Bootcamp</p>
+    </header>
+
+    <main> 
+
+        <!--form تسجيل الرخول -->
+
+        <form >
+            
+                <section class="form-login">
+                <legend></legend>
+                <p>INSTRUCTOR PORTAL</p>
+
+
+                <h3>Welcome back</h3>
+                <span>Log in to grade work, track attendance and follow every student in your cohort.</span>
+
+                <!--ال input الي لازم المدرب يكتب فيها بيناته -->
+               <section class="the-input">
+                <div>
+                    <label for="email">Email </label>
+                    <br>
+                    <input  type="email" id="email"  placeholder="nada.sarraf@edutrack.edu" required>
+                </div>
+
+                <br>
+
+                <div class="pass-show">
+                    <label for="password">Password </label>
+                    <br>
+                    <input type="password" id="password" placeholder="At least 6 characters" required>
+                        <!--هذا ال button لاخفاء واظهار الباسوورد-->
+                    <button type="button" id="showpass" >Show</button> 
+               </div>
+
+
+                
+               
+
+                <button type="submit" id="login-button">
+                    Log in
+                </button>
+                <p id="message"></p>
+                  <a href="registration.html">Don`t Have Account?</a>
+
+
+                <label class="remember">
+
+                    <input type="checkbox" id="remember-me">
+                    Keep me signed in on this device
+                   </label>
+
+
+                </section>
+
+            
+        </form>
+
+    </main>
+
+    <footer>
+            <hr>
+            <section class="the-footer">
+                 <p>EduTrack Instructor Portal</p>
+
+            <p>
+                v2026.2.280 © 2026 Glool Platform. All rights
+            </p>
+
+        
+            </section>
+    </footer>
+
+
+    <script src="./js/pages/loginPage.js"></script>
+    <script src="js/modules/validation.js"></script>
+</body>
+</html>
+
+
