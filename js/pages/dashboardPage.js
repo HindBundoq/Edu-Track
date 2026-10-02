@@ -27,7 +27,8 @@ function sameId(a, b) {
   return Number(a) === Number(b);
 }
 
-function initials(name = "") {
+function initials(name) {
+  if (!name) return "?";
   return name
     .split(" ")
     .map((part) => part[0])
@@ -109,7 +110,7 @@ function renderDeadlines(tasks, submissions, students) {
           <li class="list-item">
             <div class="list-main">
               <p class="list-title">${t.title}</p>
-              <p class="list-meta">${t.type} · Due ${formatDate(t.dueDate)} · ${t.points} pts</p>
+              <p class="list-meta"><span class="cap">${t.type}</span> · Due ${formatDate(t.dueDate)} · ${t.points} pts</p>
               <div class="progress"><span style="width:${percent}%"></span></div>
               <p class="list-meta">${count}/${students.length} submitted</p>
             </div>
@@ -132,10 +133,10 @@ function renderNeedsReview(submissions, tasks, students) {
         const task = tasks.find((t) => sameId(t.id, s.taskId));
         return `
           <li class="list-item">
-            <span class="mini-avatar">${initials(student?.name)}</span>
+            <span class="activity-icon"><i class="fa-solid fa-file-pen"></i></span>
             <div class="list-main">
-              <p class="list-title">${student?.name ?? "Unknown"}</p>
-              <p class="list-meta">${task?.title ?? "Task"} · ${formatDate(s.submittedAt)}</p>
+              <p class="list-title">${task?.title ?? `Task #${s.taskId}`}</p>
+              <p class="list-meta">${student?.name ?? `Student #${s.studentId}`} · ${formatDate(s.submittedAt)}</p>
             </div>
             <a href="track.html" class="btn btn-outline btn-sm">Review</a>
           </li>`;
@@ -218,7 +219,7 @@ async function loadDashboard() {
   content.innerHTML = `<p class="loading">Loading dashboard…</p>`;
 
   try {
-    const [instructor, students, tasks, submissions, activities] =
+    const [instructor, students, tasks, submissions, activities, allStudents] =
       await Promise.all([
         getJSON(`instructors/${currentInstructor.id}`),
         getJSON(`students?instructorId=${currentInstructor.id}`),
@@ -294,7 +295,7 @@ async function loadDashboard() {
           <h2>Needs review <span class="count">${pendingCount}</span></h2>
           <a href="track.html" class="card-link">Open grading</a>
         </header>
-        ${renderNeedsReview(submissions, tasks, students)}
+        ${renderNeedsReview(submissions, tasks, allStudents)}
       </section>
 
       <section class="card">

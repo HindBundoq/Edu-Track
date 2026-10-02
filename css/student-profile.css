@@ -2,6 +2,216 @@
    STUDENT PROFILE PAGE
    Uses variables and global styles from main.css
 ===================================================== */
+/* =========================================================
+   MODAL OVERLAY
+========================================================= */
+
+.modal {
+  position: fixed;
+
+  inset: 0;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  z-index: 1000;
+}
+
+.modal.show {
+  display: flex;
+}
+
+/* =========================================================
+   MODAL CONTENT
+========================================================= */
+
+.modal-content {
+  width: 100%;
+  max-width: 560px;
+
+  max-height: 92vh;
+
+  overflow-y: auto;
+
+  background: var(--surface);
+
+  border: 1px solid var(--line);
+
+  border-radius: 20px;
+
+  padding: 26px;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================================
+   MODAL HEADER
+========================================================= */
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-bottom: 22px;
+}
+
+.modal-header h2 {
+  color: var(--text);
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.close-btn {
+  width: 38px;
+  height: 38px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: var(--surface2);
+
+  color: var(--muted);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 24px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.close-btn:hover {
+  background: var(--pri-soft);
+  color: var(--pri-text);
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   FORM INPUTS
+========================================================= */
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  height: 46px;
+
+  border: 1px solid var(--line2);
+
+  border-radius: 10px;
+
+  background: var(--surface);
+
+  color: var(--text);
+
+  padding: 0 14px;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+.form-group input::placeholder {
+  color: var(--faint);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--pri);
+
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--pri) 15%, transparent);
+}
+
+/* =========================================================
+   SAVE BUTTON
+========================================================= */
+
+.save-btn {
+  width: 100%;
+
+  border: none;
+
+  border-radius: 11px;
+
+  background: var(--pri);
+
+  color: var(--on-pri);
+
+  padding: 13px;
+
+  margin-top: 8px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.save-btn:hover {
+  background: var(--pri-hover);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.table-container::-webkit-scrollbar,
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.table-container::-webkit-scrollbar-track,
+.modal-content::-webkit-scrollbar-track {
+  background: var(--surface2);
+}
+
+.table-container::-webkit-scrollbar-thumb,
+.modal-content::-webkit-scrollbar-thumb {
+  background: var(--line2);
+
+  border-radius: 10px;
+}
 
 /* =====================================================
    HEADER

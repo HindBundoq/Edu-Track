@@ -11,6 +11,18 @@
       "name": "Ahmad Ali",
       "email": "ahmad@gmail.com",
       "password": "123456"
+    },
+    {
+      "name": "hindbondoq",
+      "email": "hindbundoq@gmail.com",
+      "password": "12345678",
+      "id": "k1AaDQAfwnw"
+    },
+    {
+      "name": "Hind Bundoq",
+      "email": "hindbundoq2002@gmail.com",
+      "password": "hind1234",
+      "id": "99J0zG6z6eQ"
     }
   ],
   "students": [
@@ -561,33 +573,6 @@
       "feedback": []
     },
     {
-      "id": "126",
-      "instructorId": 1,
-      "name": "Aya Mahmoud",
-      "email": "aya.mahmoud@gmail.com",
-      "course": "JavaScript",
-      "status": "active",
-      "address": "Amman",
-      "phone": "0788888888",
-      "age": 22,
-      "major": "CS",
-      "attendance": [
-        {
-          "date": "2026-09-28",
-          "status": "present"
-        },
-        {
-          "date": "2026-09-29",
-          "status": "present"
-        },
-        {
-          "date": "2026-09-30",
-          "status": "absent"
-        }
-      ],
-      "feedback": []
-    },
-    {
       "id": "128",
       "instructorId": 1,
       "name": "Fadi Qasem",
@@ -652,33 +637,6 @@
         {
           "date": "2026-09-29",
           "status": "present"
-        },
-        {
-          "date": "2026-09-30",
-          "status": "present"
-        }
-      ],
-      "feedback": []
-    },
-    {
-      "id": "131",
-      "instructorId": 1,
-      "name": "Anas Saeed",
-      "email": "anas.saeed@gmail.com",
-      "course": "JavaScript",
-      "status": "active",
-      "address": "Irbid",
-      "phone": "0774445566",
-      "age": 23,
-      "major": "CIS",
-      "attendance": [
-        {
-          "date": "2026-09-28",
-          "status": "present"
-        },
-        {
-          "date": "2026-09-29",
-          "status": "absent"
         },
         {
           "date": "2026-09-30",

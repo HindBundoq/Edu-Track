@@ -39,11 +39,11 @@
           Back to Students
         </a>
 
-        <div class="page-title">
+        <!-- <div class="page-title">
           <h1 id="studentName">Loading...</h1>
 
           <p id="studentEmail">Loading...</p>
-        </div>
+        </div> -->
       </div>
 
       <div class="header-actions">
@@ -167,17 +167,6 @@
               <strong id="quizAverage"> - </strong>
             </div>
           </article>
-
-          <article class="stat-card">
-            <div class="stat-icon">E</div>
-
-            <div>
-              <span class="stat-label"> Exam </span>
-
-              <strong id="examGrade"> - </strong>
-            </div>
-          </article>
-
           <div class="stat-card">
             <div class="stat-icon">L</div>
             <div class="stat-info">
@@ -295,36 +284,6 @@
         </div>
       </section>
 
-      <!-- ================= EXAM ================= -->
-
-      <section class="section">
-        <div class="section-header">
-          <div>
-            <h2>Final Exam</h2>
-
-            <p>Final examination result</p>
-          </div>
-        </div>
-
-        <div class="exam-card">
-          <div>
-            <span class="exam-label"> Exam Grade </span>
-
-            <strong id="examResult"> - </strong>
-
-            <span class="exam-total"> / 100 </span>
-          </div>
-
-          <div class="exam-progress">
-            <div class="progress large">
-              <span id="examProgress"></span>
-            </div>
-
-            <span id="examPercentage"> - </span>
-          </div>
-        </div>
-      </section>
-
       <!-- ================= ATTENDANCE ================= -->
 
       <section class="section">
@@ -393,5 +352,6 @@
 
     <script type="module" src="js/pages/layout.js"></script>
     <script type="module" src="js/pages/studentProfilePage.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>

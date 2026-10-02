@@ -42,11 +42,27 @@ if (!studentId) {
 // DOM Elements
 // =====================================================
 
+const studentModal = document.getElementById("studentModal");
+const modalTitle = document.getElementById("modalTitle");
+
+const modalStudentId = document.getElementById("modalStudentId");
+const modalStudentName = document.getElementById("modalStudentName");
+const modalStudentEmail = document.getElementById("modalStudentEmail");
+const modalStudentCourse = document.getElementById("modalStudentCourse");
+const modalStudentStatus = document.getElementById("modalStudentStatus");
+const modalStudentPhone = document.getElementById("modalStudentPhone");
+const modalStudentAddress = document.getElementById("modalStudentAddress");
+const modalStudentAge = document.getElementById("modalStudentAge");
+const modalStudentMajor = document.getElementById("modalStudentMajor");
+
+const closeModalBtn = document.getElementById("closeModalBtn");
+const studentForm = document.getElementById("studentForm");
+
 // Header
 
-const studentName = document.getElementById("studentName");
+// const studentName = document.getElementById("studentName");
 
-const studentEmail = document.getElementById("studentEmail");
+// const studentEmail = document.getElementById("studentEmail");
 
 const studentStatus = document.getElementById("studentStatus");
 
@@ -82,8 +98,6 @@ const assignmentAverage = document.getElementById("assignmentAverage");
 
 const quizAverage = document.getElementById("quizAverage");
 
-const examGrade = document.getElementById("examGrade");
-
 const overallGrade = document.getElementById("overallGrade");
 
 // Assignments
@@ -100,14 +114,6 @@ const quizzesTableBody = document.getElementById("quizzesTableBody");
 
 //labs
 const labCount = document.getElementById("labCount");
-
-// Exam
-
-const examResult = document.getElementById("examResult");
-
-const examProgress = document.getElementById("examProgress");
-
-const examPercentage = document.getElementById("examPercentage");
 
 // Attendance
 
@@ -159,10 +165,6 @@ async function loadStudent(studentId) {
 
     renderQuizzes(Quizzes || []);
 
-    const Exams = task.filter((t) => t.type?.toLowerCase() === "exam");
-
-    renderExam(Exams);
-
     renderAcademicOverview(student);
 
     // Render Attendance
@@ -190,10 +192,10 @@ async function loadStudent(studentId) {
 // =====================================================
 
 function renderStudentInformation(student) {
-  // Header
-  studentName.textContent = student.name;
+  // // Header
+  // studentName.textContent = student.name;
 
-  studentEmail.textContent = student.email;
+  // studentEmail.textContent = student.email;
 
   // Status
 
@@ -467,28 +469,6 @@ function renderQuizzes(quizzes) {
 }
 
 // =====================================================
-// Render Exam
-// =====================================================
-
-function renderExam(exam) {
-  if (exam === null || exam === undefined) {
-    examResult.textContent = "-";
-
-    examPercentage.textContent = "-";
-
-    examProgress.style.width = "0%";
-
-    return;
-  }
-
-  examResult.textContent = exam.title;
-
-  examPercentage.textContent = `${exam.points}%`;
-
-  examProgress.style.width = `${exam.points}%`;
-}
-
-// =====================================================
 // Calculate Average
 // =====================================================
 
@@ -511,8 +491,6 @@ function renderAcademicOverview(student) {
 
   const quizzes = student.scores?.quizzes || [];
 
-  const exam = student.scores?.exam;
-
   const assignmentAvg = calculateAverage(assignments);
 
   const quizAvg = calculateAverage(quizzes);
@@ -526,11 +504,6 @@ function renderAcademicOverview(student) {
 
   quizAverage.textContent = quizAvg !== null ? `${quizAvg.toFixed(1)}%` : "-";
 
-  // Exam
-
-  examGrade.textContent =
-    exam !== null && exam !== undefined ? `${exam}%` : "-";
-
   // Overall
 
   const grades = [];
@@ -541,10 +514,6 @@ function renderAcademicOverview(student) {
 
   if (quizAvg !== null) {
     grades.push(quizAvg);
-  }
-
-  if (exam !== null && exam !== undefined) {
-    grades.push(Number(exam));
   }
 
   if (grades.length === 0) {
@@ -752,8 +721,28 @@ function capitalize(value) {
 // Edit Student
 // =====================================================
 
-editStudentBtn.addEventListener("click", function () {
-  window.location.href = `edit-student.html?id=${studentId}`;
+editStudentBtn.addEventListener("click", async function () {
+  const student = await getStudentById(studentId, 1);
+  // Open modal
+  studentModal.classList.add("show");
+
+  // Change modal title
+  modalTitle.textContent = "Edit Student";
+
+  // Fill student data
+  modalStudentId.value = student.id;
+  modalStudentName.value = student.name;
+  modalStudentEmail.value = student.email;
+  modalStudentCourse.value = student.course;
+  modalStudentStatus.value = student.status;
+  modalStudentPhone.value = student.phone || "";
+  modalStudentAddress.value = student.address || "";
+  modalStudentAge.value = student.age || "";
+  modalStudentMajor.value = student.major || "";
+});
+
+closeModalBtn.addEventListener("click", function () {
+  studentModal.classList.remove("show");
 });
 
 // =====================================================
