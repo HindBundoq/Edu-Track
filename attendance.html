@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Attendance</title>
+    <title>Attendance - Edu-Track</title>
 
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,82 +12,94 @@
       href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <!-- Icons (Font Awesome) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
 
-    <!-- CSS Link -->
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/layout.css" />
     <link rel="stylesheet" href="css/attendance.css" />
   </head>
   <body>
-    <main class="att-page">
-      <!-- Stat cards -->
-      <section class="att-stats">
-        <article class="att-card">
-          <p class="att-card-label">Present</p>
-          <p class="att-card-value" id="statPresent">0</p>
-        </article>
-        <article class="att-card">
-          <p class="att-card-label">Absent</p>
-          <p class="att-card-value" id="statAbsent">0</p>
-        </article>
-        <article class="att-card">
-          <p class="att-card-label">Not marked</p>
-          <p class="att-card-value" id="statNotMarked">0</p>
-        </article>
-        <article class="att-card">
-          <p class="att-card-label">Attendance rate</p>
-          <p class="att-card-value" id="statRate">0%</p>
-        </article>
-      </section>
+    <!-- Layout Container (Fixed Sidebar + Fixed Topbar) -->
+    <div id="layout-container"></div>
 
-      <!-- Toolbar -->
-      <section class="att-toolbar">
-        <label class="att-field">
-          <span>Date</span>
-          <input type="date" id="dateInput" class="att-input" />
-        </label>
+    <div class="main">
+      <main class="att-page">
+        <!-- Stat cards -->
+        <section class="att-stats">
+          <article class="att-card">
+            <p class="att-card-label">Present</p>
+            <p class="att-card-value" id="statPresent">0</p>
+          </article>
+          <article class="att-card">
+            <p class="att-card-label">Absent</p>
+            <p class="att-card-value" id="statAbsent">0</p>
+          </article>
+          <article class="att-card">
+            <p class="att-card-label">Not marked</p>
+            <p class="att-card-value" id="statNotMarked">0</p>
+          </article>
+          <article class="att-card">
+            <p class="att-card-label">Attendance rate</p>
+            <p class="att-card-value" id="statRate">0%</p>
+          </article>
+        </section>
 
-        <label class="att-field">
-          <span>Course</span>
-          <select id="courseSelect" class="att-input">
-            <option value="all">All</option>
-          </select>
-        </label>
+        <!-- Toolbar -->
+        <section class="att-toolbar">
+          <label class="att-field">
+            <span>Date</span>
+            <input type="date" id="dateInput" class="att-input" />
+          </label>
 
-        <input
-          type="search"
-          id="searchInput"
-          class="att-input att-search"
-          placeholder="Search name or ID"
-        />
+          <label class="att-field">
+            <span>Course</span>
+            <select id="courseSelect" class="att-input">
+              <option value="all">All</option>
+            </select>
+          </label>
 
-        <button type="button" class="att-btn att-btn-outline" id="markAllBtn">
-          Mark all present
-        </button>
-        <button type="button" class="att-btn att-btn-primary" id="saveBtn" disabled>
-          Save attendance
-        </button>
-      </section>
+          <input
+            type="search"
+            id="searchInput"
+            class="att-input att-search"
+            placeholder="Search name or ID"
+          />
 
-      <!-- Table -->
-      <section class="att-table-wrap">
-        <table class="att-table">
-          <thead>
-            <tr>
-              <th>Student</th>
-              <th>ID</th>
-              <th>Course</th>
-              <th>Overall</th>
-              <th>Status on this day</th>
-            </tr>
-          </thead>
-          <tbody id="studentsBody">
-            <tr><td colspan="5" class="att-empty">Loading students…</td></tr>
-          </tbody>
-        </table>
-      </section>
+          <button type="button" class="att-btn att-btn-outline" id="markAllBtn">
+            Mark all present
+          </button>
+          <button type="button" class="att-btn att-btn-primary" id="saveBtn" disabled>
+            Save attendance
+          </button>
+        </section>
 
-      <p class="att-toast" id="toast" role="status"></p>
-    </main>
+        <!-- Table -->
+        <section class="att-table-wrap">
+          <table class="att-table">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>ID</th>
+                <th>Course</th>
+                <th>Overall</th>
+                <th>Status on this day</th>
+              </tr>
+            </thead>
+            <tbody id="studentsBody">
+              <tr><td colspan="5" class="att-empty">Loading students…</td></tr>
+            </tbody>
+          </table>
+        </section>
 
+        <p class="att-toast" id="toast" role="status"></p>
+      </main>
+    </div>
+
+    <script type="module" src="./js/pages/layout.js"></script>
     <script type="module" src="./js/pages/attendance.js"></script>
   </body>
 </html>
