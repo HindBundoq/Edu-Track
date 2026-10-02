@@ -1,50 +1,35 @@
-/* Global Settings */
+/* ===== Attendance page (standalone — ما بيحتاج main.css) ===== */
+
+/* Reset */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* Colors (نفس متغيرات main.css) */
 :root {
-  /* ---------- Orange scale (fixed in both modes) ---------- */
-  --orange-100: #ffede0; /* Tonal backgrounds: selected nav, badges */
-  --orange-400: #fba374; /* Primary color in dark mode */
-  --orange-500: #f0864e; /* ★ BRAND — primary buttons, progress, active states */
-  --orange-700: #b4521f; /* Orange text & links on light backgrounds */
+  --bg: #faf6f2;
+  --surface: #fffcfa;
+  --surface2: #f5efe9;
+  --line: #ede5dd;
+  --line2: #ddd2c7;
+  --text: #1f1a16;
+  --muted: #5e5248;
+  --faint: #8a7b6e;
 
-  /* ---------- Backgrounds ---------- */
-  --bg: #faf6f2; /* Page background */
-  --surface: #fffcfa; /* Cards, modals, inputs */
-  --surface2: #f5efe9; /* Sidebar, subtle fills, empty progress track */
+  --pri: #f0864e;
+  --pri-hover: #e57a42;
+  --on-pri: #2b1307;
+  --pri-soft: #ffede0;
+  --pri-text: #b4521f;
 
-  /* ---------- Borders ---------- */
-  --line: #ede5dd; /* Dividers, card borders */
-  --line2: #ddd2c7; /* Input & outline-button borders */
-
-  /* ---------- Text ---------- */
-  --text: #1f1a16; /* Headings & body text */
-  --muted: #5e5248; /* Secondary text: captions, labels, meta */
-  --faint: #8a7b6e; /* Placeholders, disabled text */
-
-  /* ---------- Primary ---------- */
-  --pri: var(--orange-500); /* Primary buttons, progress fill, toggles ON */
-  --pri-hover: #e57a42; /* Hover of primary buttons */
-  --on-pri: #2b1307; /* Text on --pri background (not white) */
-  --pri-soft: var(--orange-100); /* Tonal background (selected / highlighted) */
-  --pri-text: var(--orange-700); /* Links & orange text */
-
-  /* ---------- Status (strong = text/icon, soft = badge background) ---------- */
-  --ok: #3f7d52; /* Success: submitted, passed */
+  --ok: #3f7d52;
   --ok-soft: #e3f0e6;
-  --warn: #8f6305; /* Warning: due soon, late */
-  --warn-soft: #fbf0d5;
-  --bad: #b23e36; /* Danger: missing, at-risk, delete, errors */
+  --bad: #b23e36;
   --bad-soft: #fbe4e1;
-  --info: #3d6aa3; /* Info: announcements, needs grading */
-  --info-soft: #e3ecf7;
 }
 
-/* ---------- Dark mode — same names, new values ---------- */
 [data-theme="dark"] {
   --bg: #15110e;
   --surface: #1e1814;
@@ -55,7 +40,7 @@
   --muted: #bfb0a2;
   --faint: #8a7b6e;
 
-  --pri: var(--orange-400);
+  --pri: #fba374;
   --pri-hover: #ffb88f;
   --on-pri: #2b1307;
   --pri-soft: #35211a;
@@ -63,17 +48,26 @@
 
   --ok: #8fc79e;
   --ok-soft: #1d2b21;
-  --warn: #e6c06a;
-  --warn-soft: #2f2714;
   --bad: #f0948b;
   --bad-soft: #361d1a;
-  --info: #93b5e0;
-  --info-soft: #1b2431;
 }
 
 body {
   background: var(--bg);
+  color: var(--text);
   font-family: "Figtree", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Page */
+.att-page {
+  padding: 28px 32px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
 /* Stat cards */
 .att-stats {
   display: grid;
@@ -161,9 +155,7 @@ body {
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition:
-    background 0.15s,
-    opacity 0.15s;
+  transition: background 0.15s, opacity 0.15s;
 }
 
 .att-btn-outline {
@@ -334,6 +326,9 @@ body {
 }
 
 @media (max-width: 560px) {
+  .att-page {
+    padding: 16px;
+  }
   .att-stats {
     gap: 10px;
   }
@@ -343,63 +338,4 @@ body {
   .att-btn {
     flex: 1;
   }
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --bg: #f7f7f7;
-    --surface: #ffffff;
-    --surface2: #f1f1f1;
-    --text: #222222;
-    --muted: #777777;
-    --line: #e5e5e5;
-    --line2: #d5d5d5;
-    --faint: #bbbbbb;
-    --pri: #ff7900;
-    --pri-hover: #e96e00;
-    --pri-soft: #fff0e3;
-    --pri-text: #d65e00;
-    --on-pri: #ffffff;
-    --orange-400: #ff9b42;
-    --orange-500: #ff7900;
-}
-
-[data-theme="dark"] {
-    --bg: #111111;
-    --surface: #1b1b1b;
-    --surface2: #161616;
-    --text: #f5f5f5;
-    --muted: #aaaaaa;
-    --line: #2a2a2a;
-    --line2: #333333;
-    --pri-soft: #3a2411;
-}
-
-body {
-    min-height: 100vh;
-    background: var(--bg);
-    color: var(--text);
-    font-family: "Figtree", system-ui, sans-serif;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-ul {
-    list-style: none;
-}
-
-button {
-    font: inherit;
-    color: inherit;
-    cursor: pointer;
-    background: none;
-    border: none;
 }

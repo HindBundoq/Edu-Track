@@ -26,7 +26,51 @@
     <!-- Layout Container (Fixed Sidebar + Fixed Topbar) -->
     <div id="layout-container"></div>
 
-    <!-- Main Container (Offset for fixed sidebar & topbar) -->
+      <!-- Cohort card (js part) -->
+      <div id="cohortCard"></div>
+
+      <!-- Navigation -->
+      <nav class="nav" aria-label="Main">
+        <ul class="nav-links">
+          <li>
+            <a href="dashboard.html" class="link is-active" aria-current="page"
+              >Dashboard</a
+            >
+          </li>
+          <li><a href="students.html" class="link">Students</a></li>
+          <li>
+            <a href="track.html" class="link">Tracking &amp; grades</a>
+          </li>
+          <li>
+            <a href="student-profile.html" class="link">At-risk students</a>
+          </li>
+           <li>
+            <a href="attendance.html" class="link">Attendance</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <footer class="sidebar-footer">
+        <div class="user">
+          <!-- js part -->
+          <span class="avatar" id="userAvatar"></span>
+          <div>
+            <!-- js part -->
+            <p class="user-name" id="userName"></p>
+            <p class="user-role">Lead Instructor</p>
+          </div>
+        </div>
+        <button class="btn btn-outline btn-block" type="button" id="signOutBtn">
+          Sign out
+        </button>
+      </footer>
+    </aside>
+
+    <!-- Overlay (mobile) -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Main -->
     <div class="main">
       <!-- Page content (js part) -->
       <main class="content" id="content"></main>
