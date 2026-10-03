@@ -5,7 +5,8 @@
 // HTML: index.html
 // =====================================================
 
-const API_URL = "http://localhost:3000/instructors";
+const API_BASE_URL = window.API_URL ?? "http://localhost:3000";
+const API_URL = `${API_BASE_URL}/instructors`;
 
 
 // =====================================================

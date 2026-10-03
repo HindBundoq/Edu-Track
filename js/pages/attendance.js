@@ -2,6 +2,7 @@ const studentsBody = document.getElementById("studentsBody");
 const searchInput = document.getElementById("searchInput");
 const dateInput = document.getElementById("dateInput");
 const courseSelect = document.getElementById("courseSelect");
+const API_BASE_URL = window.API_URL ?? "http://localhost:3000";
 const currentInstructor =
   JSON.parse(localStorage.getItem("currentInstructor")) ||
   JSON.parse(sessionStorage.getItem("currentInstructor"));
@@ -14,7 +15,7 @@ if (!currentInstructor?.id) {
 // ===== إضافة: تاريخ اليوم كقيمة افتراضية =====
 dateInput.value = new Date().toLocaleDateString("en-CA");
 
-fetch(`http://localhost:3000/students?instructorId=${encodeURIComponent(currentInstructor.id)}`)
+fetch(`${API_BASE_URL}/students?instructorId=${encodeURIComponent(currentInstructor.id)}`)
   .then(response => response.json())
   .then(students => {
 
@@ -397,7 +398,7 @@ fetch(`http://localhost:3000/students?instructorId=${encodeURIComponent(currentI
 
         attendance.push({ date: dateInput.value, status: changes[id] });
 
-        return fetch(`http://localhost:3000/students/${student.id}`, {
+        return fetch(`${API_BASE_URL}/students/${student.id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ attendance: attendance })

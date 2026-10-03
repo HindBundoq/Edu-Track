@@ -1,0 +1,13 @@
+{
+  "name": "edu-track-api",
+  "version": "1.0.0",
+  "description": "Edu-Track json-server backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.5",
+    "json-server": "0.17.4"
+  }
+}
