@@ -14,11 +14,11 @@ import { getLayout } from "./layout.js";
 // ===================== Config =====================
 const API = "http://localhost:3000";
 // Saved by the login page. Falls back to 1 while testing.
-const currentInstructor  =
-    JSON.parse(localStorage.getItem("currentInstructor")) ||
-    JSON.parse(sessionStorage.getItem("currentInstructor"));
+const currentInstructor =
+  JSON.parse(localStorage.getItem("currentInstructor")) ||
+  JSON.parse(sessionStorage.getItem("currentInstructor"));
 if (!currentInstructor) {
-    window.location.href = "index.html";
+  window.location.href = "index.html";
 }
 const content = document.getElementById("content");
 
@@ -306,7 +306,7 @@ async function loadDashboard() {
       <section class="card">
         <header class="card-head">
           <h2>At-risk students</h2>
-          <a href="student-profile.html" class="card-link">View all</a>
+          <a href="students.html" class="card-link">View all</a>
         </header>
         ${renderStudentList(atRisk, submissions, tasks, "No students at risk 👏")}
       </section>
