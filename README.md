@@ -57,16 +57,16 @@ HTML5 · CSS3 · Vanilla JavaScript (ES6+ modules, `fetch`, `async/await`) · js
 
 1. Clone the project:
 
-   ```bash
+```bash
    git clone https://github.com/mustafajoudeh/Edu-Track.git
    cd Edu-Track
-   ```
+```
 
 2. Start the mock API (requires [Node.js](https://nodejs.org/)):
 
-   ```bash
+```bash
    npx json-server db.json --port 3000
-   ```
+```
 
 3. Open `index.html` with **Live Server** in VS Code.
 
@@ -89,8 +89,8 @@ All data is stored in `db.json` and served by json-server at `http://localhost:3
 
 | Name | Role |
 |---|---|
-| | Scrum Master |Mustafa
-| | Product Owner |Hind Bundoq
-| | Decloper |Mohammed AL-Faqih
-| | Developer |Tamara Qweder
-| | Developer |Dyaa Abuzanoneh
+| Mustafa | Scrum Master |
+| Hind Bundoq | Product Owner |
+| Mohammed AL-Faqih | Developer |
+| Tamara Qweder | Developer |
+| Dyaa Abuzanoneh | Developer |
