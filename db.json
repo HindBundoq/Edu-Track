@@ -29,6 +29,12 @@
       "email": "test@gmail.com",
       "password": "123456",
       "id": "LtgoK94DTb0"
+    },
+    {
+      "name": "Mustafa joudeh",
+      "email": "mjouda35@gmail.com",
+      "password": "123456",
+      "id": "k6uxbeBT0Rc"
     }
   ],
   "students": [
@@ -116,33 +122,6 @@
         },
         {
           "date": "2026-09-30",
-          "status": "present"
-        },
-        {
-          "date": "2026-10-02",
-          "status": "present"
-        }
-      ],
-      "feedback": []
-    },
-    {
-      "id": "108",
-      "instructorId": 1,
-      "name": "Yazan Sami",
-      "email": "yazan.sami@gmail.com",
-      "course": "JavaScript",
-      "status": "archived",
-      "address": "Salt",
-      "phone": "0795555555",
-      "age": 25,
-      "major": "CS",
-      "attendance": [
-        {
-          "date": "2026-09-28",
-          "status": "present"
-        },
-        {
-          "date": "2026-09-29",
           "status": "present"
         },
         {
@@ -277,25 +256,6 @@
       "feedback": []
     },
     {
-      "id": "113",
-      "instructorId": 1,
-      "name": "Maya Yousef",
-      "email": "maya.yousef@gmail.com",
-      "course": "JavaScript",
-      "status": "archived",
-      "address": "Amman",
-      "phone": "0797777774",
-      "age": 22,
-      "major": "Software Engineering",
-      "attendance": [
-        {
-          "date": "2026-10-02",
-          "status": "present"
-        }
-      ],
-      "feedback": []
-    },
-    {
       "id": "114",
       "instructorId": 1,
       "name": "Omar Fadi",
@@ -341,37 +301,6 @@
         {
           "date": "2026-09-28",
           "status": "present"
-        },
-        {
-          "date": "2026-09-29",
-          "status": "present"
-        },
-        {
-          "date": "2026-09-30",
-          "status": "absent"
-        },
-        {
-          "date": "2026-10-02",
-          "status": "present"
-        }
-      ],
-      "feedback": []
-    },
-    {
-      "id": "116",
-      "instructorId": 1,
-      "name": "Ali Sameer",
-      "email": "ali.sameer@gmail.com",
-      "course": "JavaScript",
-      "status": "active",
-      "address": "Irbid",
-      "phone": "0797777777",
-      "age": 25,
-      "major": "IT",
-      "attendance": [
-        {
-          "date": "2026-09-28",
-          "status": "absent"
         },
         {
           "date": "2026-09-29",
@@ -828,6 +757,48 @@
       ],
       "feedback": [],
       "id": "yYDD8goKFQ8"
+    },
+    {
+      "name": "Mustafa Joudeh",
+      "email": "mjoudeh35@gmail.com",
+      "course": "JavaScript",
+      "status": "archived",
+      "phone": "0776315124",
+      "address": "Amman",
+      "age": 22,
+      "major": "CS",
+      "instructorId": 1,
+      "attendance": [],
+      "feedback": [],
+      "id": "V_1QhzeClvg"
+    },
+    {
+      "name": "omar ali",
+      "email": "omar@gmail.com",
+      "course": "JavaScript",
+      "status": "archived",
+      "phone": "0797777777",
+      "address": "Irbid",
+      "age": 25,
+      "major": "CIS",
+      "instructorId": 1,
+      "attendance": [],
+      "feedback": [],
+      "id": "GYuORDkc7fE"
+    },
+    {
+      "name": "Ali mohamad",
+      "email": "m@gmail.com",
+      "course": "JavaScript",
+      "status": "active",
+      "phone": "077777777",
+      "address": "Aqaba",
+      "age": 30,
+      "major": "Computer Engineering",
+      "instructorId": 1,
+      "attendance": [],
+      "feedback": [],
+      "id": "hlkTyw3_noU"
     }
   ],
   "tasks": [
@@ -2163,7 +2134,7 @@
     },
     {
       "instructorId": 1,
-      "studentId": "108",
+      "studentId": null,
       "type": "attendance_updated",
       "message": "Yazan Sami's attendance was updated",
       "date": "2026-10-02T14:59:42.440Z",
@@ -2195,7 +2166,7 @@
     },
     {
       "instructorId": 1,
-      "studentId": "113",
+      "studentId": null,
       "type": "attendance_updated",
       "message": "Maya Yousef's attendance was updated",
       "date": "2026-10-02T14:59:42.464Z",
@@ -2219,7 +2190,7 @@
     },
     {
       "instructorId": 1,
-      "studentId": "116",
+      "studentId": null,
       "type": "attendance_updated",
       "message": "Ali Sameer's attendance was updated",
       "date": "2026-10-02T14:59:42.467Z",
