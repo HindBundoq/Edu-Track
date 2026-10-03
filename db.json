@@ -35,6 +35,24 @@
       "email": "mjouda35@gmail.com",
       "password": "123456",
       "id": "k6uxbeBT0Rc"
+    },
+    {
+      "name": "Mustafa",
+      "email": "mjouda5@gmail.com",
+      "password": "123456",
+      "id": "R9_H5aNDJyg"
+    },
+    {
+      "name": "Mustafa joudeh",
+      "email": "mjou@gmail.com",
+      "password": "123456",
+      "id": "I_fgb-yQA7o"
+    },
+    {
+      "name": "gasfghafdsg",
+      "email": "gfsagfsd@ex.co",
+      "password": "123456",
+      "id": "gMbJrJP50wU"
     }
   ],
   "students": [
@@ -64,6 +82,10 @@
         },
         {
           "date": "2026-10-02",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-03",
           "status": "present"
         }
       ],
@@ -96,6 +118,10 @@
         {
           "date": "2026-10-02",
           "status": "present"
+        },
+        {
+          "date": "2026-10-03",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -126,6 +152,10 @@
         },
         {
           "date": "2026-10-02",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-03",
           "status": "present"
         }
       ],
@@ -158,6 +188,10 @@
         {
           "date": "2026-10-02",
           "status": "present"
+        },
+        {
+          "date": "2026-10-03",
+          "status": "absent"
         }
       ],
       "feedback": []
@@ -189,6 +223,10 @@
         {
           "date": "2026-10-02",
           "status": "absent"
+        },
+        {
+          "date": "2026-10-03",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -220,6 +258,10 @@
         {
           "date": "2026-10-02",
           "status": "present"
+        },
+        {
+          "date": "2026-10-03",
+          "status": "absent"
         }
       ],
       "feedback": []
@@ -250,6 +292,10 @@
         },
         {
           "date": "2026-10-02",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-03",
           "status": "present"
         }
       ],
@@ -282,6 +328,10 @@
         {
           "date": "2026-10-02",
           "status": "present"
+        },
+        {
+          "date": "2026-10-03",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -312,6 +362,10 @@
         },
         {
           "date": "2026-10-02",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-03",
           "status": "present"
         }
       ],
@@ -344,6 +398,10 @@
         {
           "date": "2026-10-02",
           "status": "present"
+        },
+        {
+          "date": "2026-10-03",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -374,6 +432,10 @@
         },
         {
           "date": "2026-10-02",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-03",
           "status": "present"
         }
       ],
@@ -406,6 +468,10 @@
         {
           "date": "2026-10-02",
           "status": "present"
+        },
+        {
+          "date": "2026-10-03",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -437,6 +503,10 @@
         {
           "date": "2026-10-02",
           "status": "present"
+        },
+        {
+          "date": "2026-10-03",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -463,6 +533,10 @@
         },
         {
           "date": "2026-10-02",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-03",
           "status": "present"
         }
       ],
@@ -495,6 +569,10 @@
         {
           "date": "2026-10-02",
           "status": "present"
+        },
+        {
+          "date": "2026-10-03",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -525,6 +603,10 @@
         },
         {
           "date": "2026-10-02",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-03",
           "status": "present"
         }
       ],
@@ -557,6 +639,10 @@
         {
           "date": "2026-10-02",
           "status": "present"
+        },
+        {
+          "date": "2026-10-03",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -588,6 +674,10 @@
         {
           "date": "2026-10-02",
           "status": "present"
+        },
+        {
+          "date": "2026-10-03",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -610,6 +700,10 @@
         },
         {
           "date": "2026-10-02",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-03",
           "status": "present"
         }
       ],
@@ -642,6 +736,10 @@
         {
           "date": "2026-10-02",
           "status": "present"
+        },
+        {
+          "date": "2026-10-03",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -672,6 +770,10 @@
         },
         {
           "date": "2026-10-02",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-03",
           "status": "present"
         }
       ],
@@ -704,6 +806,10 @@
         {
           "date": "2026-10-02",
           "status": "present"
+        },
+        {
+          "date": "2026-10-03",
+          "status": "present"
         }
       ],
       "feedback": []
@@ -734,6 +840,10 @@
         },
         {
           "date": "2026-10-02",
+          "status": "present"
+        },
+        {
+          "date": "2026-10-03",
           "status": "present"
         }
       ],
@@ -768,7 +878,12 @@
       "age": 22,
       "major": "CS",
       "instructorId": 1,
-      "attendance": [],
+      "attendance": [
+        {
+          "date": "2026-10-03",
+          "status": "present"
+        }
+      ],
       "feedback": [],
       "id": "V_1QhzeClvg"
     },
@@ -782,7 +897,12 @@
       "age": 25,
       "major": "CIS",
       "instructorId": 1,
-      "attendance": [],
+      "attendance": [
+        {
+          "date": "2026-10-03",
+          "status": "present"
+        }
+      ],
       "feedback": [],
       "id": "GYuORDkc7fE"
     },
@@ -796,7 +916,12 @@
       "age": 30,
       "major": "Computer Engineering",
       "instructorId": 1,
-      "attendance": [],
+      "attendance": [
+        {
+          "date": "2026-10-03",
+          "status": "present"
+        }
+      ],
       "feedback": [],
       "id": "hlkTyw3_noU"
     }
