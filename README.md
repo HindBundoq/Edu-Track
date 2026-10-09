@@ -6,7 +6,8 @@ EduTrack is an instructor portal where each instructor signs in, manages their o
 
 Built as the JavaScript Capstone Project 1 at Orange Coding Academy.
 
-🌐 **Live demo:** [edu-track-ngfk.onrender.com](https://edu-track-ngfk.onrender.com/)
+🌐 **Live demo:** coming soon
+🔑 **Demo account:** `demo@edutrack.edu` / `demo1234`
 📄 **Full screens documentation (PDF):** [docs/EduTrack-Screens.pdf](docs/EduTrack-Screens.pdf)
 
 <p align="center">
@@ -59,23 +60,29 @@ HTML5 · CSS3 · Vanilla JavaScript (ES6+ modules, `fetch`, `async/await`) · js
 1. Clone the project:
 
 ```bash
-   git clone https://github.com/mustafajoudeh/Edu-Track.git
+   git clone https://github.com/HindBundoq/Edu-Track.git
    cd Edu-Track
 ```
 
-2. Start the mock API (requires [Node.js](https://nodejs.org/)):
+2. Install the dependencies (requires [Node.js](https://nodejs.org/)):
 
 ```bash
-   npx json-server db.json --port 3000
+   npm install
 ```
 
-3. Open `index.html` with **Live Server** in VS Code.
+3. Start the server:
 
-4. Log in with the demo account: `mohammed@gmail.com` / `123456`
+```bash
+   npm start
+```
+
+4. Open `http://localhost:3000` in the browser.
+
+5. Log in with the demo account: `demo@edutrack.edu` / `demo1234`
 
 ## API Notes
 
-All data is stored in `db.json` and served by json-server at `http://localhost:3000`. Every request is filtered by the instructor's ID, for example:
+All data is stored in `db.json`. `server.js` runs json-server and serves the pages from the same address, so the API and the site share one origin (`http://localhost:3000` locally). Every request is filtered by the instructor's ID, for example:
 
 | Method | Endpoint | Used for |
 |---|---|---|
@@ -84,14 +91,14 @@ All data is stored in `db.json` and served by json-server at `http://localhost:3
 | GET / POST | `/tasks` | Load or add tasks |
 | PATCH | `/submissions/{id}` | Save a grade and feedback |
 
-> Passwords are stored as plain text and login is simulated in the browser. This is a learning project, not for real accounts.
+> Passwords are stored as plain text and login is simulated in the browser. This is a learning project, so all the accounts, students and emails in `db.json` are demo data, not real people.
 
 ## Team
 
 | Name | Role |
 |---|---|
-| Mustafa | Scrum Master |
-| Hind Bundoq | Product Owner |
+| Mustafa Joudeh | Scrum Master & Developer |
+| Hind Bundoq | Product Owner & Developer |
 | Mohammed AL-Faqih | Developer |
 | Tamara Qweder | Developer |
 | Dyaa Abuzanoneh | Developer |
