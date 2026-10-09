@@ -6,7 +6,7 @@ EduTrack is an instructor portal where each instructor signs in, manages their o
 
 Built as the JavaScript Capstone Project 1 at Orange Coding Academy.
 
-🌐 **Live demo:** coming soon
+🌐 **Live demo:** [edu-track-dmyr.onrender.com](https://edu-track-dmyr.onrender.com/)
 🔑 **Demo account:** `demo@edutrack.edu` / `demo1234`
 📄 **Full screens documentation (PDF):** [docs/EduTrack-Screens.pdf](docs/EduTrack-Screens.pdf)
 
